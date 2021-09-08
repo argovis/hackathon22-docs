@@ -1,0 +1,264 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Argovis Documentation &mdash; argovis  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Setting Up Argovis" href="getting_started/set_up_dev_environment.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#" class="icon icon-home"> argovis
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/set_up_dev_environment.html">Setting Up Argovis</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">argovis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Argovis Documentation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="argovis-documentation">
+<h1>Argovis Documentation<a class="headerlink" href="#argovis-documentation" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to the documentation for the Argovis project!</p>
+<div class="section" id="conventions">
+<h2>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h2>
+<p>We follow the following conventions in these docs:</p>
+<div class="section" id="code-prompts">
+<h3>Code prompts<a class="headerlink" href="#code-prompts" title="Permalink to this headline">¶</a></h3>
+<p>Unless otherwise noted, all terminal commands are <em>bash shell commands</em>.</p>
+<p>Prompts indicate the directory the command is expected to be run from, and are delimited with a <code class="docutils literal notranslate"><span class="pre">$</span></code> character. So:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>documentation $ <span class="nb">pwd</span>
+</pre></div>
+</div>
+<p>indicates you’re expected to run the <code class="docutils literal notranslate"><span class="pre">pwd</span></code> command in the <code class="docutils literal notranslate"><span class="pre">documentation</span></code> directory. Note that only the ‘nearest’ directory level is noted in this way, for brevity; the <code class="docutils literal notranslate"><span class="pre">documentation</span></code> directory in the above example might in fact be at <code class="docutils literal notranslate"><span class="pre">/Users/lovelace/projects/documentation</span></code> on your machine, but we hope this will be clear from context in each article.</p>
+<p>Per the typical convention, we use <code class="docutils literal notranslate"><span class="pre">~</span></code> in this context to indicate your home directory.</p>
+</div>
+</div>
+<div class="section" id="contributing">
+<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
+<p>We enthusiastically welcome contributions via pull request to the documentation <a class="reference external" href="https://github.com/argovis/documentation">on GitHub</a>. Follow these steps to get set up contributing documentation:</p>
+<ol class="arabic simple" start="0">
+<li><p>Before investing a lot of your time writing docs, <a class="reference external" href="https://github.com/argovis/documentation/issues">open an issue in the docs repo</a> to discuss your idea or request with the team, so we can make sure it’s a good fit for the project and no one else is already working on it.</p></li>
+<li><p>Make sure you have installed on your development machine:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>git</p></li>
+<li><p>docker</p></li>
+<li><p>a bash shell</p></li>
+</ul>
+</div></blockquote>
+<p>You’ll also need a free GitHub account.</p>
+<ol class="arabic simple" start="2">
+<li><p>Fork <a class="reference external" href="https://github.com/argovis/documentation">https://github.com/argovis/documentation</a> on GitHub to your own account.</p></li>
+<li><p>Clone your fork of the documentation repo to your local machine.</p></li>
+<li><p>Try building the docs as is:</p></li>
+</ol>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ <span class="nb">cd</span> documentation
+documentation $ docker container run -it -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/src arogvis/docbuilder:dev make html
+</pre></div>
+</div>
+<p>If all is well, open <code class="docutils literal notranslate"><span class="pre">documentation/_build/html/index.html</span></code> in your browser to see your locally-built version of the docs.</p>
+<ol class="arabic simple" start="5">
+<li><p>From here, you’re set up and ready to start creating your documentation. When you’re done, commit your code, push it back to your fork on GitHub, and open a pull request.</p></li>
+</ol>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started/set_up_dev_environment.html">Setting Up Argovis</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/set_up_dev_environment.html#quickstart-setup">Quickstart Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="getting_started/set_up_dev_environment.html#loading-data">Loading Data</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="getting_started/set_up_dev_environment.html" class="btn btn-neutral float-right" title="Setting Up Argovis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Argovis Collaboration.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
