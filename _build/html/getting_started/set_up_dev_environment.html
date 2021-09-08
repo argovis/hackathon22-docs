@@ -41,6 +41,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Restore Mongo from Backup" href="../disaster_recovery/restore_a_mongo_collection.html" />
     <link rel="prev" title="Argovis Documentation" href="../index.html" /> 
 </head>
 
@@ -86,13 +87,25 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">Getting Started:</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Setting Up Argovis</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#quickstart-setup">Quickstart Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#loading-data">Loading Data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-dev-versions">Building Dev Versions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#building-the-web-tier">Building the Web Tier</a></li>
 </ul>
 </li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Disaster Recovery</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../disaster_recovery/restore_a_mongo_collection.html">Restore Mongo from Backup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Special Topics</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../special_topics/connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
 </ul>
 
             
@@ -297,6 +310,41 @@ add-profiles $ <span class="nb">exit</span>
 <li><p>In your browser, visit your deployment of Argovis at <code class="docutils literal notranslate"><span class="pre">http://localhost:3000</span></code>, and use the search box in the left sidebar to search for float 4902911; if all is well, you should see this float’s data populated on the map.</p></li>
 </ol>
 </div>
+<div class="section" id="building-dev-versions">
+<h2>Building Dev Versions<a class="headerlink" href="#building-dev-versions" title="Permalink to this headline">¶</a></h2>
+<p>So far, we’ve relied on pre-built container images for Argovis to get things stood up and working quickly. But, of course you’ll want to build your code into new containers and try them out as part of your local deployment. We’ll learn how to do that in this section.</p>
+<div class="section" id="building-the-web-tier">
+<h3>Building the Web Tier<a class="headerlink" href="#building-the-web-tier" title="Permalink to this headline">¶</a></h3>
+<ol class="arabic">
+<li><p>Move to your <code class="docutils literal notranslate"><span class="pre">argovisNg</span></code> folder which you cloned earlier:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ <span class="nb">cd</span> ~/argovis/argovisNg
+</pre></div>
+</div>
+</li>
+<li><p>Clone the API code here:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ git clone https://github.com/argovis/argovis_backend
+</pre></div>
+</div>
+<p>At this point, <code class="docutils literal notranslate"><span class="pre">argovisNg</span></code> contains all the code describing the API and web frontend. Hack away on the code, and carry on when you’re ready to try out what you’ve coded.</p>
+</li>
+<li><p>Still in the <code class="docutils literal notranslate"><span class="pre">argovisNg</span></code> directory, rebuild the web tier. In this example, I call the new web tier image <code class="docutils literal notranslate"><span class="pre">argovis/argo-express:my-build</span></code>, but you can call it anything you like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ docker image build -t argovis/argo-express:my-build .
+</pre></div>
+</div>
+</li>
+<li><p>Open up <code class="docutils literal notranslate"><span class="pre">argovisNg/docker-compose.yml</span></code> and edit the definition of the <code class="docutils literal notranslate"><span class="pre">argo-express</span></code> service to use your new image:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
+<span class="nt">services</span><span class="p">:</span>
+  <span class="nt">argo-express</span><span class="p">:</span>
+    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">argovis/argo-express:my-build</span>
+    <span class="l l-Scalar l-Scalar-Plain">...</span>
+</pre></div>
+</div>
+</li>
+<li><p>Redeploy your local version of the app with <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">down</span></code> / <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span> <span class="pre">-d</span></code>. The web tier will now be based off of the custom image you just built.</p></li>
+</ol>
+</div>
+</div>
 </div>
 
 
@@ -305,6 +353,7 @@ add-profiles $ <span class="nb">exit</span>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../disaster_recovery/restore_a_mongo_collection.html" class="btn btn-neutral float-right" title="Restore Mongo from Backup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="../index.html" class="btn btn-neutral float-left" title="Argovis Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

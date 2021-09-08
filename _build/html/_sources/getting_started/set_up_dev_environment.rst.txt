@@ -139,3 +139,42 @@ All the profiles from the float 4902911 should have been written to ``argo-datab
 
 7. In your browser, visit your deployment of Argovis at ``http://localhost:3000``, and use the search box in the left sidebar to search for float 4902911; if all is well, you should see this float's data populated on the map.
 
+Building Dev Versions
+---------------------
+
+So far, we've relied on pre-built container images for Argovis to get things stood up and working quickly. But, of course you'll want to build your code into new containers and try them out as part of your local deployment. We'll learn how to do that in this section.
+
+Building the Web Tier
++++++++++++++++++++++
+
+1. Move to your ``argovisNg`` folder which you cloned earlier:
+
+   .. code:: bash
+
+      ~ $ cd ~/argovis/argovisNg
+
+2. Clone the API code here:
+
+   .. code:: bash
+
+      argovisNg $ git clone https://github.com/argovis/argovis_backend
+
+   At this point, ``argovisNg`` contains all the code describing the API and web frontend. Hack away on the code, and carry on when you're ready to try out what you've coded.
+
+3. Still in the ``argovisNg`` directory, rebuild the web tier. In this example, I call the new web tier image ``argovis/argo-express:my-build``, but you can call it anything you like:
+
+   .. code:: bash
+
+      argovisNg $ docker image build -t argovis/argo-express:my-build .
+
+4. Open up ``argovisNg/docker-compose.yml`` and edit the definition of the ``argo-express`` service to use your new image:
+
+   .. code:: yaml
+
+      version: '3'
+      services:
+        argo-express:
+          image: argovis/argo-express:my-build
+          ...
+
+5. Redeploy your local version of the app with ``docker-compose down`` / ``docker-compose up -d``. The web tier will now be based off of the custom image you just built.

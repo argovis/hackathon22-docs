@@ -58,11 +58,20 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
 
 5. From here, you're set up and ready to start creating your documentation. When you're done, commit your code, push it back to your fork on GitHub, and open a pull request.
 
-
-
 .. toctree::
    :maxdepth: 2
-   :caption: Getting Started:
+   :caption: Getting Started
 
    getting_started/set_up_dev_environment
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Disaster Recovery
+
+   disaster_recovery/restore_a_mongo_collection
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Special Topics
+
+   special_topics/connecting_to_the_container_network
