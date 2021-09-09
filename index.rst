@@ -56,6 +56,10 @@ You'll also need a free GitHub account.
 
 If all is well, open ``documentation/_build/html/index.html`` in your browser to see your locally-built version of the docs.
 
+.. admonition:: Warning
+
+   When you rebuild the docs in future, make sure your ``_build`` directory is empty! Otherwise, pre-existing pages may not get rebuilt, and their nav sidebar will be out of date.
+
 5. From here, you're set up and ready to start creating your documentation. When you're done, commit your code, push it back to your fork on GitHub, and open a pull request.
 
 .. toctree::

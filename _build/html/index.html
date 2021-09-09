@@ -207,6 +207,10 @@ documentation $ docker container run -it -v <span class="k">$(</span><span class
 </pre></div>
 </div>
 <p>If all is well, open <code class="docutils literal notranslate"><span class="pre">documentation/_build/html/index.html</span></code> in your browser to see your locally-built version of the docs.</p>
+<div class="admonition-warning admonition">
+<p class="admonition-title">Warning</p>
+<p>When you rebuild the docs in future, make sure your <code class="docutils literal notranslate"><span class="pre">_build</span></code> directory is empty! Otherwise, pre-existing pages may not get rebuilt, and their nav sidebar will be out of date.</p>
+</div>
 <ol class="arabic simple" start="5">
 <li><p>From here, you’re set up and ready to start creating your documentation. When you’re done, commit your code, push it back to your fork on GitHub, and open a pull request.</p></li>
 </ol>
