@@ -97,7 +97,11 @@
 <p class="caption" role="heading"><span class="caption-text">Special Topics</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Goship Demo Rebuild</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Goship Demo Rebuild</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#instance-setup">Instance Setup</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#database-restore">Database Restore</a></li>
+</ul>
+</li>
 </ul>
 
             
@@ -168,6 +172,8 @@
   <div class="section" id="goship-demo-rebuild">
 <h1>Goship Demo Rebuild<a class="headerlink" href="#goship-demo-rebuild" title="Permalink to this headline">¶</a></h1>
 <p>Instructions to rebuild the temp goship demo on Digital Ocean.</p>
+<div class="section" id="instance-setup">
+<h2>Instance Setup<a class="headerlink" href="#instance-setup" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p>Create a basic-tier droplet with 4 GB RAM, should be the $24/mo option.</p></li>
 <li><p>Connect to the instance and install docker and docker-compose:</p>
@@ -211,6 +217,11 @@
 </pre></div>
 </div>
 </li>
+</ol>
+</div>
+<div class="section" id="database-restore">
+<h2>Database Restore<a class="headerlink" href="#database-restore" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic" start="5">
 <li><p>Copy the goship mongo backup (consisting of <code class="docutils literal notranslate"><span class="pre">profiles.bson</span></code> and <code class="docutils literal notranslate"><span class="pre">profiles.metadata.json</span></code>) into position at <code class="docutils literal notranslate"><span class="pre">~/argovis/data/goship</span></code>.</p></li>
 <li><p>Start the app:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ <span class="nb">cd</span> ~/argovis/argovisNg
@@ -241,6 +252,7 @@ argovisNg $ docker-compose up -d
 </li>
 <li><p>Check for a sensible response at <code class="docutils literal notranslate"><span class="pre">&lt;public</span> <span class="pre">IP&gt;:3001/catalog/profiles/6657884888673.952_111/page</span></code></p></li>
 </ol>
+</div>
 </div>
 
 

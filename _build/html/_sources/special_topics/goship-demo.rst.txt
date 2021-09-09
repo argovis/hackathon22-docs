@@ -3,6 +3,9 @@ Goship Demo Rebuild
 
 Instructions to rebuild the temp goship demo on Digital Ocean.
 
+Instance Setup
+--------------
+
 1. Create a basic-tier droplet with 4 GB RAM, should be the $24/mo option.
 
 2. Connect to the instance and install docker and docker-compose:
@@ -48,6 +51,9 @@ Instructions to rebuild the temp goship demo on Digital Ocean.
             - '127.0.0.1:27017:27017' # include localhost ip to restrict access to localhost
           volumes:
             - /root/argovis/data:/data/db:Z # development
+
+Database Restore
+----------------
 
 5. Copy the goship mongo backup (consisting of ``profiles.bson`` and ``profiles.metadata.json``) into position at ``~/argovis/data/goship``.
 
