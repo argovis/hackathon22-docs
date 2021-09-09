@@ -168,10 +168,6 @@
   <div class="section" id="restore-mongo-from-backup">
 <h1>Restore Mongo from Backup<a class="headerlink" href="#restore-mongo-from-backup" title="Permalink to this headline">¶</a></h1>
 <p>In the event of a database failure or migration, we may need to restore MongoDB databases and collections from backups. In this tutorial, you’ll learn how to do so; we assume you have a running version of Argovis before you begin.</p>
-<div class="admonition-warning admonition">
-<p class="admonition-title">Warning</p>
-<p>Collection restoration is a memory intensive process! Make sure you’ve got enough physical memory available for mongo to be able to load the _entire_ file before beginning.</p>
-</div>
 <ol class="arabic">
 <li><p>First, we need to figure out where to put our backed up data so mongo can read it back in. Start by listing your containers; you should see something like the example output below:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ docker container ls
@@ -226,12 +222,18 @@ mongodb $ mkdir goship
 <ol class="arabic" start="3">
 <li><p>Tell mongo to re-load your collection from backup. Make sure to insert the mongo container ID you found above, modify the <code class="docutils literal notranslate"><span class="pre">goship</span></code> part of the path to match the subdirectory you made above, and feel free to change the <code class="docutils literal notranslate"><span class="pre">--db</span></code> and <code class="docutils literal notranslate"><span class="pre">--collection</span></code> flags to name your database and collections anything you like.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ docker container <span class="nb">exec</span> &lt;mongo container ID&gt; <span class="se">\</span>
-    mongorestore --db<span class="o">=</span>goship <span class="se">\</span>
-    --collection<span class="o">=</span>profiles <span class="se">\</span>
+    mongorestore --batchSize<span class="o">=</span><span class="m">64</span> <span class="se">\</span>
+    --db<span class="o">=</span>goship --collection<span class="o">=</span>profiles <span class="se">\</span>
     /data/db/goship/profiles.bson
 </pre></div>
 </div>
 </li>
+</ol>
+<div class="admonition-warning admonition">
+<p class="admonition-title">Warning</p>
+<p>Collection restoration is a memory intensive process! While the restoration proceeds, make sure to monitor memory usage and ensure it doesn’t exceed what’s available. If so, kill the restore and decrease the <code class="docutils literal notranslate"><span class="pre">--batchSize</span></code> parameter to reduce the amount of memory allocated by mongo on restore.</p>
+</div>
+<ol class="arabic" start="4">
 <li><p>Validate that your database was restored by creating an interactive connection to your mongodb and listing your databases:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ docker container <span class="nb">exec</span>  -it &lt;mongo container ID&gt; mongo
 
@@ -250,7 +252,7 @@ goship  <span class="m">2</span>.464GB
 </ol>
 <p>I can see my <code class="docutils literal notranslate"><span class="pre">goship</span></code> database is present and has content, so this looks good. Before exiting, feel free to explore some more to make sure your data has been restored in the way you expect.</p>
 <ol class="arabic" start="5">
-<li><p>After re-loading data, your container might be holding some or all of the reloaded database in memory; check this by looking at your container stats:</p>
+<li><p>After re-loading data, your container might have allocated a large amount of memory during restore.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ docker container stats --no-stream
 
 CONTAINER ID   NAME                       CPU %     MEM USAGE / LIMIT     MEM % ...
@@ -260,7 +262,7 @@ c5f477eb4a83   argovisng_database_1       <span class="m">0</span>.24%     12GiB
 </div>
 </li>
 </ol>
-<p>In this example, after I restored my goship database, it’s all sitting in memory, as we can see from the last line above. Restart the container to flush memory:</p>
+<p>In this example, after I restored my goship database, the database container has allocated a whopping 12 GB of memory. Restart the container to flush memory:</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ docker container restart &lt;database container ID&gt;
 </pre></div>

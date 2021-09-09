@@ -3,10 +3,6 @@ Restore Mongo from Backup
 
 In the event of a database failure or migration, we may need to restore MongoDB databases and collections from backups. In this tutorial, you'll learn how to do so; we assume you have a running version of Argovis before you begin.
 
-.. admonition:: Warning
-
-   Collection restoration is a memory intensive process! Make sure you've got enough physical memory available for mongo to be able to load the _entire_ file before beginning.
-
 1. First, we need to figure out where to put our backed up data so mongo can read it back in. Start by listing your containers; you should see something like the example output below:
 
    .. code:: bash
@@ -63,9 +59,13 @@ Place your mongo collection backup bson and metadata in that subdirectory; mine 
    .. code:: bash
 
       ~ $ docker container exec <mongo container ID> \
-          mongorestore --db=goship \
-          --collection=profiles \
+          mongorestore --batchSize=64 \
+          --db=goship --collection=profiles \
           /data/db/goship/profiles.bson
+
+.. admonition:: Warning
+
+   Collection restoration is a memory intensive process! While the restoration proceeds, make sure to monitor memory usage and ensure it doesn't exceed what's available. If so, kill the restore and decrease the ``--batchSize`` parameter to reduce the amount of memory allocated by mongo on restore.
 
 4. Validate that your database was restored by creating an interactive connection to your mongodb and listing your databases:
 
@@ -85,7 +85,7 @@ Place your mongo collection backup bson and metadata in that subdirectory; mine 
 
 I can see my ``goship`` database is present and has content, so this looks good. Before exiting, feel free to explore some more to make sure your data has been restored in the way you expect.
 
-5. After re-loading data, your container might be holding some or all of the reloaded database in memory; check this by looking at your container stats:
+5. After re-loading data, your container might have allocated a large amount of memory during restore.
 
    .. code:: bash
 
@@ -95,7 +95,7 @@ I can see my ``goship`` database is present and has content, so this looks good.
       cf17e99f65c5   argovisng_argo-express_1   0.27%     67.81MiB / 31.36GiB   0.21% ...
       c5f477eb4a83   argovisng_database_1       0.24%     12GiB / 31.36GiB      38.28%...
 
-In this example, after I restored my goship database, it's all sitting in memory, as we can see from the last line above. Restart the container to flush memory:
+In this example, after I restored my goship database, the database container has allocated a whopping 12 GB of memory. Restart the container to flush memory:
 
    .. code:: bash
 

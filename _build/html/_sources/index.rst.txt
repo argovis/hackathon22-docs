@@ -75,3 +75,4 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
    :caption: Special Topics
 
    special_topics/connecting_to_the_container_network
+   special_topics/goship-demo
