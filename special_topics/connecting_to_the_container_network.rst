@@ -3,7 +3,7 @@ Connecting to the Container Network
 
 When you launch Argovis, docker-compose makes a container network that all the application containers can communicate over. There are some instances when you might want to attach a new container to the existing network:
 
- - You have an experimental version of the web app or API, and want it to be able to communicate with your existing mongodb container instance
+ - You have an experimental version of the web app or API, and want it to be able to communicate with your existing mongodb container instance.
  - You have some containerized tooling, like diagnostic or performance tools, that you'd like to network to your existing deployment.
  - Many others.
 
@@ -49,7 +49,7 @@ Method 1: Simple Container
                 }
             }
 
-The name of the network your mongodb container is attached to is the very first key: ``argovisng_default`` in this case. You might have notices docker-compose create this network when you first stood up your application.
+The name of the network your mongodb container is attached to is the very first key: ``argovisng_default`` in this case. You might have noticed docker-compose create this network when you first stood up your application.
 
 3. Launch a container attached to this network. You can use any container image you like, but for this simple example we'll just make another copy of argovis' web tier, and show that it's communicating with the database:
 

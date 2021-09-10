@@ -52,7 +52,7 @@ You'll also need a free GitHub account.
 .. code:: bash
 
    ~ $ cd documentation
-   documentation $ docker container run -it -v $(pwd):/src arogvis/docbuilder:dev make html
+   documentation $ docker container run -it -v $(pwd):/src argovis/docbuilder:dev make html
 
 If all is well, open ``documentation/_build/html/index.html`` in your browser to see your locally-built version of the docs.
 

@@ -175,7 +175,7 @@
 <p>When you launch Argovis, docker-compose makes a container network that all the application containers can communicate over. There are some instances when you might want to attach a new container to the existing network:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p>You have an experimental version of the web app or API, and want it to be able to communicate with your existing mongodb container instance</p></li>
+<li><p>You have an experimental version of the web app or API, and want it to be able to communicate with your existing mongodb container instance.</p></li>
 <li><p>You have some containerized tooling, like diagnostic or performance tools, that you’d like to network to your existing deployment.</p></li>
 <li><p>Many others.</p></li>
 </ul>
@@ -220,7 +220,7 @@
 </div>
 </li>
 </ol>
-<p>The name of the network your mongodb container is attached to is the very first key: <code class="docutils literal notranslate"><span class="pre">argovisng_default</span></code> in this case. You might have notices docker-compose create this network when you first stood up your application.</p>
+<p>The name of the network your mongodb container is attached to is the very first key: <code class="docutils literal notranslate"><span class="pre">argovisng_default</span></code> in this case. You might have noticed docker-compose create this network when you first stood up your application.</p>
 <ol class="arabic" start="3">
 <li><p>Launch a container attached to this network. You can use any container image you like, but for this simple example we’ll just make another copy of argovis’ web tier, and show that it’s communicating with the database:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ docker container run -d --network argovisng_default <span class="se">\</span>
