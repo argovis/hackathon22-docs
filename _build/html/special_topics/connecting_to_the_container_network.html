@@ -91,6 +91,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../getting_started/set_up_dev_environment.html">Setting Up Argovis</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/fast_development_builds.html">Fast Angular Builds</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Disaster Recovery</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../disaster_recovery/restore_a_mongo_collection.html">Restore Mongo from Backup</a></li>
@@ -182,7 +186,7 @@
 <p>In this tutorial, you’ll learn two ways to attach a new container to an existing container network. We assume you have argovis up and running before beginning.</p>
 </div></blockquote>
 <div class="section" id="method-1-simple-container">
-<h2>Method 1: Simple Container<a class="headerlink" href="#method-1-simple-container" title="Permalink to this headline">¶</a></h2>
+<span id="simple-container-connection"></span><h2>Method 1: Simple Container<a class="headerlink" href="#method-1-simple-container" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p>Suppose you want to connect a new container to your mongodb container. Start by listing your containers to get the ID of your mongodb container:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ docker container ls

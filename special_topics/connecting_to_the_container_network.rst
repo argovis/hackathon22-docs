@@ -9,6 +9,8 @@ When you launch Argovis, docker-compose makes a container network that all the a
 
  In this tutorial, you'll learn two ways to attach a new container to an existing container network. We assume you have argovis up and running before beginning.
 
+.. _simple_container_connection:
+
 Method 1: Simple Container
 --------------------------
 

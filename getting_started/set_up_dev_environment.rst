@@ -1,3 +1,5 @@
+.. _setup_argovis:
+
 Setting Up Argovis
 ==================
 
@@ -139,6 +141,8 @@ All the profiles from the float 4902911 should have been written to ``argo-datab
 
 7. In your browser, visit your deployment of Argovis at ``http://localhost:3000``, and use the search box in the left sidebar to search for float 4902911; if all is well, you should see this float's data populated on the map.
 
+.. _building_dev_versions:
+
 Building Dev Versions
 ---------------------
 
@@ -166,6 +170,10 @@ Building the Web Tier
    .. code:: bash
 
       argovisNg $ docker image build -t argovis/argo-express:my-build .
+
+.. admonition:: Build too slow?
+
+   This build can take a while. Once you have it working once, try out :ref:`fast_angular_builds` for a faster development cycle.
 
 4. Open up ``argovisNg/docker-compose.yml`` and edit the definition of the ``argo-express`` service to use your new image:
 

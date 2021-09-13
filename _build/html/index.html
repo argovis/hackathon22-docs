@@ -90,6 +90,10 @@
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="getting_started/set_up_dev_environment.html">Setting Up Argovis</a></li>
 </ul>
+<p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dev_tools/fast_development_builds.html">Fast Angular Builds</a></li>
+</ul>
 <p class="caption" role="heading"><span class="caption-text">Disaster Recovery</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="disaster_recovery/restore_a_mongo_collection.html">Restore Mongo from Backup</a></li>
@@ -181,6 +185,17 @@
 <p>indicates you’re expected to run the <code class="docutils literal notranslate"><span class="pre">pwd</span></code> command in the <code class="docutils literal notranslate"><span class="pre">documentation</span></code> directory. Note that only the ‘nearest’ directory level is noted in this way, for brevity; the <code class="docutils literal notranslate"><span class="pre">documentation</span></code> directory in the above example might in fact be at <code class="docutils literal notranslate"><span class="pre">/Users/lovelace/projects/documentation</span></code> on your machine, but we hope this will be clear from context in each article.</p>
 <p>Per the typical convention, we use <code class="docutils literal notranslate"><span class="pre">~</span></code> in this context to indicate your home directory.</p>
 </div>
+<div class="section" id="variables">
+<h3>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h3>
+<p>When a command includes a variable we expect you to substitute in, it will appear in <code class="docutils literal notranslate"><span class="pre">&lt;angle</span> <span class="pre">brackets&gt;</span></code>. Replace the token, <em>including the angle brackets</em>, with the value. So a command like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ docker container inspect &lt;container ID&gt;
+</pre></div>
+</div>
+<p>Might actually look like:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ docker container inspect a508e35206a9
+</pre></div>
+</div>
+</div>
 </div>
 <div class="section" id="contributing">
 <h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
@@ -223,6 +238,12 @@ documentation $ docker container run -it -v <span class="k">$(</span><span class
 <li class="toctree-l2"><a class="reference internal" href="getting_started/set_up_dev_environment.html#building-dev-versions">Building Dev Versions</a></li>
 </ul>
 </li>
+</ul>
+</div>
+<div class="toctree-wrapper compound">
+<p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="dev_tools/fast_development_builds.html">Fast Angular Builds</a></li>
 </ul>
 </div>
 <div class="toctree-wrapper compound">

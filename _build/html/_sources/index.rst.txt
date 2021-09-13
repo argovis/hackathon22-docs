@@ -28,6 +28,21 @@ indicates you're expected to run the ``pwd`` command in the ``documentation`` di
 
 Per the typical convention, we use ``~`` in this context to indicate your home directory. 
 
+Variables
++++++++++
+
+When a command includes a variable we expect you to substitute in, it will appear in ``<angle brackets>``. Replace the token, *including the angle brackets*, with the value. So a command like:
+
+.. code:: bash
+   
+   ~ $ docker container inspect <container ID>
+
+Might actually look like:
+
+.. code:: bash
+
+   ~ $ docker container inspect a508e35206a9
+
 Contributing
 ------------
 
@@ -67,6 +82,12 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
    :caption: Getting Started
 
    getting_started/set_up_dev_environment
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Developer Tools & Techniques
+
+   dev_tools/fast_development_builds
 
 .. toctree::
    :maxdepth: 2
