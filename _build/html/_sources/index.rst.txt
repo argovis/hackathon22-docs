@@ -88,6 +88,9 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
    :caption: Developer Tools & Techniques
 
    dev_tools/fast_development_builds
+   dev_tools/pull_requests_and_github
+   dev_tools/merge_conflicts
+   dev_tools/using_branches
 
 .. toctree::
    :maxdepth: 2

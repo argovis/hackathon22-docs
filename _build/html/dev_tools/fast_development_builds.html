@@ -41,7 +41,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Restore Mongo from Backup" href="../disaster_recovery/restore_a_mongo_collection.html" />
+    <link rel="next" title="Pull Requests, Git &amp; GitHub" href="pull_requests_and_github.html" />
     <link rel="prev" title="Setting Up Argovis" href="../getting_started/set_up_dev_environment.html" /> 
 </head>
 
@@ -94,6 +94,9 @@
 <p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
 <ul class="current">
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Fast Angular Builds</a></li>
+<li class="toctree-l1"><a class="reference internal" href="pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="merge_conflicts.html">Dealing With Merge Conflicts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_branches.html">Using Branches</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Disaster Recovery</span></p>
 <ul>
@@ -177,10 +180,10 @@
 <li><p>Start up a local version of Argovis, as described in <a class="reference internal" href="../getting_started/set_up_dev_environment.html#setup-argovis"><span class="std std-ref">Setting Up Argovis</span></a>.</p></li>
 <li><p>Identify the container network your containers are connected to, as described in <a class="reference internal" href="../special_topics/connecting_to_the_container_network.html#simple-container-connection"><span class="std std-ref">Method 1: Simple Container</span></a>.</p></li>
 <li><p>In your terminal, move to the root of your <code class="docutils literal notranslate"><span class="pre">argovisNg</span></code> directory.</p></li>
-<li><p>Launch a development environment for Argovis:</p>
+<li><p>Launch a development environment for Argovis, making sure to sub in the name of the network you just found:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ docker container run <span class="se">\</span>
     -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/src:/usr/src/ng_argovis/src <span class="se">\</span>
-    --network argovisng_default <span class="se">\</span>
+    --network &lt;argovis network name&gt; <span class="se">\</span>
     -p <span class="m">3001</span>:3000 <span class="se">\</span>
     -d argovis/argovis-express:dev
 </pre></div>
@@ -191,7 +194,7 @@
 <blockquote>
 <div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">-v</span> <span class="pre">$(pwd)/src:/usr/src/ng_argovis/src</span></code>: mount the directory that you’re currently in (the root of your <code class="docutils literal notranslate"><span class="pre">argovisNg</span></code>) to where that code is supposed to live in the argovisNg web frontend container.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">--network</span> <span class="pre">argovisng_default</span></code>: attach this container to the same network as the running version of the app (so it can access the mongodb database).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--network</span> <span class="pre">&lt;argovis</span> <span class="pre">network</span> <span class="pre">name&gt;</span></code>: attach this container to the same network as the running version of the app (so it can access the mongodb database).</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">3001:3000</span></code>: make this development version available at <code class="docutils literal notranslate"><span class="pre">localhost:3001</span></code>.</p></li>
 </ul>
 </div></blockquote>
@@ -237,7 +240,7 @@ Time: 5544ms
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../disaster_recovery/restore_a_mongo_collection.html" class="btn btn-neutral float-right" title="Restore Mongo from Backup" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="pull_requests_and_github.html" class="btn btn-neutral float-right" title="Pull Requests, Git &amp; GitHub" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="../getting_started/set_up_dev_environment.html" class="btn btn-neutral float-left" title="Setting Up Argovis" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 

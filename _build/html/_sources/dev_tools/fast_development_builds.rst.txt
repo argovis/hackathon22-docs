@@ -11,20 +11,20 @@ Building the angular frontend container can be slow, which is an impediment to r
 
 3. In your terminal, move to the root of your ``argovisNg`` directory.
 
-4. Launch a development environment for Argovis:
+4. Launch a development environment for Argovis, making sure to sub in the name of the network you just found:
 
    .. code:: bash
 
       argovisNg $ docker container run \
           -v $(pwd)/src:/usr/src/ng_argovis/src \
-          --network argovisng_default \
+          --network <argovis network name> \
           -p 3001:3000 \
           -d argovis/argovis-express:dev
 
 For the curious, these flags are:
 
  - ``-v $(pwd)/src:/usr/src/ng_argovis/src``: mount the directory that you're currently in (the root of your ``argovisNg``) to where that code is supposed to live in the argovisNg web frontend container.
- - ``--network argovisng_default``: attach this container to the same network as the running version of the app (so it can access the mongodb database).
+ - ``--network <argovis network name>``: attach this container to the same network as the running version of the app (so it can access the mongodb database).
  - ``-p 3001:3000``: make this development version available at ``localhost:3001``.
 
 5. After starting the container, a long string will be returned to the terminal. This is the container ID for the container you just started. Use the first few characters to run the Angular auto-rebuilder inside this container:
