@@ -14,7 +14,7 @@ Merge Conflicts on Your Machine
 
    .. code:: bash
 
-      ~ $ git pull origin main
+      ~ $ git pull upstream main
 
           From https://github.com/BillMills/demo
            * branch            main     -> FETCH_HEAD
@@ -37,9 +37,9 @@ Merge Conflicts on Your Machine
       var index = 1337
       >>>>>>> 75fa902451bda65e819278ce9edca24b6072328e
 
-   This is git's way of indicating what the conflict is. The code between ``<<<<<<< HEAD`` and ``=======`` is one person's opinion of what the code should be; the code between ``=======`` and ``>>>>>>> 75fa902451bda65e819278ce9edca24b6072328e`` is the other person's opinion. Git tries to merge code automatically and usually succeeds, but it looks like in this case there's a disagreement in what ``index`` should be set to; there's no way git can know that on its own, so you need to help it out. Choose what you think the right version of the code is, delete the wrong or out of date version, and delete the ``>>>>``, ``====`` and ``<<<<`` lines in the code.
+   This is git's way of indicating what the conflict is. The code between ``<<<<<<< HEAD`` and ``=======`` is one person's opinion of what the code should be; the code between ``=======`` and ``>>>>>>> 75fa902451bda65e819278ce9edca24b6072328e`` is the other person's opinion. Git tries to merge code automatically and usually succeeds, but it looks like in this case there's a disagreement in what ``index`` should be set to; there's no way git can know the right answer on its own, so you need to help it out. Choose what you think the right version of the code is, delete the wrong or out of date version, and delete the ``>>>>``, ``====`` and ``<<<<`` lines in the code.
 
-   Note that there may me multiple conflicts per file; search for the string ``>>>>`` to make sure you catch them all.
+   Note that there may be multiple conflicts per file; search for the string ``>>>>`` to make sure you catch them all.
 
    Repeat this process for every file git mentioned a ``CONFLICT`` for in the first step.
 
