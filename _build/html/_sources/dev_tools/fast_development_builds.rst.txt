@@ -19,7 +19,7 @@ Building the angular frontend container can be slow, which is an impediment to r
           -v $(pwd)/src:/usr/src/ng_argovis/src \
           --network <argovis network name> \
           -p 3001:3000 \
-          -d argovis/argovis-express:dev
+          -d argovis/argo-express:dev
 
 For the curious, these flags are:
 
