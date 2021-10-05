@@ -13,7 +13,7 @@ Project Goals
 Usage
 -----
 
-All requests should currently be made as ``GET`` requets to the ``/profiles`` endpoint. Reducing the amount of data returned can be achieved with the following query string parameters; using multiple query string parameters ``AND`` s the corresponding requirements.
+All requests should currently be made as ``GET`` requets to the ``/profiles`` endpoint. Reducing the amount of data returned can be achieved with the following query string parameters; using multiple query string parameters ``AND`` s the corresponding requirements. All parameters are optional, but see the note below about limiting response sizes.
 
  - ``startDate``: formatted as ISO 8601 UTC: ``1999-12-31T23:59:59Z``. Profiles will be returned if they are timestamped at or after this time.
  - ``endDate``: formatted as ISO 8601 UTC: ``1999-12-31T23:59:59Z``. Profiles will be returned if they are timestamped before this time.
@@ -34,11 +34,11 @@ All requests should currently be made as ``GET`` requets to the ``/profiles`` en
      - Requesting a variable also returns its QC (ie requesting ``doxy`` will also return ``doxy_qc``).
      - ``all`` returns all available measurements and their QC.
 
-.. admonition:: Required Parameters
+.. admonition:: Required Parameters and Response Sizes
 
    In order to constrain the amount of data returned in a single request, your query must respect at least one of the following requirements:
 
-   - ``startDate`` and ``endDate`` are both present are no more than 90 days apart, OR
+   - ``startDate`` and ``endDate`` are both present and no more than 90 days apart, OR
    - ``ids`` is present and lists at most 100 profile IDs, OR
    - ``platforms`` is present and lists exactly one platform number.
 
@@ -72,17 +72,17 @@ In the tables below, we present the closest equivalents between old and new API 
      - ``/profiles?platforms=<platform number>&coreMeasurements=all&bgcMeasurements=all``
      - 
    * - ``/catalog/platform_metadata/<platform number>``
+     - ``/platforms?platform=<platform_number>``
      - 
-     - Not yet implemented, but coming soon, likely in a /platforms API group.
    * - ``/catalog/bgc_platform_list``
-     - 
-     - Not yet implemented, but coming soon, likely in a /platforms API group.
+     - ``/platforms/bgcList``
+     - New API returns a simple list of platform numbers, rather than a list of objects containing platform number as their single key.
    * - ``/catalog/platform_profile_metadata/<platform number>``
      - ``/profiles?platforms=<platform number>``
      -
    * - ``/catalog/platforms``
+     - ``/platforms/mostRecent``
      - 
-     - Not yet implemented, but coming soon, likely in a /platforms API group.
    * - ``/catalog/profiles/<profile id>``
      - ``/profiles?ids=<profile ID>&coreMeasurements=all&bgcMeasurements=all``
      - 
@@ -128,10 +128,21 @@ In the tables below, we present the closest equivalents between old and new API 
      - ``/profiles??startDate=<date>&endDate=<date>&polygon=[[lon1,lat1],[lon2,lat2],...,[lon1,lat1]]&bgcMeausrements=<bgc1>,<bgc2>``
      - New endpoint includes complete metadata record.
    * - ``/selection/overview``
+     - ``/profiles/overview``
      - 
-     - Not yet implemented, but coming soon.
 
+Index Requirements
+------------------
 
+These endpoints require the following indexes be maintained over any collection of profiles:
+
+ - ``date`` by decending order: ``/platforms`` extracts metadata from the most recent record for a given platform, and therefore requires date sorting; this breaks on the production database of 2M+ profiles, presumably beacuse it lacks the appropriate index.
+ - ``geoLocation`` by ``2dsphere``: all requests for points within a region require this index.
+
+The following indexes are strong nice-to-haves since they are valid search filters:
+
+ - ``_id`` by ascending
+ - ``platform_number`` by ascending
 
 Outstanding Issues
 ------------------
@@ -152,6 +163,11 @@ Constructed Keys
 
 The new ``/profiles`` endpoint is designed to search and return schema-compliant data - not do a lot of server-side processing. Therefore, some keys in the return schema the old endpoints created may not be present if they aren't part of the database schema itself. Let us know if this causes major problems; some of these keys can be easily reconstructed client-side from the existing return data and aren't really necessary, but others may be better done server-side as specialized API endpoints, which can be added. In general, good candidates for custom API endpoints are general-purpose computations that significantly reduce the amount of data needed to be transferred.
 
-Some keys that appear sporadically in the database that might be good candidates for constructed insertion are ``bgcMeasKeys`` or ``containsBGC``, as well as ``isDeep``.
+Some keys that appear sporadically in the database that might be good candidates for constructed insertion are ``bgcMeasKeys`` or ``containsBGC``, as well as ``isDeep``; on the other hand, ``/platforms/overview`` and its original predacessor expect ``containsBGC`` and ``isDeep`` to be present, so maybe they shouldn't be constructed, but enforced in the database schema.
+
+Sorting
++++++++
+
+The new API endpoints do not consider sort order in arrays they return, unless otherwise noted above; sorting can be added to any endpoint, but only when the overhead of index maintenance is justified on a case-by-case basis.
 
 
