@@ -13,35 +13,34 @@ Project Goals
 Usage
 -----
 
-All requests should currently be made as ``GET`` requets to the ``/profiles`` endpoint. Reducing the amount of data returned can be achieved with the following query string parameters; using multiple query string parameters ``AND``s the corresponding requirements.
+All requests should currently be made as ``GET`` requets to the ``/profiles`` endpoint. Reducing the amount of data returned can be achieved with the following query string parameters; using multiple query string parameters ``AND`` s the corresponding requirements.
 
-Mandatory Query String Parameters
-+++++++++++++++++++++++++++++++++
-
- - ``startDate`` (MANDATORY): formatted as ISO 8601 UTC: ``1999-12-31T23:59:59Z``. Profiles will be returned if they are timestamped at or after this time.
- - ``endDate`` (MANDATORY): formatted as ISO 8601 UTC: ``1999-12-31T23:59:59Z``. Profiles will be returned if they are timestamped before this time.
-
-.. admonition:: Why are dates mandatory?
-
-   The Argovis API paginates data by enforcing a *maxium of 3 months* of data returned in any one query, in order to implement pagination in a way that is natural and easy to understand for non-experts. See our examples (link TBD) for code to loop over this date-based pagination.
-
-Optional Query String Parameters
-++++++++++++++++++++++++++++++++
-
+ - ``startDate``: formatted as ISO 8601 UTC: ``1999-12-31T23:59:59Z``. Profiles will be returned if they are timestamped at or after this time.
+ - ``endDate``: formatted as ISO 8601 UTC: ``1999-12-31T23:59:59Z``. Profiles will be returned if they are timestamped before this time.
  - ``polygon``: formatted as ``[[lon,lat],[lon,lat],[lon,lat]...]``; note the first and last ``[lon,lat]`` pairs must be identical. Profiles will be returned if they fall within the closed polygon created by connecting the coordinate pairs in the order they are serialized.
  - ``box``: formatted as ``[[lower left lon,lower left lat],[upper right lon,upper right lat]]``. Profiles will be returned if they fall within the box defined by its lower left and upper right coordinate corners.
  - ``ids``: formatted as ``id_1,id_2,id_3,...``. Profiles will be returned if they have an ID in the list provided.
  - ``platforms``: formatted as ``platform_1,platform_2,platform_3,...``. Profiles will be returned if they have a platform number in the list provided.
  - ``presRange``: formatted as ``minPres,maxPres``. Only levels with ``measurements.pres``  that fall within the range bracketed by ``minPres`` and ``maxPres`` will be returned.
  - ``coreMeasurements``: formatted as ``meas_1,meas_2,...``. Specifies the core QC'ed measurements that will be returned as part of the ``measurements`` key. Notes:
+
      - Valid choices: ``pres``, ``temp``, ``psal``, ``all``
-     - ``pres``sure is always returned, no matter what.
+     - ``pres`` is always returned, no matter what.
      - ``all`` returns all available measurements, and is equivalent to ``coreMeasurements=temp,psal``. 
  - ``bgcMeasurements``: formatted as ``meas_1,meas_2,...``. Specifies the biogeochemical measurements that will be returned as part of the ``bgcMeas`` key. Notes:
-     - Valid choices: ``pres``,``temp``,``psal``,``cndx``,``doxy``,``chla``,``cdom``,``nitrate``,``bbp700``,``down_irradiance412``,``down_irradiance442``,``down_irradiance490``,``downwelling_par``, ``all``
-     - ``pres``sure and ``pres_qc`` are always returned, no matter what.
+
+     - Valid choices: ``pres``, ``temp``, ``psal``, ``cndx``, ``doxy``, ``chla``, ``cdom``, ``nitrate``, ``bbp700``, ``down_irradiance412``, ``down_irradiance442``, ``down_irradiance490``, ``downwelling_par``, ``all``
+     - ``pres`` and ``pres_qc`` are always returned, no matter what.
      - Requesting a variable also returns its QC (ie requesting ``doxy`` will also return ``doxy_qc``).
      - ``all`` returns all available measurements and their QC.
+
+.. admonition:: Required Parameters
+
+   In order to constrain the amount of data returned in a single request, your query must respect at least one of the following requirements:
+
+   - ``startDate`` and ``endDate`` are both present are no more than 90 days apart, OR
+   - ``ids`` is present and lists at most 100 profile IDs, OR
+   - ``platforms`` is present and lists exactly one platform number.
 
 .. admonition:: Data or Metadata?
 
@@ -54,8 +53,90 @@ Examples
 Mapping to old endpoints
 ------------------------
 
+In the tables below, we present the closest equivalents between old and new API endpoints. Note that not all equivalencies are exact! See the Comments column for differences and important notes.
+
+``/catalog`` endpoints
+++++++++++++++++++++++
+
+.. list-table:: /catalog to /profiles
+   :widths: 25 25 25
+   :header-rows: 1
+
+   * - Old endpoint
+     - New endpoint
+     - Comment
+   * - ``/catalog/platforms/<platform number>``
+     - ``/profiles?platforms=<platform number>&coreMeasurements=all``
+     - Old API schema will include a ``bgcMeasKeys`` entry with an empty array for profiles with no BGC data; this key is omitted if empty in the new API.
+   * - ``/catalog/bgc_platform_data/<platform number>``
+     - ``/profiles?platforms=<platform number>&coreMeasurements=all&bgcMeasurements=all``
+     - 
+   * - ``/catalog/platform_metadata/<platform number>``
+     - 
+     - Not yet implemented, but coming soon, likely in a /platforms API group.
+   * - ``/catalog/bgc_platform_list``
+     - 
+     - Not yet implemented, but coming soon, likely in a /platforms API group.
+   * - ``/catalog/platform_profile_metadata/<platform number>``
+     - ``/profiles?platforms=<platform number>``
+     -
+   * - ``/catalog/platforms``
+     - 
+     - Not yet implemented, but coming soon, likely in a /platforms API group.
+   * - ``/catalog/profiles/<profile id>``
+     - ``/profiles?ids=<profile ID>&coreMeasurements=all&bgcMeasurements=all``
+     - 
+   * - ``/catalog/mprofiles?ids=["<profile ID 1>","<profile ID 2>,..."]``
+     - ``/profiles?ids=<profile ID 1>,<profile ID 2>,...&coreMeasurements=all``
+     - New endpoint includes complete metadata record, but does not compute ``containsBGC`` or the level ``count`` (which can be trivially inferred from the length of the ``measurements`` list).
+   * - ``/dacs/<dac>``
+     - 
+     - Not implemented in old or new API, but coming soon to the new API, likely under a /dacs API group
+   * - ``/catalog/dacs``
+     -
+     - Bugged in the old API, and coming soon to the new API.
+
+``/selection`` endpoints
+++++++++++++++++++++++++
+
+.. list-table:: /selection to /profiles
+   :widths: 25 25 25
+   :header-rows: 1
+
+   * - Old endpoint
+     - New endpoint
+     - Comment
+   * - ``/selection?ids=["<profile ID 1>","<profile ID 2>,..."]``
+     - ``/profiles?ids=<profile ID 1>,<profile ID 2>,...&coreMeasurements=all``
+     - New endpoint includes complete metadata record, but does not compute ``containsBGC`` or the level ``count`` (which can be trivially inferred from the length of the ``measurements`` list).
+   * - ``/selection/profiles?startDate=<date>&endDate=<date>&shape=[[[lon1,lat1],[lon2,lat2],...,[lon1,lat1]]]``
+     - ``/profiles?startDate=<date>&endDate=<date>&polygon=[[lon1,lat1],[lon2,lat2],...,[lon1,lat1]]&coreMeasurements=all``
+     - 
+   * - ``/selection/box/profiles?startDate=<date>&endDate=<date>&llCorner=[lon1,lat1]&urCorner=[lon2,lat2]``
+     - ``/profiles?startDate=<date>&endDate=<date>&box=[[lon1,lat1],[lon2,lat2]]&coreMeasurements=all``
+     - 
+   * - ``/selection/profiles/<month>/<year>``
+     - ``/profiles?startDate=<First of the month>&endDate=<First of the next month>``
+     -
+   * - ``/selection/globalMapProfiles/<start date>/<end date>``
+     -
+     - Not yet implemented, but coming soon in a map data API.
+   * - ``/selection/lastThreeDays``
+     - 
+     - Will not be implemented; functionality is reproduced by specifiying the desired dates in ``/selection/globalMapProfiles/<start date>/<end date>``.
+   * - ``/selecton/bgc_data_selection?startDate=<date>&endDate=<date>&shape=[[[lon1,lat1],[lon2,lat2],...,[lon1,lat1]]]&meas_1=<bgc1>&meas_2=<bgc2>``
+     - ``/profiles??startDate=<date>&endDate=<date>&polygon=[[lon1,lat1],[lon2,lat2],...,[lon1,lat1]]&bgcMeausrements=<bgc1>,<bgc2>``
+     - New endpoint includes complete metadata record.
+   * - ``/selection/overview``
+     - 
+     - Not yet implemented, but coming soon.
+
+
+
 Outstanding Issues
 ------------------
+
+This is far from a finished product! Feedback is encouraged, much more development is fothcoming. Below are some major categories of concerns identified so far.
 
 Key Standardization
 +++++++++++++++++++
@@ -65,5 +146,12 @@ Argo and goship data have similar but not identical names for some keys. Ideally
  - *Common Mandatory Parameters* are parameters that every profile from every source must have. Examples are ``lat`` and ``lon``.
  - *Common Optional Parameters* are parameters that may or may not be included in a profile, but should have consistent naming and meaning across sources. An example is ``bgcMeas``.
  - *Origin-specific Parameters* are parameters unique to a data origin, like Argo or go-ship.
+
+Constructed Keys
+++++++++++++++++
+
+The new ``/profiles`` endpoint is designed to search and return schema-compliant data - not do a lot of server-side processing. Therefore, some keys in the return schema the old endpoints created may not be present if they aren't part of the database schema itself. Let us know if this causes major problems; some of these keys can be easily reconstructed client-side from the existing return data and aren't really necessary, but others may be better done server-side as specialized API endpoints, which can be added. In general, good candidates for custom API endpoints are general-purpose computations that significantly reduce the amount of data needed to be transferred.
+
+Some keys that appear sporadically in the database that might be good candidates for constructed insertion are ``bgcMeasKeys`` or ``containsBGC``, as well as ``isDeep``.
 
 
