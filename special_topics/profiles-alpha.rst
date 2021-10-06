@@ -1,19 +1,28 @@
 Profiles API Alpha Product
 ==========================
 
-An alpha demo of a new ``/profiles`` endpoint is available at TBD.
+An alpha demo of new ``/profiles``, ``/platforms`` and ``/dacs`` endpoints are available at TBD.
 
 Project Goals
 -------------
 
- - We hope to design and build an API that is intuitive for users and easy to maintain for the Argovis team. Currently, many ``/catalog`` and ``/selection`` API endpoints return very similar profile-like data, with differences that aren't always obvious from the route names. We hope that a ``/profiles`` route with a single ``GET`` request method will provide an obvious place for consumers to pull profile data, and serve many if not all of the design intents of the ``/catalog`` and ``/selection`` routes. 
+ - We hope to design and build an API that is intuitive for users and easy to maintain for the Argovis team. Currently, many ``/catalog`` and ``/selection`` API endpoints return very similar profile-like data, with differences that aren't always obvious from the route names. An API design pattern intended to keep APIs organized and easy to understand is a *noun-based route pattern*:
+
+   - Routes should be named after things (nouns) that are easily recognizable to the intended users of the API (profiles, platforms and dacs, for example).
+   - Routes should always return objects that are consistent with a schema that describes the corresponding noun; all ``/profiles`` routes should return schema-compliant profile documents, for example.
+   - Filtering should be done in the query string, not the route.
  - Looking to the future, we hope to offer an API tier that spans all profile-like data, whether it comes from Argo, go-ship, or other endeavors.
  - The goal of this alpha demo is to gather feedback on design decisions as development continues.
 
 Usage
 -----
 
-All requests should currently be made as ``GET`` requets to the ``/profiles`` endpoint. Reducing the amount of data returned can be achieved with the following query string parameters; using multiple query string parameters ``AND`` s the corresponding requirements. All parameters are optional, but see the note below about limiting response sizes.
+Unless otherwise noted, all routes support only ``GET`` requests at this time.
+
+/profiles
++++++++++
+
+The base ``/profiles`` endpoint is the place to go for all profile data. Reducing the amount of data returned can be achieved with the following query string parameters; using multiple query string parameters ``AND`` s the corresponding requirements. All parameters are optional, but see the note below about limiting response sizes.
 
  - ``startDate``: formatted as ISO 8601 UTC: ``1999-12-31T23:59:59Z``. Profiles will be returned if they are timestamped at or after this time.
  - ``endDate``: formatted as ISO 8601 UTC: ``1999-12-31T23:59:59Z``. Profiles will be returned if they are timestamped before this time.
@@ -46,6 +55,23 @@ All requests should currently be made as ``GET`` requets to the ``/profiles`` en
 
    If your query string includes neither ``coreMeasurements`` or ``bgcMeasurements``, the request will return profile metadata only. If your query string includes either of those and a matching profile has no levels with the appropriate measurements after filtering, it will be dropped from the returned results.
 
+/platforms
+++++++++++
+
+The ``/platforms`` route provides some simple summary data on platforms, filtered by the following query string parameters:
+
+ - ``platforms``: formatted as ``platform_1,platform_2,platform_3,...``. Returns metadata objects for each platform listed.
+
+
+There are also two sub-routes under ``/platforms``, to capture some other, related schema:
+
+ - ``/platforms/bgcList`` returns a list of platform IDs that collect BGC data.
+ - ``/platforms/mostRecent`` returns a list of platforms including some information about their most recent location and measurements
+
+/dacs
++++++
+
+The ``/dacs`` route provides simple summary data on data assembly centers represented in the dataset. It currently accepts no query string parameters.
 
 Examples
 --------
@@ -89,12 +115,12 @@ In the tables below, we present the closest equivalents between old and new API 
    * - ``/catalog/mprofiles?ids=["<profile ID 1>","<profile ID 2>,..."]``
      - ``/profiles?ids=<profile ID 1>,<profile ID 2>,...&coreMeasurements=all``
      - New endpoint includes complete metadata record, but does not compute ``containsBGC`` or the level ``count`` (which can be trivially inferred from the length of the ``measurements`` list).
-   * - ``/dacs/<dac>``
+   * - ``/catalog/dacs/<dac>``
      - 
-     - Not implemented in old or new API, but coming soon to the new API, likely under a /dacs API group
+     - Not implemented or clearly specified in old API; can add to the new ``/dacs`` group once specified.
    * - ``/catalog/dacs``
-     -
-     - Bugged in the old API, and coming soon to the new API.
+     - ``/dacs``
+     - 
 
 ``/selection`` endpoints
 ++++++++++++++++++++++++
@@ -125,7 +151,7 @@ In the tables below, we present the closest equivalents between old and new API 
      - 
      - Will not be implemented; functionality is reproduced by specifiying the desired dates in ``/selection/globalMapProfiles/<start date>/<end date>``.
    * - ``/selecton/bgc_data_selection?startDate=<date>&endDate=<date>&shape=[[[lon1,lat1],[lon2,lat2],...,[lon1,lat1]]]&meas_1=<bgc1>&meas_2=<bgc2>``
-     - ``/profiles??startDate=<date>&endDate=<date>&polygon=[[lon1,lat1],[lon2,lat2],...,[lon1,lat1]]&bgcMeausrements=<bgc1>,<bgc2>``
+     - ``/profiles?startDate=<date>&endDate=<date>&polygon=[[lon1,lat1],[lon2,lat2],...,[lon1,lat1]]&bgcMeausrements=<bgc1>,<bgc2>``
      - New endpoint includes complete metadata record.
    * - ``/selection/overview``
      - ``/profiles/overview``
