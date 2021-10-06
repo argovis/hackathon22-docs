@@ -1,7 +1,7 @@
 Profiles API Alpha Product
 ==========================
 
-An alpha demo of new ``/profiles``, ``/platforms`` and ``/dacs`` endpoints are available at TBD.
+An alpha demo of new ``/profiles``, ``/platforms`` and ``/dacs`` endpoints are available at http://143.198.150.42:8080.
 
 Project Goals
 -------------
@@ -9,8 +9,8 @@ Project Goals
  - We hope to design and build an API that is intuitive for users and easy to maintain for the Argovis team. Currently, many ``/catalog`` and ``/selection`` API endpoints return very similar profile-like data, with differences that aren't always obvious from the route names. An API design pattern intended to keep APIs organized and easy to understand is a *noun-based route pattern*:
 
    - Routes should be named after things (nouns) that are easily recognizable to the intended users of the API (profiles, platforms and dacs, for example).
-   - Routes should always return objects that are consistent with a schema that describes the corresponding noun; all ``/profiles`` routes should return schema-compliant profile documents, for example.
-   - Filtering should be done in the query string, not the route.
+   - Requests should always return objects that are consistent with a schema that matches the corresponding route; all ``/profiles`` requests should return schema-compliant profile documents, for example.
+   - Filtering should be done consistently in the query string, not the route.
  - Looking to the future, we hope to offer an API tier that spans all profile-like data, whether it comes from Argo, go-ship, or other endeavors.
  - The goal of this alpha demo is to gather feedback on design decisions as development continues.
 
@@ -60,7 +60,7 @@ The base ``/profiles`` endpoint is the place to go for all profile data. Reducin
 
 The ``/platforms`` route provides some simple summary data on platforms, filtered by the following query string parameters:
 
- - ``platforms``: formatted as ``platform_1,platform_2,platform_3,...``. Returns metadata objects for each platform listed.
+ - ``platform``: formatted as ``platform_name``. Returns metadata objects for the platform specified.
 
 
 There are also two sub-routes under ``/platforms``, to capture some other, related schema:
@@ -75,6 +75,69 @@ The ``/dacs`` route provides simple summary data on data assembly centers repres
 
 Examples
 --------
+
+/profiles
++++++++++
+
+- Metadata for profiles for the month of May 2021:
+
+.. code:: bash
+
+   /profiles?startDate=2021-05-01T00:00:00Z&endDate=2021-06-01T00:00:00Z
+
+- Metadata for profiles in May 2021 within a small region off the coast of New York:
+
+.. code:: bash
+
+   /profiles?startDate=2021-05-01T00:00:00Z&endDate=2021-06-01T00:00:00Z&polygon=[[-71.499,38.805],[-68.071,38.719],[-69.807,41.541],[-71.499,38.805]]
+
+- Metadata and core (pressure, salinity and temperature) profile data for profiles in May 2021 within a small region off the coat of New York:
+
+.. code:: bash
+
+   /profiles?startDate=2021-05-01T00:00:00Z&endDate=2021-06-01T00:00:00Z&polygon=[[-71.499,38.805],[-68.071,38.719],[-69.807,41.541],[-71.499,38.805]]&coreMeasurements=all
+
+- Metadata, pressure and salinity profile data for profiles in May 2021 within a small region off the coat of New York:
+
+.. code:: bash
+
+   /profiles?startDate=2021-05-01T00:00:00Z&endDate=2021-06-01T00:00:00Z&polygon=[[-71.499,38.805],[-68.071,38.719],[-69.807,41.541],[-71.499,38.805]]&coreMeasurements=psal
+
+- Metadata, pressure and salinity profile data for profiles in May 2021 within a small region off the coat of New York to a maxium pressure of 1000 dbar:
+
+.. code:: bash
+
+   /profiles?startDate=2021-05-01T00:00:00Z&endDate=2021-06-01T00:00:00Z&polygon=[[-71.499,38.805],[-68.071,38.719],[-69.807,41.541],[-71.499,38.805]]&coreMeasurements=psal&presRange=0,1000
+
+/platforms
+++++++++++
+
+- Metadata for platform ID 325020210.42:
+
+.. code:: bash
+
+   /platforms?platform=325020210.42
+
+- Get list of all platforms with BGC data:
+
+.. code:: bash
+
+   /platforms/bgcList
+
+- Get list of all platforms with recent whereabouts:
+
+.. code:: bash
+
+   /platforms/mostRecent
+
+/dacs
++++++
+
+- Currently only a single route with no query string: return a summary of data reported for each DAC represented in the database:
+
+.. code:: bash
+
+   /dacs
 
 Mapping to old endpoints
 ------------------------
@@ -145,10 +208,10 @@ In the tables below, we present the closest equivalents between old and new API 
      - ``/profiles?startDate=<First of the month>&endDate=<First of the next month>``
      -
    * - ``/selection/globalMapProfiles/<start date>/<end date>``
-     -
-     - Not yet implemented, but coming soon in a map data API.
+     - [Maybe deprecate? See comments.]
+     - Original intention unclear; just subsets some profile metadata within a time window. If so, no need for this endpoint in addition to ``/profiles``.
    * - ``/selection/lastThreeDays``
-     - 
+     - [Deprecated]
      - Will not be implemented; functionality is reproduced by specifiying the desired dates in ``/selection/globalMapProfiles/<start date>/<end date>``.
    * - ``/selecton/bgc_data_selection?startDate=<date>&endDate=<date>&shape=[[[lon1,lat1],[lon2,lat2],...,[lon1,lat1]]]&meas_1=<bgc1>&meas_2=<bgc2>``
      - ``/profiles?startDate=<date>&endDate=<date>&polygon=[[lon1,lat1],[lon2,lat2],...,[lon1,lat1]]&bgcMeausrements=<bgc1>,<bgc2>``
@@ -167,8 +230,18 @@ These endpoints require the following indexes be maintained over any collection 
 
 The following indexes are strong nice-to-haves since they are valid search filters:
 
- - ``_id`` by ascending
+ - ``_id`` by ascending (exists by default, no extra overhead)
  - ``platform_number`` by ascending
+ - ``containsBGC`` by ascending
+
+For quick reference, I created these indexes over the goship profiles in the mongo shell with:
+
+.. code:: bash
+
+   db.profiles.createIndex( { date: -1 } )
+   db.profiles.createIndex( { geoLocation: "2dsphere" } )
+   db.profiles.createIndex( { platform_number: 1 } )
+   db.profiles.createIndex( { containsBGC: 1 } )
 
 Outstanding Issues
 ------------------
@@ -184,12 +257,7 @@ Argo and goship data have similar but not identical names for some keys. Ideally
  - *Common Optional Parameters* are parameters that may or may not be included in a profile, but should have consistent naming and meaning across sources. An example is ``bgcMeas``.
  - *Origin-specific Parameters* are parameters unique to a data origin, like Argo or go-ship.
 
-Constructed Keys
-++++++++++++++++
-
-The new ``/profiles`` endpoint is designed to search and return schema-compliant data - not do a lot of server-side processing. Therefore, some keys in the return schema the old endpoints created may not be present if they aren't part of the database schema itself. Let us know if this causes major problems; some of these keys can be easily reconstructed client-side from the existing return data and aren't really necessary, but others may be better done server-side as specialized API endpoints, which can be added. In general, good candidates for custom API endpoints are general-purpose computations that significantly reduce the amount of data needed to be transferred.
-
-Some keys that appear sporadically in the database that might be good candidates for constructed insertion are ``bgcMeasKeys`` or ``containsBGC``, as well as ``isDeep``; on the other hand, ``/platforms/overview`` and its original predacessor expect ``containsBGC`` and ``isDeep`` to be present, so maybe they shouldn't be constructed, but enforced in the database schema.
+Some critical examples of keys that are not consistently named or present between the Argo and go-ship data on-hand are ``bgcMeasKeys``, ``containsBGC`` and ``isDeep``; these are univeraly applicable ideas which we may likely need to index on, and so should be common to all profile schema.
 
 Sorting
 +++++++
