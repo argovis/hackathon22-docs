@@ -1,7 +1,7 @@
 Profiles API Alpha Product
 ==========================
 
-An alpha demo of new ``/profiles``, ``/platforms`` and ``/dacs`` endpoints are available at http://143.198.150.42:8080.
+An alpha demo of new ``/profiles``, ``/platforms`` and ``/dacs`` endpoints are available as part of our `goship demo <http://143.198.150.42:8080/profiles?startDate=2021-05-01T00:00:00Z&endDate=2021-05-02T00:00:00Z>`_.
 
 Project Goals
 -------------
