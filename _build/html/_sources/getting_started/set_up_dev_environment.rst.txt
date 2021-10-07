@@ -44,7 +44,7 @@ For example, my absolute path returned by ``pwd`` was ``/Users/billmills/argovis
 
    .. code:: bash
 
-      argovis $ git clone -b dev https://github.com/argovis/argovisNg
+      argovis $ git clone -b main https://github.com/argovis/argovisNg
 
       argovis $ cd argovisNg
 
