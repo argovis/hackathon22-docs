@@ -267,6 +267,12 @@
 <p class="admonition-title">Data or Metadata?</p>
 <p>If your query string includes neither <code class="docutils literal notranslate"><span class="pre">coreMeasurements</span></code> or <code class="docutils literal notranslate"><span class="pre">bgcMeasurements</span></code>, the request will return profile metadata only. If your query string includes either of those and a matching profile has no levels with the appropriate measurements after filtering, it will be dropped from the returned results.</p>
 </div>
+<p>There is also one subroute under <code class="docutils literal notranslate"><span class="pre">/profiles</span></code>:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">/profiles/listID</span></code>: takes the same query string as <code class="docutils literal notranslate"><span class="pre">/profiles</span></code>, but does not impose the required parameter limitations and returns only the ID of matching profiles. Note this can be used to identify all profiles with a given data variable.</p></li>
+</ul>
+</div></blockquote>
 </div>
 <div class="section" id="platforms">
 <h3>/platforms<a class="headerlink" href="#platforms" title="Permalink to this headline">¶</a></h3>
@@ -321,6 +327,12 @@
 <li><p>Metadata, pressure and salinity profile data for profiles in May 2021 within a small region off the coat of New York to a maxium pressure of 1000 dbar:</p></li>
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/profiles?startDate<span class="o">=</span><span class="m">2021</span>-05-01T00:00:00Z<span class="p">&amp;</span><span class="nv">endDate</span><span class="o">=</span><span class="m">2021</span>-06-01T00:00:00Z<span class="p">&amp;</span><span class="nv">polygon</span><span class="o">=[[</span>-71.499,38.805<span class="o">]</span>,<span class="o">[</span>-68.071,38.719<span class="o">]</span>,<span class="o">[</span>-69.807,41.541<span class="o">]</span>,<span class="o">[</span>-71.499,38.805<span class="o">]]</span><span class="p">&amp;</span><span class="nv">coreMeasurements</span><span class="o">=</span>psal<span class="p">&amp;</span><span class="nv">presRange</span><span class="o">=</span><span class="m">0</span>,1000
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>Get a list of IDs for profiles containing Argo dissolved oxygen key <code class="docutils literal notranslate"><span class="pre">doxy</span></code>:</p></li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/profiles/listID?bcgMeasurements<span class="o">=</span>doxy
 </pre></div>
 </div>
 </div>

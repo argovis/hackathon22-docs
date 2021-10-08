@@ -55,6 +55,10 @@ The base ``/profiles`` endpoint is the place to go for all profile data. Reducin
 
    If your query string includes neither ``coreMeasurements`` or ``bgcMeasurements``, the request will return profile metadata only. If your query string includes either of those and a matching profile has no levels with the appropriate measurements after filtering, it will be dropped from the returned results.
 
+There is also one subroute under ``/profiles``:
+
+ - ``/profiles/listID``: takes the same query string as ``/profiles``, but does not impose the required parameter limitations and returns only the ID of matching profiles. Note this can be used to identify all profiles with a given data variable.
+
 /platforms
 ++++++++++
 
@@ -108,6 +112,12 @@ Examples
 .. code:: bash
 
    /profiles?startDate=2021-05-01T00:00:00Z&endDate=2021-06-01T00:00:00Z&polygon=[[-71.499,38.805],[-68.071,38.719],[-69.807,41.541],[-71.499,38.805]]&coreMeasurements=psal&presRange=0,1000
+
+- Get a list of IDs for profiles containing Argo dissolved oxygen key ``doxy``:
+
+.. code:: bash
+
+   /profiles/listID?bcgMeasurements=doxy
 
 /platforms
 ++++++++++
