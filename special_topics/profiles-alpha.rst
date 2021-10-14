@@ -57,7 +57,7 @@ The base ``/profiles`` endpoint is the place to go for all profile data. Reducin
 
 There is also one subroute under ``/profiles``:
 
- - ``/profiles/listID``: takes the same query string as ``/profiles``, but does not impose the required parameter limitations and returns only the ID of matching profiles. Note this can be used to identify all profiles with a given data variable.
+ - ``/profiles/listID``: takes the same query string as ``/profiles`` and has the same limits on requested data scope, except ``ids`` is not accepted as a query parameter (since it's not useful to search for IDs by ID).
 
 /platforms
 ++++++++++
@@ -113,11 +113,11 @@ Examples
 
    /profiles?startDate=2021-05-01T00:00:00Z&endDate=2021-06-01T00:00:00Z&polygon=[[-71.499,38.805],[-68.071,38.719],[-69.807,41.541],[-71.499,38.805]]&coreMeasurements=psal&presRange=0,1000
 
-- Get a list of IDs for profiles containing Argo dissolved oxygen key ``doxy``:
+- Get a list of IDs for profiles containing GO-SHIP dissolved oxygen key ``doxy_btl`` within a certain time range:
 
 .. code:: bash
 
-   /profiles/listID?bcgMeasurements=doxy
+   /profiles/listID?startDate=2021-05-01T00:00:00Z&endDate=2021-06-01T00:00:00Z&bgcMeasurements=doxy_btl
 
 /platforms
 ++++++++++

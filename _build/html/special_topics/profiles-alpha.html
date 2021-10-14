@@ -270,7 +270,7 @@
 <p>There is also one subroute under <code class="docutils literal notranslate"><span class="pre">/profiles</span></code>:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">/profiles/listID</span></code>: takes the same query string as <code class="docutils literal notranslate"><span class="pre">/profiles</span></code>, but does not impose the required parameter limitations and returns only the ID of matching profiles. Note this can be used to identify all profiles with a given data variable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/profiles/listID</span></code>: takes the same query string as <code class="docutils literal notranslate"><span class="pre">/profiles</span></code> and has the same limits on requested data scope, except <code class="docutils literal notranslate"><span class="pre">ids</span></code> is not accepted as a query parameter (since it’s not useful to search for IDs by ID).</p></li>
 </ul>
 </div></blockquote>
 </div>
@@ -330,9 +330,9 @@
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Get a list of IDs for profiles containing Argo dissolved oxygen key <code class="docutils literal notranslate"><span class="pre">doxy</span></code>:</p></li>
+<li><p>Get a list of IDs for profiles containing GO-SHIP dissolved oxygen key <code class="docutils literal notranslate"><span class="pre">doxy_btl</span></code> within a certain time range:</p></li>
 </ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/profiles/listID?bcgMeasurements<span class="o">=</span>doxy
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>/profiles/listID?startDate<span class="o">=</span><span class="m">2021</span>-05-01T00:00:00Z<span class="p">&amp;</span><span class="nv">endDate</span><span class="o">=</span><span class="m">2021</span>-06-01T00:00:00Z<span class="p">&amp;</span><span class="nv">bgcMeasurements</span><span class="o">=</span>doxy_btl
 </pre></div>
 </div>
 </div>
