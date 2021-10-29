@@ -72,6 +72,8 @@ After a few seconds, visit ``http://localhost:3000`` in your web browser; you sh
 
       argovisNg $ docker-compose down
 
+.. _startup_load_test_data:
+
 Loading Data
 ------------
 
