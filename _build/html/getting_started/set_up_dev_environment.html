@@ -41,7 +41,7 @@
     
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Fast Angular Builds" href="../dev_tools/fast_development_builds.html" />
+    <link rel="next" title="API Development" href="api_development.html" />
     <link rel="prev" title="Argovis Documentation" href="../index.html" /> 
 </head>
 
@@ -98,6 +98,7 @@
 </li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="api_development.html">API Development</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
 <ul>
@@ -258,7 +259,7 @@ argovis $ <span class="nb">cd</span> argovisNg
 </ol>
 </div>
 <div class="section" id="loading-data">
-<h2>Loading Data<a class="headerlink" href="#loading-data" title="Permalink to this headline">¶</a></h2>
+<span id="startup-load-test-data"></span><h2>Loading Data<a class="headerlink" href="#loading-data" title="Permalink to this headline">¶</a></h2>
 <p>The version of Argovis you have up and running from the previous section works, but has no actual data loaded in it. In this section we’ll see how to fetch and load some Argo float data so there’s something to look at in our development environment.</p>
 <p>The FTP server at <a class="reference external" href="ftp://ftp.ifremer.fr/ifremer/argo">ftp://ftp.ifremer.fr/ifremer/argo</a> contains all the Argo profile data used by the database. Getting the data into the database involves downloading files and directories to argo. We will use the rsync utility to download a few profiles, and use the argo-database repository to convert these files to entries on the server.</p>
 <ol class="arabic">
@@ -368,7 +369,7 @@ add-profiles $ <span class="nb">exit</span>
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="../dev_tools/fast_development_builds.html" class="btn btn-neutral float-right" title="Fast Angular Builds" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="api_development.html" class="btn btn-neutral float-right" title="API Development" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
         <a href="../index.html" class="btn btn-neutral float-left" title="Argovis Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
     </div>
 
