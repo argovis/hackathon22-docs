@@ -83,6 +83,7 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
 
    getting_started/set_up_dev_environment
    getting_started/api_development
+   getting_started/custom_angular_components
 
 .. toctree::
    :maxdepth: 2
