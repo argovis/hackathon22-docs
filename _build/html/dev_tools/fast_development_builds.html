@@ -183,6 +183,7 @@
 <li><p>Start up a local version of Argovis, as described in <a class="reference internal" href="../getting_started/set_up_dev_environment.html#setup-argovis"><span class="std std-ref">Setting Up Argovis</span></a>.</p></li>
 <li><p>Identify the container network your containers are connected to, as described in <a class="reference internal" href="../special_topics/connecting_to_the_container_network.html#simple-container-connection"><span class="std std-ref">Method 1: Simple Container</span></a>.</p></li>
 <li><p>In your terminal, move to the root of your <code class="docutils literal notranslate"><span class="pre">argovisNg</span></code> directory.</p></li>
+<li><p>In <code class="docutils literal notranslate"><span class="pre">environments/environments.ts</span></code>, change <code class="docutils literal notranslate"><span class="pre">ARGOVIS_API_ROOT</span></code> to <code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:8080</span></code>.</p></li>
 <li><p>Launch a development environment for Argovis, making sure to sub in the name of the network you just found:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ docker container run <span class="se">\</span>
     -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/src:/usr/src/ng_argovis/src <span class="se">\</span>
@@ -201,7 +202,7 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">-p</span> <span class="pre">3001:3000</span></code>: make this development version available at <code class="docutils literal notranslate"><span class="pre">localhost:3001</span></code>.</p></li>
 </ul>
 </div></blockquote>
-<ol class="arabic" start="5">
+<ol class="arabic" start="6">
 <li><p>After starting the container, a long string will be returned to the terminal. This is the container ID for the container you just started. Use the first few characters to run the Angular auto-rebuilder inside this container:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ docker container <span class="nb">exec</span> -it &lt;container ID&gt; ng build --watch<span class="o">=</span><span class="nb">true</span>
 </pre></div>
@@ -232,8 +233,14 @@ Time: 5544ms
 </div>
 </div></blockquote>
 <p>Remember - the version you’re editing is being served at <code class="docutils literal notranslate"><span class="pre">http://localhost:3001</span></code>.</p>
-<ol class="arabic simple" start="6">
-<li><p>When you’re done for the day, hit <code class="docutils literal notranslate"><span class="pre">CTRL+C</span></code> in the tab running the auto builder to kill it, and tear down the app with <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">down</span></code> as usual. Do a regular build per the instructions in <a class="reference internal" href="../getting_started/set_up_dev_environment.html#building-dev-versions"><span class="std std-ref">Building Dev Versions</span></a> to confirm things still look good after a full build.</p></li>
+<ol class="arabic simple" start="7">
+<li><p>When you’re done for the day:</p>
+<ul class="simple">
+<li><p>hit <code class="docutils literal notranslate"><span class="pre">CTRL+C</span></code> in the tab running the auto builder to kill it, and tear down the app with <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">down</span></code> as usual</p></li>
+<li><p>revert the change you made in <code class="docutils literal notranslate"><span class="pre">environments/environment.ts</span></code></p></li>
+<li><p>Do a regular build per the instructions in <a class="reference internal" href="../getting_started/set_up_dev_environment.html#building-dev-versions"><span class="std std-ref">Building Dev Versions</span></a> to confirm things still look good after a full build.</p></li>
+</ul>
+</li>
 </ol>
 </div>
 
