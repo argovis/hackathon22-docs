@@ -47,7 +47,15 @@ This takes several minutes to spin up, but you only need to do it once; once it'
       chunk {vendor} vendor.js, vendor.js.map (vendor) 21.2 MB [initial] [rendered]
       Date: 2021-09-12T05:46:01.476Z - Hash: 907431edfbafdcca7fbc - Time: 102955ms
 
-Leave this terminal tab alone while you work. From here, changing any file in the ``argovisNg`` source directory you mounted into your development container will automatically trigger a partial build when you save the changes to disk. In the terminal running your builder, each change build will be reported similarly to:
+Leave this terminal tab alone while you work. 
+
+6. Sub in the local address of your API root to your development frontent:
+
+   .. code:: bash
+
+      argovisNg $ docker container exec <container ID> sed -i "s|ARGOVIS_API_ROOT|http://127.0.0.1:8080|g" dist/main.js 
+
+From here, changing any file in the ``argovisNg`` source directory you mounted into your development container will automatically trigger a partial build when you save the changes to disk. In the terminal running your builder, each change build will be reported similarly to:
 
    .. code:: bash
 
