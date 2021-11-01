@@ -11,7 +11,9 @@ Building the angular frontend container can be slow, which is an impediment to r
 
 3. In your terminal, move to the root of your ``argovisNg`` directory.
 
-4. Launch a development environment for Argovis, making sure to sub in the name of the network you just found:
+4. In ``environments/environments.ts``, change ``ARGOVIS_API_ROOT`` to ``http://127.0.0.1:8080``.
+
+5. Launch a development environment for Argovis, making sure to sub in the name of the network you just found:
 
    .. code:: bash
 
@@ -27,7 +29,7 @@ For the curious, these flags are:
  - ``--network <argovis network name>``: attach this container to the same network as the running version of the app (so it can access the mongodb database).
  - ``-p 3001:3000``: make this development version available at ``localhost:3001``.
 
-5. After starting the container, a long string will be returned to the terminal. This is the container ID for the container you just started. Use the first few characters to run the Angular auto-rebuilder inside this container:
+6. After starting the container, a long string will be returned to the terminal. This is the container ID for the container you just started. Use the first few characters to run the Angular auto-rebuilder inside this container:
 
    .. code:: bash
 
@@ -47,15 +49,7 @@ This takes several minutes to spin up, but you only need to do it once; once it'
       chunk {vendor} vendor.js, vendor.js.map (vendor) 21.2 MB [initial] [rendered]
       Date: 2021-09-12T05:46:01.476Z - Hash: 907431edfbafdcca7fbc - Time: 102955ms
 
-Leave this terminal tab alone while you work. 
-
-6. Sub in the local address of your API root to your development frontent:
-
-   .. code:: bash
-
-      argovisNg $ docker container exec <container ID> sed -i "s|ARGOVIS_API_ROOT|http://127.0.0.1:8080|g" dist/main.js 
-
-From here, changing any file in the ``argovisNg`` source directory you mounted into your development container will automatically trigger a partial build when you save the changes to disk. In the terminal running your builder, each change build will be reported similarly to:
+Leave this terminal tab alone while you work. From here, changing any file in the ``argovisNg`` source directory you mounted into your development container will automatically trigger a partial build when you save the changes to disk. In the terminal running your builder, each change build will be reported similarly to:
 
    .. code:: bash
 
@@ -66,4 +60,8 @@ From here, changing any file in the ``argovisNg`` source directory you mounted i
 
 Remember - the version you're editing is being served at ``http://localhost:3001``.
 
-6. When you're done for the day, hit ``CTRL+C`` in the tab running the auto builder to kill it, and tear down the app with ``docker-compose down`` as usual. Do a regular build per the instructions in :ref:`building_dev_versions` to confirm things still look good after a full build. 
+7. When you're done for the day:
+
+   - hit ``CTRL+C`` in the tab running the auto builder to kill it, and tear down the app with ``docker-compose down`` as usual
+   - revert the change you made in ``environments/environment.ts``
+   - Do a regular build per the instructions in :ref:`building_dev_versions` to confirm things still look good after a full build. 
