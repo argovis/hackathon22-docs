@@ -248,6 +248,18 @@ argovis $ <span class="nb">cd</span> argovis_deployment
 </ol>
 <p>After a few seconds, visit <code class="docutils literal notranslate"><span class="pre">http://localhost:3000</span></code> in your web browser; you should see your very own local version of Argovis.</p>
 <ol class="arabic" start="6">
+<li><p>The first time you create Argovis on your machine (or if you ever change or delete the <code class="docutils literal notranslate"><span class="pre">data</span></code> directory mounted above), you’ll need to inject an API key into the database that your dev version can use to access the API. Connect to the database you have running:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovis_deployment $ docker container <span class="nb">exec</span> -it argovis_deployment_database_1 mongo
+</pre></div>
+</div>
+</li>
+<li><p>From this mongo shell, insert an API token <code class="docutils literal notranslate"><span class="pre">xxx</span></code> into the <code class="docutils literal notranslate"><span class="pre">argo</span></code> database, <code class="docutils literal notranslate"><span class="pre">user</span></code> collection:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>&gt; use argo
+&gt; db.user.insertOne<span class="o">({</span><span class="s2">&quot;key&quot;</span>: <span class="s2">&quot;xxx&quot;</span>, <span class="s2">&quot;tokenvalid&quot;</span>: <span class="m">1</span><span class="o">})</span>
+&gt; <span class="nb">exit</span>
+</pre></div>
+</div>
+</li>
 <li><p>Once you’re satisfied all is well, tear your local deployment down:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovis_deployment $ docker-compose down
 </pre></div>

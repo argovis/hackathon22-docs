@@ -65,7 +65,21 @@ Change ``/storage/mongodb`` to the absolute path to your ``data`` directory you 
 
 After a few seconds, visit ``http://localhost:3000`` in your web browser; you should see your very own local version of Argovis.
 
-6. Once you're satisfied all is well, tear your local deployment down:
+6. The first time you create Argovis on your machine (or if you ever change or delete the ``data`` directory mounted above), you'll need to inject an API key into the database that your dev version can use to access the API. Connect to the database you have running:
+
+   .. code:: bash
+
+      argovis_deployment $ docker container exec -it argovis_deployment_database_1 mongo
+
+7. From this mongo shell, insert an API token ``xxx`` into the ``argo`` database, ``user`` collection:
+
+   .. code:: bash
+
+      > use argo
+      > db.user.insertOne({"key": "xxx", "tokenvalid": 1})
+      > exit
+
+8. Once you're satisfied all is well, tear your local deployment down:
 
    .. code:: bash
 
