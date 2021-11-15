@@ -92,10 +92,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Setting Up Argovis</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#quickstart-setup">Quickstart Setup</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#loading-data">Loading Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#building-dev-versions">Building Dev Versions</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#building-the-web-tier">Building the Web Tier</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#building-dev-versions">Building Dev Versions</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="api_development.html">API Development</a></li>
@@ -228,24 +225,23 @@ data $ <span class="nb">cd</span> ..
 <p>For example, my absolute path returned by <code class="docutils literal notranslate"><span class="pre">pwd</span></code> was <code class="docutils literal notranslate"><span class="pre">/Users/billmills/argovis/data</span></code>.</p>
 <ol class="arabic" start="3">
 <li><p>Download the minimal code necessary to start up Argovis:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovis $ git clone -b main https://github.com/argovis/argovisNg
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovis $ git clone -b main https://github.com/argovis/argovis_deployment
 
-argovis $ <span class="nb">cd</span> argovisNg
+argovis $ <span class="nb">cd</span> argovis_deployment
 </pre></div>
 </div>
 </li>
 <li><p>Before we launch the app, we need to tell it where to look for the data directory you made above. In your text editor of choice, open up <code class="docutils literal notranslate"><span class="pre">docker-compose.yml</span></code> and look for the lines describing the database volume mount, near the middle, which look like:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>volumes:
-  - /storage/mongodb:/data/db:Z <span class="c1"># development</span>
-  <span class="c1">#- /data/argovis/storage/mongodb:/data/db:Z # production</span>
+  - /storage/mongodb:/data/db:Z
 </pre></div>
 </div>
 </li>
 </ol>
-<p>On the line commented as <code class="docutils literal notranslate"><span class="pre">#</span> <span class="pre">development</span></code>, change <code class="docutils literal notranslate"><span class="pre">/storage/mongodb</span></code> to the absolute path to your <code class="docutils literal notranslate"><span class="pre">data</span></code> directory you found above, in my case <code class="docutils literal notranslate"><span class="pre">/Users/billmills/argovis/data</span></code>.</p>
+<p>Change <code class="docutils literal notranslate"><span class="pre">/storage/mongodb</span></code> to the absolute path to your <code class="docutils literal notranslate"><span class="pre">data</span></code> directory you found above, in my case <code class="docutils literal notranslate"><span class="pre">/Users/billmills/argovis/data</span></code>.</p>
 <ol class="arabic" start="5">
 <li><p>Start Argovis:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ docker-compose up -d
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovis_deployment $ docker-compose up -d
 </pre></div>
 </div>
 </li>
@@ -253,7 +249,7 @@ argovis $ <span class="nb">cd</span> argovisNg
 <p>After a few seconds, visit <code class="docutils literal notranslate"><span class="pre">http://localhost:3000</span></code> in your web browser; you should see your very own local version of Argovis.</p>
 <ol class="arabic" start="6">
 <li><p>Once you’re satisfied all is well, tear your local deployment down:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ docker-compose down
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovis_deployment $ docker-compose down
 </pre></div>
 </div>
 </li>
@@ -265,9 +261,9 @@ argovis $ <span class="nb">cd</span> argovisNg
 <p>The FTP server at <a class="reference external" href="ftp://ftp.ifremer.fr/ifremer/argo">ftp://ftp.ifremer.fr/ifremer/argo</a> contains all the Argo profile data used by the database. Getting the data into the database involves downloading files and directories to argo. We will use the rsync utility to download a few profiles, and use the argo-database repository to convert these files to entries on the server.</p>
 <ol class="arabic">
 <li><p>Start your development version of argovis back up if you tore it down at the end of the last section:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~$ <span class="nb">cd</span> ~/argovis/argovisNg
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~$ <span class="nb">cd</span> ~/argovis/argovis_deployment
 
-argovisNg $ docker-compose up -d
+argovis_deployment $ docker-compose up -d
 </pre></div>
 </div>
 </li>
@@ -324,43 +320,28 @@ add-profiles $ <span class="nb">exit</span>
 <div class="section" id="building-dev-versions">
 <span id="id1"></span><h2>Building Dev Versions<a class="headerlink" href="#building-dev-versions" title="Permalink to this headline">¶</a></h2>
 <p>So far, we’ve relied on pre-built container images for Argovis to get things stood up and working quickly. But, of course you’ll want to build your code into new containers and try them out as part of your local deployment. We’ll learn how to do that in this section.</p>
-<div class="section" id="building-the-web-tier">
-<h3>Building the Web Tier<a class="headerlink" href="#building-the-web-tier" title="Permalink to this headline">¶</a></h3>
-<ol class="arabic">
-<li><p>Move to your <code class="docutils literal notranslate"><span class="pre">argovisNg</span></code> folder which you cloned earlier:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ <span class="nb">cd</span> ~/argovis/argovisNg
-</pre></div>
-</div>
-</li>
-<li><p>Clone the API code here:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ git clone https://github.com/argovis/argovis_backend
-</pre></div>
-</div>
-<p>At this point, <code class="docutils literal notranslate"><span class="pre">argovisNg</span></code> contains all the code describing the API and web frontend. Hack away on the code, and carry on when you’re ready to try out what you’ve coded.</p>
-</li>
-<li><p>Still in the <code class="docutils literal notranslate"><span class="pre">argovisNg</span></code> directory, rebuild the web tier. In this example, I call the new web tier image <code class="docutils literal notranslate"><span class="pre">argovis/argo-express:my-build</span></code>, but you can call it anything you like:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ docker image build -t argovis/argo-express:my-build .
+<ol class="arabic simple">
+<li><p>There are four component you can build in Argovis:</p></li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>The API: <a class="reference external" href="https://github.com/argovis/argovis_api">https://github.com/argovis/argovis_api</a></p></li>
+<li><p>The Angular frontend: <a class="reference external" href="https://github.com/argovis/argovisNg">https://github.com/argovis/argovisNg</a></p></li>
+<li><p>The datapages addon: <a class="reference external" href="https://github.com/argovis/datapages">https://github.com/argovis/datapages</a></p></li>
+<li><p>The redis kv store: <a class="reference external" href="https://github.com/argovis/argovis_redis">https://github.com/argovis/argovis_redis</a></p></li>
+</ul>
+</div></blockquote>
+<p>Each of these repositories has instructions in the README for building development container images. Follow the instructions for the one you want to build; for the rest of this example, we’ll assume you built a new Angular frontend image and called it <cite>argovis/ng:dev</cite>.</p>
+<ol class="arabic" start="2">
+<li><p>Open up <cite>argovis_deployment/docker-compose.yaml</cite>, and change the appropriate image name to the development image you just created. So for our example, we’d change the <cite>image</cite> key under <cite>ng</cite> to be <cite>image: argovis/ng:dev</cite>.</p></li>
+<li><p>Tear down your current local version, if running, with <cite>docker-compose down</cite> from the <cite>argovis_deployment</cite> directory.</p></li>
+<li><p>Stand up Argovis with your new container:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovis_deployment $ docker-compose up -d
 </pre></div>
 </div>
 </li>
 </ol>
-<div class="admonition-build-too-slow admonition">
-<p class="admonition-title">Build too slow?</p>
-<p>This build can take a while. Once you have it working once, try out <a class="reference internal" href="../dev_tools/fast_development_builds.html#fast-angular-builds"><span class="std std-ref">Fast Angular Builds</span></a> for a faster development cycle.</p>
-</div>
-<ol class="arabic" start="4">
-<li><p>Open up <code class="docutils literal notranslate"><span class="pre">argovisNg/docker-compose.yml</span></code> and edit the definition of the <code class="docutils literal notranslate"><span class="pre">argo-express</span></code> service to use your new image:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">version</span><span class="p">:</span> <span class="s">&#39;3&#39;</span>
-<span class="nt">services</span><span class="p">:</span>
-  <span class="nt">argo-express</span><span class="p">:</span>
-    <span class="nt">image</span><span class="p">:</span> <span class="l l-Scalar l-Scalar-Plain">argovis/argo-express:my-build</span>
-    <span class="l l-Scalar l-Scalar-Plain">...</span>
-</pre></div>
-</div>
-</li>
-<li><p>Redeploy your local version of the app with <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">down</span></code> / <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">up</span> <span class="pre">-d</span></code>. The web tier will now be based off of the custom image you just built.</p></li>
-</ol>
-</div>
+<p>Argovis should be available after a moment in your browser at <cite>localhost:3000</cite>, using your new dev container.</p>
 </div>
 </div>
 

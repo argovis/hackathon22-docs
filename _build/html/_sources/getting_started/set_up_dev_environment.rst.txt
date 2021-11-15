@@ -44,25 +44,24 @@ For example, my absolute path returned by ``pwd`` was ``/Users/billmills/argovis
 
    .. code:: bash
 
-      argovis $ git clone -b main https://github.com/argovis/argovisNg
+      argovis $ git clone -b main https://github.com/argovis/argovis_deployment
 
-      argovis $ cd argovisNg
+      argovis $ cd argovis_deployment
 
 4. Before we launch the app, we need to tell it where to look for the data directory you made above. In your text editor of choice, open up ``docker-compose.yml`` and look for the lines describing the database volume mount, near the middle, which look like:
 
    .. code:: bash
 
       volumes:
-        - /storage/mongodb:/data/db:Z # development
-        #- /data/argovis/storage/mongodb:/data/db:Z # production
+        - /storage/mongodb:/data/db:Z
 
-On the line commented as ``# development``, change ``/storage/mongodb`` to the absolute path to your ``data`` directory you found above, in my case ``/Users/billmills/argovis/data``.
+Change ``/storage/mongodb`` to the absolute path to your ``data`` directory you found above, in my case ``/Users/billmills/argovis/data``.
 
 5. Start Argovis:
 
    .. code:: bash
 
-      argovisNg $ docker-compose up -d
+      argovis_deployment $ docker-compose up -d
 
 After a few seconds, visit ``http://localhost:3000`` in your web browser; you should see your very own local version of Argovis.
 
@@ -70,7 +69,7 @@ After a few seconds, visit ``http://localhost:3000`` in your web browser; you sh
 
    .. code:: bash
 
-      argovisNg $ docker-compose down
+      argovis_deployment $ docker-compose down
 
 .. _startup_load_test_data:
 
@@ -85,9 +84,9 @@ The FTP server at ftp://ftp.ifremer.fr/ifremer/argo contains all the Argo profil
 
    .. code:: bash
 
-      ~$ cd ~/argovis/argovisNg
+      ~$ cd ~/argovis/argovis_deployment
 
-      argovisNg $ docker-compose up -d
+      argovis_deployment $ docker-compose up -d
 
 2. Return to the directory containing all your Argovis assets, and clone the Argovis database management code:
 
@@ -149,42 +148,24 @@ Building Dev Versions
 ---------------------
 
 So far, we've relied on pre-built container images for Argovis to get things stood up and working quickly. But, of course you'll want to build your code into new containers and try them out as part of your local deployment. We'll learn how to do that in this section.
+ 
+1. There are four component you can build in Argovis:
 
-Building the Web Tier
-+++++++++++++++++++++
+ - The API: https://github.com/argovis/argovis_api
+ - The Angular frontend: https://github.com/argovis/argovisNg
+ - The datapages addon: https://github.com/argovis/datapages
+ - The redis kv store: https://github.com/argovis/argovis_redis
 
-1. Move to your ``argovisNg`` folder which you cloned earlier:
+Each of these repositories has instructions in the README for building development container images. Follow the instructions for the one you want to build; for the rest of this example, we'll assume you built a new Angular frontend image and called it `argovis/ng:dev`.
 
-   .. code:: bash
+2. Open up `argovis_deployment/docker-compose.yaml`, and change the appropriate image name to the development image you just created. So for our example, we'd change the `image` key under `ng` to be `image: argovis/ng:dev`.
 
-      ~ $ cd ~/argovis/argovisNg
+3. Tear down your current local version, if running, with `docker-compose down` from the `argovis_deployment` directory.
 
-2. Clone the API code here:
-
-   .. code:: bash
-
-      argovisNg $ git clone https://github.com/argovis/argovis_backend
-
-   At this point, ``argovisNg`` contains all the code describing the API and web frontend. Hack away on the code, and carry on when you're ready to try out what you've coded.
-
-3. Still in the ``argovisNg`` directory, rebuild the web tier. In this example, I call the new web tier image ``argovis/argo-express:my-build``, but you can call it anything you like:
+4. Stand up Argovis with your new container:
 
    .. code:: bash
 
-      argovisNg $ docker image build -t argovis/argo-express:my-build .
+      argovis_deployment $ docker-compose up -d
 
-.. admonition:: Build too slow?
-
-   This build can take a while. Once you have it working once, try out :ref:`fast_angular_builds` for a faster development cycle.
-
-4. Open up ``argovisNg/docker-compose.yml`` and edit the definition of the ``argo-express`` service to use your new image:
-
-   .. code:: yaml
-
-      version: '3'
-      services:
-        argo-express:
-          image: argovis/argo-express:my-build
-          ...
-
-5. Redeploy your local version of the app with ``docker-compose down`` / ``docker-compose up -d``. The web tier will now be based off of the custom image you just built.
+Argovis should be available after a moment in your browser at `localhost:3000`, using your new dev container.
