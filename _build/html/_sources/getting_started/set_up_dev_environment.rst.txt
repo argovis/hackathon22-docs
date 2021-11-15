@@ -156,11 +156,11 @@ So far, we've relied on pre-built container images for Argovis to get things sto
  - The datapages addon: https://github.com/argovis/datapages
  - The redis kv store: https://github.com/argovis/argovis_redis
 
-Each of these repositories has instructions in the README for building development container images. Follow the instructions for the one you want to build; for the rest of this example, we'll assume you built a new Angular frontend image and called it `argovis/ng:dev`.
+Each of these repositories has instructions in the README for building development container images. Follow the instructions for the one you want to build; for the rest of this example, we'll assume you built a new Angular frontend image and called it ``argovis/ng:dev``.
 
-2. Open up `argovis_deployment/docker-compose.yaml`, and change the appropriate image name to the development image you just created. So for our example, we'd change the `image` key under `ng` to be `image: argovis/ng:dev`.
+2. Open up ``argovis_deployment/docker-compose.yaml``, and change the appropriate image name to the development image you just created. So for our example, we'd change the ``image`` key under ``ng`` to be ``image: argovis/ng:dev``.
 
-3. Tear down your current local version, if running, with `docker-compose down` from the `argovis_deployment` directory.
+3. Tear down your current local version, if running, with ``docker-compose down`` from the ``argovis_deployment`` directory.
 
 4. Stand up Argovis with your new container:
 
@@ -168,4 +168,4 @@ Each of these repositories has instructions in the README for building developme
 
       argovis_deployment $ docker-compose up -d
 
-Argovis should be available after a moment in your browser at `localhost:3000`, using your new dev container.
+Argovis should be available after a moment in your browser at ``localhost:3000``, using your new dev container.

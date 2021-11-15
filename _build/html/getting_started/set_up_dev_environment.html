@@ -331,17 +331,17 @@ add-profiles $ <span class="nb">exit</span>
 <li><p>The redis kv store: <a class="reference external" href="https://github.com/argovis/argovis_redis">https://github.com/argovis/argovis_redis</a></p></li>
 </ul>
 </div></blockquote>
-<p>Each of these repositories has instructions in the README for building development container images. Follow the instructions for the one you want to build; for the rest of this example, we’ll assume you built a new Angular frontend image and called it <cite>argovis/ng:dev</cite>.</p>
+<p>Each of these repositories has instructions in the README for building development container images. Follow the instructions for the one you want to build; for the rest of this example, we’ll assume you built a new Angular frontend image and called it <code class="docutils literal notranslate"><span class="pre">argovis/ng:dev</span></code>.</p>
 <ol class="arabic" start="2">
-<li><p>Open up <cite>argovis_deployment/docker-compose.yaml</cite>, and change the appropriate image name to the development image you just created. So for our example, we’d change the <cite>image</cite> key under <cite>ng</cite> to be <cite>image: argovis/ng:dev</cite>.</p></li>
-<li><p>Tear down your current local version, if running, with <cite>docker-compose down</cite> from the <cite>argovis_deployment</cite> directory.</p></li>
+<li><p>Open up <code class="docutils literal notranslate"><span class="pre">argovis_deployment/docker-compose.yaml</span></code>, and change the appropriate image name to the development image you just created. So for our example, we’d change the <code class="docutils literal notranslate"><span class="pre">image</span></code> key under <code class="docutils literal notranslate"><span class="pre">ng</span></code> to be <code class="docutils literal notranslate"><span class="pre">image:</span> <span class="pre">argovis/ng:dev</span></code>.</p></li>
+<li><p>Tear down your current local version, if running, with <code class="docutils literal notranslate"><span class="pre">docker-compose</span> <span class="pre">down</span></code> from the <code class="docutils literal notranslate"><span class="pre">argovis_deployment</span></code> directory.</p></li>
 <li><p>Stand up Argovis with your new container:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovis_deployment $ docker-compose up -d
 </pre></div>
 </div>
 </li>
 </ol>
-<p>Argovis should be available after a moment in your browser at <cite>localhost:3000</cite>, using your new dev container.</p>
+<p>Argovis should be available after a moment in your browser at <code class="docutils literal notranslate"><span class="pre">localhost:3000</span></code>, using your new dev container.</p>
 </div>
 </div>
 
