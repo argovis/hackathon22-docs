@@ -58,28 +58,6 @@ The name of the network your mongodb container is attached to is the very first 
    .. code:: bash
 
       ~ $ docker container run -d --network argovisng_default \
-          -p 3030:3000 argovis/argo-express:dev 
+          -p 3040:3000 argovis/ng:dev 
 
-At this point you should be able to visit this new copy of Argovis on port 3030, and search for some data, showing that it is successfully connected to your database container. Of course, you'll be using a different container image to suit your purposes, but the syntax for connecting to the correct container network is the same.
-
-Method 2: Extra Service
------------------------
-
-Connecting a single container to your container network is usually appropriate for quick tasks, like using some containerized tooling to check network performance; if you want something a bit more permanent, you can add an extra service to Argovis' docker-compose file.
-
-1. Open up ``argovisNg/docker-compose.yml``, and define an extra service therein. An example might be the ``demoservice`` in the example below, which will do essentially the same thing as the single-container example above (note the usual service definitions are suppressed for clarity):
-
-   .. code:: yaml
-
-      version: '3'
-      services:
-        argo-express:
-          ...
-        demoservice:
-          image: argovis/argo-express:dev 
-          ports:
-          - '3030:3000'
-        database:
-          ...
-
-2. Restart your app, with ``docker-compose down`` / ``up`` as usual. When it's back up, there will be a container corresponding to your ``demoservice`` which is able to use the container network to communicate with all other application containers.
+At this point you should be able to visit this new copy of Argovis on port 3040, and search for some data, showing that it is successfully connected to your database container. Of course, you'll be using a different container image to suit your purposes, but the syntax for connecting to the correct container network is the same.

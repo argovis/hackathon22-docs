@@ -23,7 +23,7 @@ The great strength of Angular as a web framework is its orientation towards *mod
 
    .. code:: bash
 
-      argovisNg $ docker container run -v $(pwd):/ngdev --rm -it argovis/argo-express:component bash
+      argovisNg $ docker container run -v $(pwd):/ngdev --rm -it argovisNg:buildenv bash
 
 4. Navigate to ``/ngdev`` inside the container, use the angular tools to generate your component boilerplate, and exit the container once finished:
 

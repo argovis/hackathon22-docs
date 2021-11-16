@@ -184,12 +184,12 @@
 <li><p>Identify the container network your containers are connected to, as described in <a class="reference internal" href="../special_topics/connecting_to_the_container_network.html#simple-container-connection"><span class="std std-ref">Method 1: Simple Container</span></a>.</p></li>
 <li><p>In your terminal, move to the root of your <code class="docutils literal notranslate"><span class="pre">argovisNg</span></code> directory.</p></li>
 <li><p>In <code class="docutils literal notranslate"><span class="pre">environments/environments.ts</span></code>, change <code class="docutils literal notranslate"><span class="pre">ARGOVIS_API_ROOT</span></code> to <code class="docutils literal notranslate"><span class="pre">http://127.0.0.1:8080</span></code>.</p></li>
-<li><p>Launch a development environment for Argovis, making sure to sub in the name of the network you just found:</p>
+<li><p>Launch a development environment for Argovis, making sure to sub in the name of the network you just found and a recent tag of the <code class="docutils literal notranslate"><span class="pre">argovis/ng</span></code> image:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ docker container run <span class="se">\</span>
     -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>/src:/usr/src/ng_argovis/src <span class="se">\</span>
     --network &lt;argovis network name&gt; <span class="se">\</span>
     -p <span class="m">3001</span>:3000 <span class="se">\</span>
-    -d argovis/argo-express:dev
+    -d argovis/ng:dev
 </pre></div>
 </div>
 </li>

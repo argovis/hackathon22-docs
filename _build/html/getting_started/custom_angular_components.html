@@ -195,7 +195,7 @@ argovisNg $ git checkout -b my-custom-component
 </div>
 </li>
 <li><p>Start the <code class="docutils literal notranslate"><span class="pre">argovisNg</span></code> container as an interactive environment, and mount your <code class="docutils literal notranslate"><span class="pre">argovisNg</span></code> directory from your computer into the container’s filesystem at <code class="docutils literal notranslate"><span class="pre">/ngdev</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ docker container run -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/ngdev --rm -it argovis/argo-express:component bash
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ docker container run -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/ngdev --rm -it argovisNg:buildenv bash
 </pre></div>
 </div>
 </li>

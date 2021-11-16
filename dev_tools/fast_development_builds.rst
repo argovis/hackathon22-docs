@@ -13,7 +13,7 @@ Building the angular frontend container can be slow, which is an impediment to r
 
 4. In ``environments/environments.ts``, change ``ARGOVIS_API_ROOT`` to ``http://127.0.0.1:8080``.
 
-5. Launch a development environment for Argovis, making sure to sub in the name of the network you just found:
+5. Launch a development environment for Argovis, making sure to sub in the name of the network you just found and a recent tag of the ``argovis/ng`` image:
 
    .. code:: bash
 
@@ -21,7 +21,7 @@ Building the angular frontend container can be slow, which is an impediment to r
           -v $(pwd)/src:/usr/src/ng_argovis/src \
           --network <argovis network name> \
           -p 3001:3000 \
-          -d argovis/argo-express:dev
+          -d argovis/ng:dev
 
 For the curious, these flags are:
 
