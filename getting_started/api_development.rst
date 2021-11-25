@@ -23,7 +23,7 @@ The reponsibilities of each container and connection are:
 
  - an off-the-shelf containerized version of mongodb holds all our raw data.
  - argovis_api runs in its own container; in production, this is the only container allowed to communicate with mongodb, and the only container users on the web are allowed to communicate with. All requests must proceed through the API container.
- - an off-the-shelf redis database is used by the API to keep track of API requests, and throttle users that issue fast requests that threaten to swamp the database or network.
+ - a redis database with some custom config is used by the API to keep track of API requests, and throttle users that issue fast requests that threaten to swamp the database or network.
 
 .. _api_dev_env:
 
