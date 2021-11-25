@@ -18,16 +18,16 @@ Argovis is deployed to Kubernetes as the following diagram:
   - `argovis_api <https://github.com/argovis/argovis_api>`_ brokers access to mongo with a RESTful, OpenAPI compliant API.
   - `argovis_redis <https://github.com/argovis/argovis_redis>`_ is a redis database with some custom config is used by the API to keep track of API requests, and throttle users that issue fast requests that threaten to swamp the database or network.
   - `argovisNg <https://github.com/argovis/argovisNg>`_ is an Angular based web frontend for exploring the data.
-  - `datapages <https://github.com/argovis/datapages>`_ are additional frontend pages built independently from Angular
+  - `datapages <https://github.com/argovis/datapages>`_ are additional frontend pages built independently from Angular.
 
 - Cronjobs:
 
-  - `datacron <https://github.com/argovis/datacron>`_ runs nightly to fetch new profile data from ifremer and load it into mongodb
+  - `datacron <https://github.com/argovis/datacron>`_ runs nightly to fetch new profile data from ifremer and load it into mongodb.
 
 - PersistentVolumes:
 
-  - ``mongoback`` is the database backing for mongodb, recommended at least 100 GB
-  - ``datacron-logs`` is a small backing for the logs of the database update job, typically 10 GB
+  - ``mongoback`` is the database backing for mongodb, recommended at least 100 GB.
+  - ``datacron-logs`` is a small backing for the logs of the database update job, typically 10 GB.
 
 - Configs:
 
@@ -36,7 +36,7 @@ Argovis is deployed to Kubernetes as the following diagram:
 - Networking:
 
   - The API and both frontends have nodePort services allowing ingress. Depending on Kube provider, ingress from the internet will be provided by differing objects; OKD uses Red Hat Routes, for example.
-  - Both databases have clusterIP services for internal communication
+  - Both databases have clusterIP services for internal communication.
   - networkPolicies are applied to both databases to only allow access from pods with the label ``app: api``.
 
 Setup
@@ -49,8 +49,8 @@ First Time Setup
 
 A few objects need to be created by hand the first time Argovis is deployed to a new cluster:
 
- - ``mongoback`` PV/PVC: 100 GB or bigger
- - ``datacron-logs`` PV/PVC: about 10 GB
+ - ``mongoback`` PV/PVC: 100 GB or bigger.
+ - ``datacron-logs`` PV/PVC: about 10 GB.
  - ``apitoken`` secret: a secret with a single key ``token`` containing a string for use as an API token by the frontend pods.
  - ``datacron`` cronjob: see source and deployment yaml `here <https://github.com/argovis/datacron>`_.
 

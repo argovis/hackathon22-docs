@@ -34,3 +34,9 @@ In order to determine if mongodb is primarily responsible for slow responses fro
 
    From here, you'll have a list of the most expensive operations mongo is processing. See the ``millis`` key in the response documents for the length of time mongo spent on the operation; if this is a large or majority contribution to the response time of the API, consider scaling mongo or restricting the size of API calls allowed.
 
+5. When done, make sure to turn off profiling in order to avoid impacting performance:
+
+   .. code:: bash
+
+      > db.setProfilingLevel(0)
+

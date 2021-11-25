@@ -204,18 +204,18 @@
 <li><p><a class="reference external" href="https://github.com/argovis/argovis_api">argovis_api</a> brokers access to mongo with a RESTful, OpenAPI compliant API.</p></li>
 <li><p><a class="reference external" href="https://github.com/argovis/argovis_redis">argovis_redis</a> is a redis database with some custom config is used by the API to keep track of API requests, and throttle users that issue fast requests that threaten to swamp the database or network.</p></li>
 <li><p><a class="reference external" href="https://github.com/argovis/argovisNg">argovisNg</a> is an Angular based web frontend for exploring the data.</p></li>
-<li><p><a class="reference external" href="https://github.com/argovis/datapages">datapages</a> are additional frontend pages built independently from Angular</p></li>
+<li><p><a class="reference external" href="https://github.com/argovis/datapages">datapages</a> are additional frontend pages built independently from Angular.</p></li>
 </ul>
 </li>
 <li><p>Cronjobs:</p>
 <ul>
-<li><p><a class="reference external" href="https://github.com/argovis/datacron">datacron</a> runs nightly to fetch new profile data from ifremer and load it into mongodb</p></li>
+<li><p><a class="reference external" href="https://github.com/argovis/datacron">datacron</a> runs nightly to fetch new profile data from ifremer and load it into mongodb.</p></li>
 </ul>
 </li>
 <li><p>PersistentVolumes:</p>
 <ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">mongoback</span></code> is the database backing for mongodb, recommended at least 100 GB</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">datacron-logs</span></code> is a small backing for the logs of the database update job, typically 10 GB</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mongoback</span></code> is the database backing for mongodb, recommended at least 100 GB.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">datacron-logs</span></code> is a small backing for the logs of the database update job, typically 10 GB.</p></li>
 </ul>
 </li>
 <li><p>Configs:</p>
@@ -226,7 +226,7 @@
 <li><p>Networking:</p>
 <ul>
 <li><p>The API and both frontends have nodePort services allowing ingress. Depending on Kube provider, ingress from the internet will be provided by differing objects; OKD uses Red Hat Routes, for example.</p></li>
-<li><p>Both databases have clusterIP services for internal communication</p></li>
+<li><p>Both databases have clusterIP services for internal communication.</p></li>
 <li><p>networkPolicies are applied to both databases to only allow access from pods with the label <code class="docutils literal notranslate"><span class="pre">app:</span> <span class="pre">api</span></code>.</p></li>
 </ul>
 </li>
@@ -240,8 +240,8 @@
 <p>A few objects need to be created by hand the first time Argovis is deployed to a new cluster:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">mongoback</span></code> PV/PVC: 100 GB or bigger</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">datacron-logs</span></code> PV/PVC: about 10 GB</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mongoback</span></code> PV/PVC: 100 GB or bigger.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">datacron-logs</span></code> PV/PVC: about 10 GB.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">apitoken</span></code> secret: a secret with a single key <code class="docutils literal notranslate"><span class="pre">token</span></code> containing a string for use as an API token by the frontend pods.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">datacron</span></code> cronjob: see source and deployment yaml <a class="reference external" href="https://github.com/argovis/datacron">here</a>.</p></li>
 </ul>
