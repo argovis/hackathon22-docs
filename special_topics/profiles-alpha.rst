@@ -28,6 +28,7 @@ The base ``/profiles`` endpoint is the place to go for all profile data. Reducin
  - ``endDate``: formatted as ISO 8601 UTC: ``1999-12-31T23:59:59Z``. Profiles will be returned if they are timestamped before this time.
  - ``polygon``: formatted as ``[[lon,lat],[lon,lat],[lon,lat]...]``; note the first and last ``[lon,lat]`` pairs must be identical. Profiles will be returned if they fall within the closed polygon created by connecting the coordinate pairs in the order they are serialized.
  - ``box``: formatted as ``[[lower left lon,lower left lat],[upper right lon,upper right lat]]``. Profiles will be returned if they fall within the box defined by its lower left and upper right coordinate corners.
+ - ``center`` plus ``radius``, formatted as ``center lon, center lat`` and a distance in km, respectively. Profiles will be returned if they fall within the circle defined by this pair of parameters.
  - ``ids``: formatted as ``id_1,id_2,id_3,...``. Profiles will be returned if they have an ID in the list provided.
  - ``platforms``: formatted as ``platform_1,platform_2,platform_3,...``. Profiles will be returned if they have a platform number in the list provided.
  - ``presRange``: formatted as ``minPres,maxPres``. Only levels with ``measurements.pres``  that fall within the range bracketed by ``minPres`` and ``maxPres`` will be returned.
