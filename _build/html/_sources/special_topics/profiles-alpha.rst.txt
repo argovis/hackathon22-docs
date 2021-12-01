@@ -32,6 +32,7 @@ The base ``/profiles`` endpoint is the place to go for all profile data. Reducin
  - ``ids``: formatted as ``id_1,id_2,id_3,...``. Profiles will be returned if they have an ID in the list provided.
  - ``platforms``: formatted as ``platform_1,platform_2,platform_3,...``. Profiles will be returned if they have a platform number in the list provided.
  - ``presRange``: formatted as ``minPres,maxPres``. Only levels with ``measurements.pres``  that fall within the range bracketed by ``minPres`` and ``maxPres`` will be returned.
+ - ``dac``: formatted as a single string, like ``CCHDO``. Only profiles from the specified DAC will be returned.
  - ``coreMeasurements``: formatted as ``meas_1,meas_2,...``. Specifies the core QC'ed measurements that will be returned as part of the ``measurements`` key. Notes:
 
      - Valid choices: ``pres``, ``temp``, ``psal``, ``all``
