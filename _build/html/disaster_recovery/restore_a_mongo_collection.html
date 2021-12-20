@@ -320,6 +320,12 @@ c5f477eb4a83   argovisng_database_1       <span class="m">0</span>.24%     12GiB
 </div>
 </div></blockquote>
 </li>
+</ul>
+<div class="admonition-warning admonition">
+<p class="admonition-title">Warning</p>
+<p>As above, this is a memory hungry process. When recovering from a disaster so severe you need to restore from cold backups, consider tearing down all stateless apps and allocating as much memory as possible to mongodb, at least 16 GB as of this writing.</p>
+</div>
+<ul>
 <li><p>The above will of course only restore the database up to the last incremental backup. To complete the database reconstruction, we need to replay the nightly updates that ran since the last backup. Replace the default CMD in <code class="docutils literal notranslate"><span class="pre">argovis/datacron</span></code> with (adjusting the dates appropriately):</p>
 <blockquote>
 <div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python add_profiles.py --dbName argo --subset tmp --logName /usr/src/argo-database/logs/tmp.log --npes <span class="m">1</span> --minDate <span class="m">2021</span>-12-13 --maxDate <span class="m">2021</span>-12-15
@@ -331,6 +337,23 @@ c5f477eb4a83   argovisng_database_1       <span class="m">0</span>.24%     12GiB
 <blockquote>
 <div><p>and run to catch the restored database up to the latest.</p>
 </div></blockquote>
+<ul>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">mongoexport</span></code> backups don’t back up indexes by default. Recreate them from the mongo shell (below are examples, need to keep track or back up actual index plans):</p>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>db.profiles.createIndex<span class="o">({</span><span class="s2">&quot;date&quot;</span>: -1<span class="o">})</span>
+db.profiles.createIndex<span class="o">({</span><span class="s2">&quot;platform_number&quot;</span> : -1<span class="o">})</span>
+db.profiles.createIndex<span class="o">({</span><span class="s2">&quot;dac&quot;</span> : -1<span class="o">})</span>
+db.profiles.createIndex<span class="o">({</span><span class="s2">&quot;geoLocation&quot;</span> : <span class="s2">&quot;2dsphere&quot;</span><span class="o">})</span>
+db.profiles.createIndex<span class="o">({</span><span class="s2">&quot;containsBGC&quot;</span> : -1<span class="o">})</span>
+db.profiles.createIndex<span class="o">({</span><span class="s2">&quot;isDeep&quot;</span> : -1<span class="o">})</span>
+db.profiles.createIndex<span class="o">({</span><span class="s2">&quot;platform_number&quot;</span> : -1, <span class="s2">&quot;date&quot;</span> : -1<span class="o">})</span>
+db.profiles.createIndex<span class="o">({</span><span class="s2">&quot;date&quot;</span> : -1, <span class="s2">&quot;platform_number&quot;</span> : -1<span class="o">})</span>
+db.profiles.createIndex<span class="o">({</span><span class="s2">&quot;date_added&quot;</span> : -1<span class="o">})</span>
+</pre></div>
+</div>
+</div></blockquote>
+</li>
+</ul>
 </div>
 </div>
 

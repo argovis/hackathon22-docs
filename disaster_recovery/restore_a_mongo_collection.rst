@@ -134,6 +134,10 @@ One strategy that accommodates this is as follows:
 
       $ mongoimport --db=argo --collection=profiles --mode=upsert export.json
 
+.. admonition:: Warning
+
+   As above, this is a memory hungry process. When recovering from a disaster so severe you need to restore from cold backups, consider tearing down all stateless apps and allocating as much memory as possible to mongodb, at least 16 GB as of this writing.
+
 - The above will of course only restore the database up to the last incremental backup. To complete the database reconstruction, we need to replay the nightly updates that ran since the last backup. Replace the default CMD in ``argovis/datacron`` with (adjusting the dates appropriately):
 
    .. code:: bash
@@ -141,3 +145,17 @@ One strategy that accommodates this is as follows:
       python add_profiles.py --dbName argo --subset tmp --logName /usr/src/argo-database/logs/tmp.log --npes 1 --minDate 2021-12-13 --maxDate 2021-12-15
 
  and run to catch the restored database up to the latest.
+
+- The ``mongoexport`` backups don't back up indexes by default. Recreate them from the mongo shell (below are examples, need to keep track or back up actual index plans):
+
+    .. code:: bash
+
+      db.profiles.createIndex({"date": -1})
+      db.profiles.createIndex({"platform_number" : -1})
+      db.profiles.createIndex({"dac" : -1})
+      db.profiles.createIndex({"geoLocation" : "2dsphere"})
+      db.profiles.createIndex({"containsBGC" : -1})
+      db.profiles.createIndex({"isDeep" : -1})
+      db.profiles.createIndex({"platform_number" : -1, "date" : -1})
+      db.profiles.createIndex({"date" : -1, "platform_number" : -1})
+      db.profiles.createIndex({"date_added" : -1})
