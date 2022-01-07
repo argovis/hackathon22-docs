@@ -76,7 +76,7 @@ The ``/platforms`` route provides some simple summary data on platforms, filtere
 There are also two sub-routes under ``/platforms``, to capture some other, related schema:
 
  - ``/platforms/bgcList`` returns a list of platform IDs that collect BGC data.
- - ``/platforms/mostRecent`` returns a list of platforms including some information about their most recent location and measurements
+ - ``/platforms/mostRecent`` returns a list of platforms including some information about their most recent location and measurements. Accepts the same ``platforms`` query string parameter as `/profiles` to restrict results to a set of platforms (returns all platforms by default).
 
 /dacs
 +++++
