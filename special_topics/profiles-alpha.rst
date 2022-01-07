@@ -19,6 +19,10 @@ Usage
 
 Unless otherwise noted, all routes support only ``GET`` requests at this time.
 
+.. admonition:: Longitudes and Latitudes
+
+   For all queries on all endpoints, where longitudes and latitudes are supported, they must fall on [-180,180] and [-90,90], respectively.
+
 /profiles
 +++++++++
 
