@@ -71,12 +71,12 @@ After a few seconds, visit ``http://localhost:3000`` in your web browser; you sh
 
       argovis_deployment $ docker container exec -it argovis_deployment_database_1 mongo
 
-7. From this mongo shell, insert an API token ``xxx`` into the ``argo`` database, ``user`` collection:
+7. From this mongo shell, insert an API token ``guest`` into the ``argo`` database, ``user`` collection:
 
    .. code:: bash
 
       > use argo
-      > db.user.insertOne({"key": "xxx", "tokenvalid": 1})
+      > db.user.insertOne({"key": "guest", "tokenValid": 1})
       > exit
 
 8. Once you're satisfied all is well, tear your local deployment down:
