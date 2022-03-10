@@ -94,6 +94,12 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
 
 .. toctree::
    :maxdepth: 2
+   :caption: Data Management
+
+   data_management/point_schema.rst
+
+.. toctree::
+   :maxdepth: 2
    :caption: Developer Tools & Techniques
 
    dev_tools/fast_development_builds
