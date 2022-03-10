@@ -96,7 +96,7 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
    :maxdepth: 2
    :caption: Data Management
 
-   data_management/point_schema.rst
+   data_management/point_schema
 
 .. toctree::
    :maxdepth: 2
