@@ -82,7 +82,7 @@ All point data MAY include the following keys; if meaningful data is available f
 - ``data``
 
   - **type:** array of non-nested JSON documents
-  - **description:** array indexes depth / altitude; individual documents are key/value pairs describing measurements made. Pressure or altitude must be present as one of the document keys. Example: ``{pres: 4.7,  psal: 33.987,  temp: 1.107}``
+  - **description:** array indexes depth / altitude; individual documents are key/value pairs describing measurements made. Pressure or altitude must be present as one of the document keys. Example: ``{pres: 4.7,  psal: 33.987,  temp: 1.107, temp_qc: 1}``
   - **current vocabulary:** defined per project,  see schema extensions below.
 
 - ``data_center``
