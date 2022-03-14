@@ -17,8 +17,8 @@ Each entry in the schema fragments below contain a few keys:
 
 - **type:** the primitive type,  format,  or object description of a valid entry for this field
 - **description:** short comment on what this variable is
-- fill value (optional): what this should be filled by if absent
-- current vocabulary (optional): current set of possible values for this key,  with explanations as required.
+- **fill value** (optional): what this should be filled by if absent
+- **current vocabulary** (optional): current set of possible values for this key,  with explanations as required.
 
 Schema enforcement & population
 -------------------------------
@@ -200,6 +200,7 @@ Optional keys
 
   - **type:** int
   - **description:** Argo's position QC flag
+  - **fill value:** -1
 
 - ``oceanops``
 
@@ -222,6 +223,7 @@ Optional keys
 
   - **type:** int
   - **description:** Argo's date QC flag
+  - **fill value:** -1
 
 - ``vertical_sampling_scheme``
 

@@ -97,6 +97,7 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
    :caption: Data Management
 
    data_management/point_schema
+   data_management/argo_merge
 
 .. toctree::
    :maxdepth: 2
