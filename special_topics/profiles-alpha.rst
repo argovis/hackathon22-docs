@@ -37,17 +37,8 @@ The base ``/profiles`` endpoint is the place to go for all profile data. Reducin
  - ``platforms``: formatted as ``platform_1,platform_2,platform_3,...``. Profiles will be returned if they have a platform number in the list provided.
  - ``presRange``: formatted as ``minPres,maxPres``. Only levels with ``measurements.pres``  that fall within the range bracketed by ``minPres`` and ``maxPres`` will be returned.
  - ``dac``: formatted as a single string, like ``CCHDO``. Only profiles from the specified DAC will be returned.
- - ``coreMeasurements``: formatted as ``meas_1,meas_2,...``. Specifies the core QC'ed measurements that will be returned as part of the ``measurements`` key. Notes:
-
-     - Valid choices: ``pres``, ``temp``, ``psal``, ``all``
-     - ``pres`` is always returned, no matter what.
-     - ``all`` returns all available measurements, and is equivalent to ``coreMeasurements=temp,psal``. 
- - ``bgcMeasurements``: formatted as ``meas_1,meas_2,...``. Specifies the biogeochemical measurements that will be returned as part of the ``bgcMeas`` key. Notes:
-
-     - Valid choices: ``pres``, ``temp``, ``psal``, ``cndx``, ``doxy``, ``chla``, ``cdom``, ``nitrate``, ``bbp700``, ``down_irradiance412``, ``down_irradiance442``, ``down_irradiance490``, ``downwelling_par``, ``all``
-     - ``pres`` and ``pres_qc`` are always returned, no matter what.
-     - Requesting a variable also returns its QC (ie requesting ``doxy`` will also return ``doxy_qc``).
-     - ``all`` returns all available measurements and their QC.
+ - ``data``: formatted as ``meas_1,meas_2,...``. Specifies the measurements and/or QC variables to be returned; valid choices are listed in the vocabulary at :ref:`argo_vocab`. In addition to these, specifying ``data=all`` will return all available data.
+ - ``compression``: if set to any value, a minified ``data`` array will be returned: instead of a dictionary for each level, ``data`` will be a list of lists, where each inner list contains the values requested for a level, in the same order as the ``data_keys`` object on the corresponding returned profile.
 
 .. admonition:: Required Parameters and Response Sizes
 
@@ -59,7 +50,7 @@ The base ``/profiles`` endpoint is the place to go for all profile data. Reducin
 
 .. admonition:: Data or Metadata?
 
-   If your query string includes neither ``coreMeasurements`` or ``bgcMeasurements``, the request will return profile metadata only. If your query string includes either of those and a matching profile has no levels with the appropriate measurements after filtering, it will be dropped from the returned results.
+   If your query string does not include ``data``, the request will return profile metadata only. If your query string includes either of those and a matching profile has no levels with the appropriate measurements after filtering, it will be dropped from the returned results.
 
 There is also one subroute under ``/profiles``:
 
@@ -70,7 +61,7 @@ There is also one subroute under ``/profiles``:
 
 The ``/platforms`` route provides some simple summary data on platforms, filtered by the following query string parameters:
 
- - ``platform``: formatted as ``platform_name``. Returns metadata objects for the platform specified.
+ - ``platform``: a single ``platform_id`` value. Returns metadata objects for the platform specified.
 
 
 There are also two sub-routes under ``/platforms``, to capture some other, related schema:

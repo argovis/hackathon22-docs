@@ -165,6 +165,8 @@ Population pipeline
 
 The ``point`` collection is populated with Argo data via the pipeline descibed at https://github.com/argovis/ifremer-sync.
 
+.. _argo_vocab:
+
 Base point schema vocabularies
 ++++++++++++++++++++++++++++++
 

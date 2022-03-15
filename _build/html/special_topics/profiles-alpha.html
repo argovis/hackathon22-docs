@@ -241,7 +241,7 @@
 <h3>/profiles<a class="headerlink" href="#profiles" title="Permalink to this headline">¶</a></h3>
 <p>The base <code class="docutils literal notranslate"><span class="pre">/profiles</span></code> endpoint is the place to go for all profile data. Reducing the amount of data returned can be achieved with the following query string parameters; using multiple query string parameters <code class="docutils literal notranslate"><span class="pre">AND</span></code> s the corresponding requirements. All parameters are optional, but see the note below about limiting response sizes.</p>
 <blockquote>
-<div><ul>
+<div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">startDate</span></code>: formatted as ISO 8601 UTC: <code class="docutils literal notranslate"><span class="pre">1999-12-31T23:59:59Z</span></code>. Profiles will be returned if they are timestamped at or after this time.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">endDate</span></code>: formatted as ISO 8601 UTC: <code class="docutils literal notranslate"><span class="pre">1999-12-31T23:59:59Z</span></code>. Profiles will be returned if they are timestamped before this time.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">polygon</span></code>: formatted as <code class="docutils literal notranslate"><span class="pre">[[lon,lat],[lon,lat],[lon,lat]...]</span></code>; note the first and last <code class="docutils literal notranslate"><span class="pre">[lon,lat]</span></code> pairs must be identical. Profiles will be returned if they fall within the closed polygon created by connecting the coordinate pairs in the order they are serialized.</p></li>
@@ -251,25 +251,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">platforms</span></code>: formatted as <code class="docutils literal notranslate"><span class="pre">platform_1,platform_2,platform_3,...</span></code>. Profiles will be returned if they have a platform number in the list provided.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">presRange</span></code>: formatted as <code class="docutils literal notranslate"><span class="pre">minPres,maxPres</span></code>. Only levels with <code class="docutils literal notranslate"><span class="pre">measurements.pres</span></code>  that fall within the range bracketed by <code class="docutils literal notranslate"><span class="pre">minPres</span></code> and <code class="docutils literal notranslate"><span class="pre">maxPres</span></code> will be returned.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dac</span></code>: formatted as a single string, like <code class="docutils literal notranslate"><span class="pre">CCHDO</span></code>. Only profiles from the specified DAC will be returned.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">coreMeasurements</span></code>: formatted as <code class="docutils literal notranslate"><span class="pre">meas_1,meas_2,...</span></code>. Specifies the core QC’ed measurements that will be returned as part of the <code class="docutils literal notranslate"><span class="pre">measurements</span></code> key. Notes:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Valid choices: <code class="docutils literal notranslate"><span class="pre">pres</span></code>, <code class="docutils literal notranslate"><span class="pre">temp</span></code>, <code class="docutils literal notranslate"><span class="pre">psal</span></code>, <code class="docutils literal notranslate"><span class="pre">all</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pres</span></code> is always returned, no matter what.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">all</span></code> returns all available measurements, and is equivalent to <code class="docutils literal notranslate"><span class="pre">coreMeasurements=temp,psal</span></code>.</p></li>
-</ul>
-</div></blockquote>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">bgcMeasurements</span></code>: formatted as <code class="docutils literal notranslate"><span class="pre">meas_1,meas_2,...</span></code>. Specifies the biogeochemical measurements that will be returned as part of the <code class="docutils literal notranslate"><span class="pre">bgcMeas</span></code> key. Notes:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p>Valid choices: <code class="docutils literal notranslate"><span class="pre">pres</span></code>, <code class="docutils literal notranslate"><span class="pre">temp</span></code>, <code class="docutils literal notranslate"><span class="pre">psal</span></code>, <code class="docutils literal notranslate"><span class="pre">cndx</span></code>, <code class="docutils literal notranslate"><span class="pre">doxy</span></code>, <code class="docutils literal notranslate"><span class="pre">chla</span></code>, <code class="docutils literal notranslate"><span class="pre">cdom</span></code>, <code class="docutils literal notranslate"><span class="pre">nitrate</span></code>, <code class="docutils literal notranslate"><span class="pre">bbp700</span></code>, <code class="docutils literal notranslate"><span class="pre">down_irradiance412</span></code>, <code class="docutils literal notranslate"><span class="pre">down_irradiance442</span></code>, <code class="docutils literal notranslate"><span class="pre">down_irradiance490</span></code>, <code class="docutils literal notranslate"><span class="pre">downwelling_par</span></code>, <code class="docutils literal notranslate"><span class="pre">all</span></code></p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">pres</span></code> and <code class="docutils literal notranslate"><span class="pre">pres_qc</span></code> are always returned, no matter what.</p></li>
-<li><p>Requesting a variable also returns its QC (ie requesting <code class="docutils literal notranslate"><span class="pre">doxy</span></code> will also return <code class="docutils literal notranslate"><span class="pre">doxy_qc</span></code>).</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">all</span></code> returns all available measurements and their QC.</p></li>
-</ul>
-</div></blockquote>
-</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code>: formatted as <code class="docutils literal notranslate"><span class="pre">meas_1,meas_2,...</span></code>. Specifies the measurements and/or QC variables to be returned; valid choices are listed in the vocabulary at <a class="reference internal" href="../data_management/point_schema.html#argo-vocab"><span class="std std-ref">Base point schema vocabularies</span></a>. In addition to these, specifying <code class="docutils literal notranslate"><span class="pre">data=all</span></code> will return all available data.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">compression</span></code>: if set to any value, a minified <code class="docutils literal notranslate"><span class="pre">data</span></code> array will be returned: instead of a dictionary for each level, <code class="docutils literal notranslate"><span class="pre">data</span></code> will be a list of lists, where each inner list contains the values requested for a level, in the same order as the <code class="docutils literal notranslate"><span class="pre">data_keys</span></code> object on the corresponding returned profile.</p></li>
 </ul>
 </div></blockquote>
 <div class="admonition-required-parameters-and-response-sizes admonition">
@@ -283,7 +266,7 @@
 </div>
 <div class="admonition-data-or-metadata admonition">
 <p class="admonition-title">Data or Metadata?</p>
-<p>If your query string includes neither <code class="docutils literal notranslate"><span class="pre">coreMeasurements</span></code> or <code class="docutils literal notranslate"><span class="pre">bgcMeasurements</span></code>, the request will return profile metadata only. If your query string includes either of those and a matching profile has no levels with the appropriate measurements after filtering, it will be dropped from the returned results.</p>
+<p>If your query string does not include <code class="docutils literal notranslate"><span class="pre">data</span></code>, the request will return profile metadata only. If your query string includes either of those and a matching profile has no levels with the appropriate measurements after filtering, it will be dropped from the returned results.</p>
 </div>
 <p>There is also one subroute under <code class="docutils literal notranslate"><span class="pre">/profiles</span></code>:</p>
 <blockquote>
@@ -297,7 +280,7 @@
 <p>The <code class="docutils literal notranslate"><span class="pre">/platforms</span></code> route provides some simple summary data on platforms, filtered by the following query string parameters:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">platform</span></code>: formatted as <code class="docutils literal notranslate"><span class="pre">platform_name</span></code>. Returns metadata objects for the platform specified.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">platform</span></code>: a single <code class="docutils literal notranslate"><span class="pre">platform_id</span></code> value. Returns metadata objects for the platform specified.</p></li>
 </ul>
 </div></blockquote>
 <p>There are also two sub-routes under <code class="docutils literal notranslate"><span class="pre">/platforms</span></code>, to capture some other, related schema:</p>
