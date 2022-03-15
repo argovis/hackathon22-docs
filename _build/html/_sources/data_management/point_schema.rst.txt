@@ -170,7 +170,7 @@ Base point schema vocabularies
 
 The following keys from the base point schema have these vocabularies for Argovis:
 
-- ``data`` keys: "bbp470", "bbp532", "bbp700", "bbp700_2", "cdom", "chla", "cndx", "cp660", "down_irradiance380", "down_irradiance412", "down_irradiance442", "down_irradiance443", "down_irradiance490", "down_irradiance555", "downwelling_par", "doxy", "molar_doxy", "nitrate", "ph_in_situ_total", "pres", "psal", "temp", "up_radiance412", "up_radiance443", "up_radiance490", "up_radiance555",  and the same again with "_argoqc" appended for the corresponding QC measurements.
+- ``data`` keys: "bbp470", "bbp532", "bbp700", "bbp700_2", "bisulfide", "cdom", "chla", "cndx", "cp660", "down_irradiance380", "down_irradiance412", "down_irradiance442", "down_irradiance443", "down_irradiance490", "down_irradiance555", "down_irradiance670", "downwelling_par", "doxy", "molar_doxy", "nitrate", "ph_in_situ_total", "pres", "psal", "psal_sfile", "temp", "temp_sfile", "turbidity", "up_radiance412", "up_radiance443", "up_radiance490", "up_radiance555",  and the same again with "_argoqc" appended for the corresponding QC measurements.
 - ``data_center``: TBD
 - ``source_info.source``: ``argo_core``,  ``argo_bgc`` and ``argo_deep``
 
