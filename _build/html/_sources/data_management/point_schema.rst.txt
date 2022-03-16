@@ -109,9 +109,11 @@ All point data MAY include the following keys; if meaningful data is available f
   - **type:** array of strings
   - **description:** short string tokens indicating possible problems with this record.
   - **current vocabulary:**
+  
+    - ``degenerate_levels``: data is reported twice for a given pressure / altitude level in a way that cannot be readily resolved
+    - ``missing_basin``: unable to determine meaningful basin code, despite having a meaningful lat / lon (edge case in basins lookup grid)
     - ``missing_location``: one or both of longitude and latitude are missing
-    - ``degenerate_levels``: data is reported twice for a given pressure / altitude level in a way that cannot be readily resolved.
-    - ``missing_basin``: unable to determine meaningful basin code,  despite having a meaningful lat / lon (edge case in basins lookup grid)
+    - ``missing_timestamp``: no date or time of measurement associated with this profile.
 
 - ``doi``
 
@@ -172,7 +174,7 @@ Base point schema vocabularies
 
 The following keys from the base point schema have these vocabularies for Argovis:
 
-- ``data`` keys: "bbp470", "bbp532", "bbp700", "bbp700_2", "bisulfide", "cdom", "chla", "cndx", "cp660", "down_irradiance380", "down_irradiance412", "down_irradiance442", "down_irradiance443", "down_irradiance490", "down_irradiance555", "down_irradiance670", "downwelling_par", "doxy", "molar_doxy", "nitrate", "ph_in_situ_total", "pres", "psal", "psal_sfile", "temp", "temp_sfile", "turbidity", "up_radiance412", "up_radiance443", "up_radiance490", "up_radiance555",  and the same again with "_argoqc" appended for the corresponding QC measurements.
+- ``data`` keys: "bbp470", "bbp532", "bbp700", "bbp700_2", "bisulfide", "cdom", "chla", "cndx", "cp660", "down_irradiance380", "down_irradiance412", "down_irradiance442", "down_irradiance443", "down_irradiance490", "down_irradiance555", "down_irradiance670", "downwelling_par", "doxy", "doxy2", "molar_doxy", "nitrate", "ph_in_situ_total", "pres", "psal", "psal_sfile", "temp", "temp_sfile", "turbidity", "up_radiance412", "up_radiance443", "up_radiance490", "up_radiance555",  and the same again with "_argoqc" appended for the corresponding QC measurements.
 - ``data_center``: TBD
 - ``source_info.source``: ``argo_core``,  ``argo_bgc`` and ``argo_deep``
 

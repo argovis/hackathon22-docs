@@ -323,10 +323,14 @@
 <ul>
 <li><p><strong>type:</strong> array of strings</p></li>
 <li><p><strong>description:</strong> short string tokens indicating possible problems with this record.</p></li>
-<li><p><strong>current vocabulary:</strong>
-- <code class="docutils literal notranslate"><span class="pre">missing_location</span></code>: one or both of longitude and latitude are missing
-- <code class="docutils literal notranslate"><span class="pre">degenerate_levels</span></code>: data is reported twice for a given pressure / altitude level in a way that cannot be readily resolved.
-- <code class="docutils literal notranslate"><span class="pre">missing_basin</span></code>: unable to determine meaningful basin code,  despite having a meaningful lat / lon (edge case in basins lookup grid)</p></li>
+<li><p><strong>current vocabulary:</strong></p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">degenerate_levels</span></code>: data is reported twice for a given pressure / altitude level in a way that cannot be readily resolved</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">missing_basin</span></code>: unable to determine meaningful basin code, despite having a meaningful lat / lon (edge case in basins lookup grid)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">missing_location</span></code>: one or both of longitude and latitude are missing</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">missing_timestamp</span></code>: no date or time of measurement associated with this profile.</p></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">doi</span></code></p>
@@ -393,7 +397,7 @@
 <span id="argo-vocab"></span><h3>Base point schema vocabularies<a class="headerlink" href="#base-point-schema-vocabularies" title="Permalink to this headline">¶</a></h3>
 <p>The following keys from the base point schema have these vocabularies for Argovis:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code> keys: “bbp470”, “bbp532”, “bbp700”, “bbp700_2”, “bisulfide”, “cdom”, “chla”, “cndx”, “cp660”, “down_irradiance380”, “down_irradiance412”, “down_irradiance442”, “down_irradiance443”, “down_irradiance490”, “down_irradiance555”, “down_irradiance670”, “downwelling_par”, “doxy”, “molar_doxy”, “nitrate”, “ph_in_situ_total”, “pres”, “psal”, “psal_sfile”, “temp”, “temp_sfile”, “turbidity”, “up_radiance412”, “up_radiance443”, “up_radiance490”, “up_radiance555”,  and the same again with “_argoqc” appended for the corresponding QC measurements.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data</span></code> keys: “bbp470”, “bbp532”, “bbp700”, “bbp700_2”, “bisulfide”, “cdom”, “chla”, “cndx”, “cp660”, “down_irradiance380”, “down_irradiance412”, “down_irradiance442”, “down_irradiance443”, “down_irradiance490”, “down_irradiance555”, “down_irradiance670”, “downwelling_par”, “doxy”, “doxy2”, “molar_doxy”, “nitrate”, “ph_in_situ_total”, “pres”, “psal”, “psal_sfile”, “temp”, “temp_sfile”, “turbidity”, “up_radiance412”, “up_radiance443”, “up_radiance490”, “up_radiance555”,  and the same again with “_argoqc” appended for the corresponding QC measurements.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">data_center</span></code>: TBD</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">source_info.source</span></code>: <code class="docutils literal notranslate"><span class="pre">argo_core</span></code>,  <code class="docutils literal notranslate"><span class="pre">argo_bgc</span></code> and <code class="docutils literal notranslate"><span class="pre">argo_deep</span></code></p></li>
 </ul>
