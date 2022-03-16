@@ -150,12 +150,11 @@ One strategy that accommodates this is as follows:
 
     .. code:: bash
 
-      db.profiles.createIndex({"date": -1})
-      db.profiles.createIndex({"platform_number" : -1})
-      db.profiles.createIndex({"dac" : -1})
-      db.profiles.createIndex({"geoLocation" : "2dsphere"})
-      db.profiles.createIndex({"containsBGC" : -1})
-      db.profiles.createIndex({"isDeep" : -1})
-      db.profiles.createIndex({"platform_number" : -1, "date" : -1})
-      db.profiles.createIndex({"date" : -1, "platform_number" : -1})
-      db.profiles.createIndex({"date_added" : -1})
+      db.profilesx.createIndex({"timestamp": -1})
+      db.profilesx.createIndex({"platform_id" : -1})
+      db.profilesx.createIndex({"data_center" : -1})
+      db.profilesx.createIndex({"geolocation" : "2dsphere"})
+      db.profilesx.createIndex({"source_info.source" : -1})
+      db.profilesx.createIndex({"platform_id" : -1, "timestamp" : -1})
+      db.profilesx.createIndex({"timestamp" : -1, "platform_id" : -1})
+      db.profilesx.createIndex({"date_updated_argovis" : -1})
