@@ -92,29 +92,29 @@ Examples
 
    /profiles?startDate=2021-05-01T00:00:00Z&endDate=2021-06-01T00:00:00Z&polygon=[[-71.499,38.805],[-68.071,38.719],[-69.807,41.541],[-71.499,38.805]]
 
-- Metadata and core (pressure, salinity and temperature) profile data for profiles in May 2021 within a small region off the coat of New York:
+- All data for profiles in May 2021 within a small region off the coat of New York:
 
 .. code:: bash
 
-   /profiles?startDate=2021-05-01T00:00:00Z&endDate=2021-06-01T00:00:00Z&polygon=[[-71.499,38.805],[-68.071,38.719],[-69.807,41.541],[-71.499,38.805]]&coreMeasurements=all
+   /profiles?startDate=2021-05-01T00:00:00Z&endDate=2021-06-01T00:00:00Z&polygon=[[-71.499,38.805],[-68.071,38.719],[-69.807,41.541],[-71.499,38.805]]&data=all
 
 - Metadata, pressure and salinity profile data for profiles in May 2021 within a small region off the coat of New York:
 
 .. code:: bash
 
-   /profiles?startDate=2021-05-01T00:00:00Z&endDate=2021-06-01T00:00:00Z&polygon=[[-71.499,38.805],[-68.071,38.719],[-69.807,41.541],[-71.499,38.805]]&coreMeasurements=psal
+   /profiles?startDate=2021-05-01T00:00:00Z&endDate=2021-06-01T00:00:00Z&polygon=[[-71.499,38.805],[-68.071,38.719],[-69.807,41.541],[-71.499,38.805]]&data=psal,pres
 
 - Metadata, pressure and salinity profile data for profiles in May 2021 within a small region off the coat of New York to a maxium pressure of 1000 dbar:
 
 .. code:: bash
 
-   /profiles?startDate=2021-05-01T00:00:00Z&endDate=2021-06-01T00:00:00Z&polygon=[[-71.499,38.805],[-68.071,38.719],[-69.807,41.541],[-71.499,38.805]]&coreMeasurements=psal&presRange=0,1000
+   /profiles?startDate=2021-05-01T00:00:00Z&endDate=2021-06-01T00:00:00Z&polygon=[[-71.499,38.805],[-68.071,38.719],[-69.807,41.541],[-71.499,38.805]]&data=pres,psal&presRange=0,1000
 
 - Get a list of IDs for profiles containing GO-SHIP dissolved oxygen key ``doxy_btl`` within a certain time range:
 
 .. code:: bash
 
-   /profiles/listID?startDate=2021-05-01T00:00:00Z&endDate=2021-06-01T00:00:00Z&bgcMeasurements=doxy_btl
+   /profiles/listID?startDate=2021-05-01T00:00:00Z&endDate=2021-06-01T00:00:00Z&data=doxy_btl
 
 /platforms
 ++++++++++
@@ -162,10 +162,10 @@ In the tables below, we present the closest equivalents between old and new API 
      - New endpoint
      - Comment
    * - ``/catalog/platforms/<platform number>``
-     - ``/profiles?platforms=<platform number>&coreMeasurements=all``
-     - Old API schema will include a ``bgcMeasKeys`` entry with an empty array for profiles with no BGC data; this key is omitted if empty in the new API.
+     - ``/profiles?platforms=<platform number>&data=all``
+     -
    * - ``/catalog/bgc_platform_data/<platform number>``
-     - ``/profiles?platforms=<platform number>&coreMeasurements=all&bgcMeasurements=all``
+     - ``/profiles?platforms=<platform number>&data=all``
      - 
    * - ``/catalog/platform_metadata/<platform number>``
      - ``/platforms?platform=<platform_number>``
@@ -180,10 +180,10 @@ In the tables below, we present the closest equivalents between old and new API 
      - ``/platforms/mostRecent``
      - 
    * - ``/catalog/profiles/<profile id>``
-     - ``/profiles?ids=<profile ID>&coreMeasurements=all&bgcMeasurements=all``
+     - ``/profiles?ids=<profile ID>&data=all``
      - 
    * - ``/catalog/mprofiles?ids=["<profile ID 1>","<profile ID 2>,..."]``
-     - ``/profiles?ids=<profile ID 1>,<profile ID 2>,...&coreMeasurements=all``
+     - ``/profiles?ids=<profile ID 1>,<profile ID 2>,...&data=all``
      - New endpoint includes complete metadata record, but does not compute ``containsBGC`` or the level ``count`` (which can be trivially inferred from the length of the ``measurements`` list).
    * - ``/catalog/dacs/<dac>``
      - 
@@ -203,13 +203,13 @@ In the tables below, we present the closest equivalents between old and new API 
      - New endpoint
      - Comment
    * - ``/selection?ids=["<profile ID 1>","<profile ID 2>,..."]``
-     - ``/profiles?ids=<profile ID 1>,<profile ID 2>,...&coreMeasurements=all``
+     - ``/profiles?ids=<profile ID 1>,<profile ID 2>,...&data=all``
      - New endpoint includes complete metadata record, but does not compute ``containsBGC`` or the level ``count`` (which can be trivially inferred from the length of the ``measurements`` list).
    * - ``/selection/profiles?startDate=<date>&endDate=<date>&shape=[[[lon1,lat1],[lon2,lat2],...,[lon1,lat1]]]``
-     - ``/profiles?startDate=<date>&endDate=<date>&polygon=[[lon1,lat1],[lon2,lat2],...,[lon1,lat1]]&coreMeasurements=all``
+     - ``/profiles?startDate=<date>&endDate=<date>&polygon=[[lon1,lat1],[lon2,lat2],...,[lon1,lat1]]&data=all``
      - 
    * - ``/selection/box/profiles?startDate=<date>&endDate=<date>&llCorner=[lon1,lat1]&urCorner=[lon2,lat2]``
-     - ``/profiles?startDate=<date>&endDate=<date>&box=[[lon1,lat1],[lon2,lat2]]&coreMeasurements=all``
+     - ``/profiles?startDate=<date>&endDate=<date>&box=[[lon1,lat1],[lon2,lat2]]&data=all``
      - 
    * - ``/selection/profiles/<month>/<year>``
      - ``/profiles?startDate=<First of the month>&endDate=<First of the next month>``
@@ -221,7 +221,7 @@ In the tables below, we present the closest equivalents between old and new API 
      - [Deprecated]
      - Will not be implemented; functionality is reproduced by specifiying the desired dates in ``/selection/globalMapProfiles/<start date>/<end date>``.
    * - ``/selecton/bgc_data_selection?startDate=<date>&endDate=<date>&shape=[[[lon1,lat1],[lon2,lat2],...,[lon1,lat1]]]&meas_1=<bgc1>&meas_2=<bgc2>``
-     - ``/profiles?startDate=<date>&endDate=<date>&polygon=[[lon1,lat1],[lon2,lat2],...,[lon1,lat1]]&bgcMeausrements=<bgc1>,<bgc2>``
+     - ``/profiles?startDate=<date>&endDate=<date>&polygon=[[lon1,lat1],[lon2,lat2],...,[lon1,lat1]]&data=<bgc1>,<bgc2>``
      - New endpoint includes complete metadata record.
    * - ``/selection/overview``
      - ``/profiles/overview``
@@ -261,7 +261,7 @@ Key Standardization
 Argo and goship data have similar but not identical names for some keys. Ideally, we would have a hierarchical schema for profile data:
 
  - *Common Mandatory Parameters* are parameters that every profile from every source must have. Examples are ``lat`` and ``lon``.
- - *Common Optional Parameters* are parameters that may or may not be included in a profile, but should have consistent naming and meaning across sources. An example is ``bgcMeas``.
+ - *Common Optional Parameters* are parameters that may or may not be included in a profile, but should have consistent naming and meaning across sources. An example is ``data``.
  - *Origin-specific Parameters* are parameters unique to a data origin, like Argo or go-ship.
 
 Some critical examples of keys that are not consistently named or present between the Argo and go-ship data on-hand are ``bgcMeasKeys``, ``containsBGC`` and ``isDeep``; these are univeraly applicable ideas which we may likely need to index on, and so should be common to all profile schema.
