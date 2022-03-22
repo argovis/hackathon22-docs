@@ -158,3 +158,5 @@ One strategy that accommodates this is as follows:
       db.profilesx.createIndex({"platform_id" : -1, "timestamp" : -1})
       db.profilesx.createIndex({"timestamp" : -1, "platform_id" : -1})
       db.profilesx.createIndex({"date_updated_argovis" : -1})
+      db.profilesx.createIndex({"data_keys" : -1})
+      db.profilesx.createIndex({"woce_lines" : -1})

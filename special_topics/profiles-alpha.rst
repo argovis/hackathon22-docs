@@ -33,20 +33,18 @@ The base ``/profiles`` endpoint is the place to go for all profile data. Reducin
  - ``polygon``: formatted as ``[[lon,lat],[lon,lat],[lon,lat]...]``; note the first and last ``[lon,lat]`` pairs must be identical. Profiles will be returned if they fall within the closed polygon created by connecting the coordinate pairs in the order they are serialized.
  - ``box``: formatted as ``[[lower left lon,lower left lat],[upper right lon,upper right lat]]``. Profiles will be returned if they fall within the box defined by its lower left and upper right coordinate corners.
  - ``center`` plus ``radius``, formatted as ``center lon, center lat`` and a distance in km, respectively. Profiles will be returned if they fall within the circle defined by this pair of parameters.
- - ``ids``: formatted as ``id_1,id_2,id_3,...``. Profiles will be returned if they have an ID in the list provided.
- - ``platforms``: formatted as ``platform_1,platform_2,platform_3,...``. Profiles will be returned if they have a platform number in the list provided.
+ - ``id``: formatted as ``id``. Return only the profile matching this unique ID.
+ - ``platform``: formatted as ``platform``. Profiles will be returned if they come from the platform identified.
  - ``presRange``: formatted as ``minPres,maxPres``. Only levels with ``measurements.pres``  that fall within the range bracketed by ``minPres`` and ``maxPres`` will be returned.
  - ``dac``: formatted as a single string, like ``CCHDO``. Only profiles from the specified DAC will be returned.
  - ``data``: formatted as ``meas_1,meas_2,...``. Specifies the measurements and/or QC variables to be returned; valid choices are listed in the vocabulary at :ref:`argo_vocab`. In addition to these, specifying ``data=all`` will return all available data.
  - ``compression``: if set to any value, a minified ``data`` array will be returned: instead of a dictionary for each level, ``data`` will be a list of lists, where each inner list contains the values requested for a level, in the same order as the ``data_keys`` object on the corresponding returned profile.
+ - ``woceline``: formatted as ``woce_line``. Profiles from the indicated GO-SHIP woce line will be returned.
+ - ``datavars``: formatted as ``var_1,var_2,...``. Profiles will be returned if they have ALL the named variables in their ``data_keys`` array.
 
 .. admonition:: Required Parameters and Response Sizes
 
-   In order to constrain the amount of data returned in a single request, your query must respect at least one of the following requirements:
-
-   - ``startDate`` and ``endDate`` are both present and no more than 90 days apart, OR
-   - ``ids`` is present and lists at most 100 profile IDs, OR
-   - ``platforms`` is present and lists exactly one platform number.
+   In order to constrain the amount of data returned in a single request, your query must return less than 1000 profiles. If it's too broad, you'll recieve an HTTP/400 error and should consider cutting scope to a specific region, date range, or other filter. Bear in mind that you can always make more requests to cover more cases!
 
 .. admonition:: Data or Metadata?
 
@@ -54,7 +52,7 @@ The base ``/profiles`` endpoint is the place to go for all profile data. Reducin
 
 There is also one subroute under ``/profiles``:
 
- - ``/profiles/listID``: takes the same query string as ``/profiles`` and has the same limits on requested data scope, except ``ids`` is not accepted as a query parameter (since it's not useful to search for IDs by ID).
+ - ``/profiles/listID``: takes the same query string as ``/profiles``, except ``id`` is not accepted as a query parameter (since it's not useful to search for IDs by ID). Furthermore, up to 10k profile IDs may be returned by this route.
 
 /platforms
 ++++++++++
