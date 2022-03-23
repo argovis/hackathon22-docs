@@ -76,6 +76,7 @@ All point data MUST include the following keys:
 
   - **type:** ISO 8601 UTC datestring,  example ``1999-12-31T23:59:59Z``
   - **description:** time the record measurement was made at.
+  - **fill_value:** ``9999-01-01T00:00:00Z``
 
 Optional Keys
 +++++++++++++
