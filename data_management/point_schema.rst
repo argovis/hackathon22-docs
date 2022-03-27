@@ -196,6 +196,7 @@ The following keys from the base point schema have these vocabularies for Argovi
   - "downwelling_par"
   - "doxy"
   - "doxy2"
+  - "doxy3"
   - "molar_doxy"
   - "nitrate"
   - "ph_in_situ_total"
