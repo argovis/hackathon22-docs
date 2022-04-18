@@ -96,6 +96,7 @@ If all is well, open ``documentation/_build/html/index.html`` in your browser to
    :maxdepth: 2
    :caption: Data Management
 
+   data_management/data_sources
    data_management/point_schema
    data_management/argo_merge
 
