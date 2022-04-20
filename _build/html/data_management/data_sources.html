@@ -108,6 +108,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="point_schema.html">Point Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grid_schema.html">Grid Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="argo_merge.html">Merging Argo Data</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
@@ -198,12 +199,12 @@
 <p>Argovis federates Earth system data from many sources; in this doc, we record each of these sources, and point to a indication of how to recreate each.</p>
 <div class="section" id="argo">
 <h2>Argo<a class="headerlink" href="#argo" title="Permalink to this headline">¶</a></h2>
-<p>A full sync of ifremer’s Argo database is maintained by Argovis on its Kubernetes cluster. This mirror is updated nightly, and changes are migrated into Argovis’ mongodb instance, <cite>profiles</cite> collection, by the cronjob captured at <a class="reference external" href="https://github.com/argovis/ifremer-sync/blob/main/ifremer-cron.yaml">https://github.com/argovis/ifremer-sync/blob/main/ifremer-cron.yaml</a>, and the scripts that cronjob calls, with containerized environment defined by <a class="reference external" href="https://github.com/argovis/ifremer-sync/blob/main/Dockerfile">https://github.com/argovis/ifremer-sync/blob/main/Dockerfile</a>.</p>
+<p>A full sync of ifremer’s Argo database is maintained by Argovis on its Kubernetes cluster. This mirror is updated nightly, and changes are migrated into Argovis’ mongodb instance, <code class="docutils literal notranslate"><span class="pre">profiles</span></code> collection, by the cronjob captured at <a class="reference external" href="https://github.com/argovis/ifremer-sync/blob/main/ifremer-cron.yaml">https://github.com/argovis/ifremer-sync/blob/main/ifremer-cron.yaml</a>, and the scripts that cronjob calls, with containerized environment defined by <a class="reference external" href="https://github.com/argovis/ifremer-sync/blob/main/Dockerfile">https://github.com/argovis/ifremer-sync/blob/main/Dockerfile</a>.</p>
 </div>
 <div class="section" id="go-ship">
 <h2>GO-SHIP<a class="headerlink" href="#go-ship" title="Permalink to this headline">¶</a></h2>
 <p>GO-SHIP data is translated from the original netCDF to JSON documents by the excellent work of our CCHDO colleagues; our very slightly modified version of this script is kicked off by <a class="reference external" href="https://github.com/BillMills/argovis_convert_netcdf_to_json/blob/2022Q2/run.sh">https://github.com/BillMills/argovis_convert_netcdf_to_json/blob/2022Q2/run.sh</a>, managed by the version of the code found on that branch and repo, and run in the environment defined by <a class="reference external" href="https://github.com/BillMills/argovis_convert_netcdf_to_json/blob/2022Q2/Dockerfile">https://github.com/BillMills/argovis_convert_netcdf_to_json/blob/2022Q2/Dockerfile</a>.</p>
-<p>Once translated to JSON, GO-SHIP profiles are loaded into mongo, <cite>profiles</cite> collection, as managed by <a class="reference external" href="https://github.com/BillMills/argovis_convert_netcdf_to_json/blob/2022Q2/loaddata.yaml">https://github.com/BillMills/argovis_convert_netcdf_to_json/blob/2022Q2/loaddata.yaml</a>, with container defined by <a class="reference external" href="https://github.com/BillMills/argovis_convert_netcdf_to_json/blob/2022Q2/Dockerfile-loadDB">https://github.com/BillMills/argovis_convert_netcdf_to_json/blob/2022Q2/Dockerfile-loadDB</a>.</p>
+<p>Once translated to JSON, GO-SHIP profiles are loaded into mongo, <code class="docutils literal notranslate"><span class="pre">profiles</span></code> collection, as managed by <a class="reference external" href="https://github.com/BillMills/argovis_convert_netcdf_to_json/blob/2022Q2/loaddata.yaml">https://github.com/BillMills/argovis_convert_netcdf_to_json/blob/2022Q2/loaddata.yaml</a>, with container defined by <a class="reference external" href="https://github.com/BillMills/argovis_convert_netcdf_to_json/blob/2022Q2/Dockerfile-loadDB">https://github.com/BillMills/argovis_convert_netcdf_to_json/blob/2022Q2/Dockerfile-loadDB</a>.</p>
 </div>
 <div class="section" id="tropical-cyclones">
 <h2>Tropical Cyclones<a class="headerlink" href="#tropical-cyclones" title="Permalink to this headline">¶</a></h2>
