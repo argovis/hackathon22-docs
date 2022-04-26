@@ -75,7 +75,7 @@ In order to set up an effective development environment, we need to set up the m
       apidev $ docker container exec -it database mongo
 
       > use argo
-      > db.user.insertOne({key: "developer", tokenvalid: 9999})
+      > db.user.insertOne({key: "developer", tokenValid: 9999})
       > exit
 
 6. Build the API container from source, and start it running:

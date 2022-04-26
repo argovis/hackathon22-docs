@@ -109,10 +109,10 @@ In this example, after I restored my goship database, the database container has
 Check your container stats again and your database should have freed up most of the memory it was consuming.
 
 
-Production Database Backup & Restore Strategy
----------------------------------------------
+Production Database Backup & Restore Strategy - document-based
+--------------------------------------------------------------
 
-For backing up our production database, there are a few things to consider:
+For backing up our production database at the document level, there are a few things to consider:
 
 - We want *incremental backups*. Rather than backing up the entire database every time we make a backup, we'd like to just back up what's new since last time, and add that to a backup archive. We can slice these increments on the ``date_added`` field.
 - But, profiles are not immutable; they may be updated over time, causing the same profile to appear in multiple backup increments. Therefore, we can't assume the version of a profile in an arbitrary increment of our archive is up to date; a later increment might alter it, so the restoration process must be a *chronological upsert*.
@@ -161,3 +161,12 @@ One strategy that accommodates this is as follows:
       db.profiles.createIndex({"data_keys" : -1})
       db.profiles.createIndex({"woce_lines" : -1})
       db.profiles.createIndex({"timestamp" : -1, "geolocation" : "2dsphere"})
+
+Production Database Backup & Resore Strategey - DB image
+--------------------------------------------------------
+
+Instead of backing up data on a per-document and collection basis, we can also take a complete image of all mongo's backing files, which live in ``/data/db`` in the mongo container, and are mounted from a PVC. In the event that the database must be restored from this image, consider a couple of increasingly dire mitigations:
+
+ - If we're lucky, simply copying the complete set of database image files from the backup location to ``/data/db`` might work.
+ - If mongo continues to refuse to start, try starting it with the ``--repair`` flag, as presented here: https://www.mongodb.com/docs/manual/tutorial/recover-data-following-unexpected-shutdown/.
+ - If mongo repair fails, try removing the journal and ``mongo.lock`` files from ``/data/db`` (while of course being careful to keep a backup of them), and starting with ``--repair`` again; this is an extreme measure that should be avoided, but has saved our database in the past.
