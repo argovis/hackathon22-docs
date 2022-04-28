@@ -212,7 +212,7 @@ The following keys from the base point schema have these vocabularies for Argovi
   - "up_radiance555"
   - and all the same again with "_argoqc" appended for the corresponding QC measurements.
 
-- ``data_center``: TBD
+- ``data_center``: ``AO``,``BO``,``CS``,``HZ``,``IF``,``IN``,``JA``,``KM``,``KO``,``ME``,``NM``
 - ``source_info.source``: ``argo_core``,  ``argo_bgc`` and ``argo_deep``
 
 Required keys
@@ -441,8 +441,35 @@ The following keys from the base point schema have the following vocabularies fo
   - "tritium_btl_woceqc"
   - "tritium_error_btl"
 
-- ``data_center``: TBD
-- ``source_info.source``: TBD
+- ``data_center``: ``CCHDO``
+- ``source_info.source``:
+
+   - "cchdo_bats",
+   - "cchdo_carimed",
+   - "cchdo_climode",
+   - "cchdo_clivar",
+   - "cchdo_dimes",
+   - "cchdo_dimes uk2.5",
+   - "cchdo_flepvar",
+   - "cchdo_go-bgc",
+   - "cchdo_go-ship",
+   - "cchdo_hot",
+   - "cchdo_hydrostation s",
+   - "cchdo_ipy",
+   - "cchdo_line-w",
+   - "cchdo_natre",
+   - "cchdo_orchestra",
+   - "cchdo_other",
+   - "cchdo_pre-woce",
+   - "cchdo_race:trax",
+   - "cchdo_socat",
+   - "cchdo_soccom",
+   - "cchdo_the agulhas current time-series experiment",
+   - "cchdo_the arctic observing network (aon)",
+   - "cchdo_tictoc",
+   - "cchdo_trophic bats, leg 1",
+   - "cchdo_ushydro",
+   - "cchdo_woce"
 
 Required keys
 +++++++++++++

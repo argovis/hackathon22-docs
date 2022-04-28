@@ -93,7 +93,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#profiles">/profiles</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#platforms">/platforms</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#dacs">/dacs</a></li>
 </ul>
 </li>
 </ul>
@@ -298,32 +297,23 @@
 <p class="admonition-title">Data or Metadata?</p>
 <p>If your query string does not include <code class="docutils literal notranslate"><span class="pre">data</span></code>, the request will return profile metadata only. If your query string includes either of those and a matching profile has no levels with the appropriate measurements after filtering, it will be dropped from the returned results.</p>
 </div>
-<p>There is also one subroute under <code class="docutils literal notranslate"><span class="pre">/profiles</span></code>:</p>
+<p>There are also two subroutes under <code class="docutils literal notranslate"><span class="pre">/profiles</span></code>:</p>
 <blockquote>
 <div><ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">/profiles/listID</span></code>: takes the same query string as <code class="docutils literal notranslate"><span class="pre">/profiles</span></code>, except <code class="docutils literal notranslate"><span class="pre">id</span></code> is not accepted as a query parameter (since it’s not useful to search for IDs by ID). Furthermore, up to 10k profile IDs may be returned by this route.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/profiles/overview</span></code>: take no query string parameters, and returns some high level summary data of the profiles available, like what DACs are represented, how many Argo BGC and Deep profiles are present, and some others.</p></li>
 </ul>
 </div></blockquote>
 </div>
 <div class="section" id="platforms">
 <h3>/platforms<a class="headerlink" href="#platforms" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">/platforms</span></code> route provides some simple summary data on platforms, filtered by the following query string parameters:</p>
+<p>There are two simple <cite>/platforms</cite> routes, which summarize some profile information grouped by platform ID:</p>
 <blockquote>
 <div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">platform</span></code>: a single mandatory <code class="docutils literal notranslate"><span class="pre">platform_id</span></code> value. Returns metadata objects for the platform specified.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/platforms?platform=&lt;platform</span> <span class="pre">ID&gt;</span></code> returns metadata for the platform specified.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/platforms/mostRecent?platforms=&lt;comma</span> <span class="pre">separated</span> <span class="pre">list</span> <span class="pre">of</span> <span class="pre">platform</span> <span class="pre">IDs&gt;</span></code> returns some information about the listed platform’s most recent location and measurements.</p></li>
 </ul>
 </div></blockquote>
-<p>There are also two sub-routes under <code class="docutils literal notranslate"><span class="pre">/platforms</span></code>, to capture some other, related schema:</p>
-<blockquote>
-<div><ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">/platforms/bgcList</span></code> returns a list of platform IDs that collect BGC data.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/platforms/mostRecent</span></code> returns a list of platforms including some information about their most recent location and measurements. Accepts the same <code class="docutils literal notranslate"><span class="pre">platforms</span></code> query string parameter as <cite>/profiles</cite> to restrict results to a set of platforms (returns all platforms by default).</p></li>
-</ul>
-</div></blockquote>
-</div>
-<div class="section" id="dacs">
-<h3>/dacs<a class="headerlink" href="#dacs" title="Permalink to this headline">¶</a></h3>
-<p>The <code class="docutils literal notranslate"><span class="pre">/dacs</span></code> route provides simple summary data on data assembly centers represented in the dataset. It currently accepts no query string parameters.</p>
 </div>
 </div>
 </div>

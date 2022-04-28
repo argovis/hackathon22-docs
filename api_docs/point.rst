@@ -104,25 +104,20 @@ The base ``/profiles`` endpoint is the place to go for all profile data. Reducin
 
    If your query string does not include ``data``, the request will return profile metadata only. If your query string includes either of those and a matching profile has no levels with the appropriate measurements after filtering, it will be dropped from the returned results.
 
-There is also one subroute under ``/profiles``:
+There are also two subroutes under ``/profiles``:
 
  - ``/profiles/listID``: takes the same query string as ``/profiles``, except ``id`` is not accepted as a query parameter (since it's not useful to search for IDs by ID). Furthermore, up to 10k profile IDs may be returned by this route.
+ - ``/profiles/overview``: take no query string parameters, and returns some high level summary data of the profiles available, like what DACs are represented, how many Argo BGC and Deep profiles are present, and some others.
 
 /platforms
 ++++++++++
 
-The ``/platforms`` route provides some simple summary data on platforms, filtered by the following query string parameters:
+There are two simple `/platforms` routes, which summarize some profile information grouped by platform ID:
 
- - ``platform``: a single mandatory ``platform_id`` value. Returns metadata objects for the platform specified.
+ - ``/platforms?platform=<platform ID>`` returns metadata for the platform specified.
+ - ``/platforms/mostRecent?platforms=<comma separated list of platform IDs>`` returns some information about the listed platform's most recent location and measurements.
+
+ 
 
 
-There are also two sub-routes under ``/platforms``, to capture some other, related schema:
-
- - ``/platforms/bgcList`` returns a list of platform IDs that collect BGC data.
- - ``/platforms/mostRecent`` returns a list of platforms including some information about their most recent location and measurements. Accepts the same ``platforms`` query string parameter as `/profiles` to restrict results to a set of platforms (returns all platforms by default).
-
-/dacs
-+++++
-
-The ``/dacs`` route provides simple summary data on data assembly centers represented in the dataset. It currently accepts no query string parameters.
 
