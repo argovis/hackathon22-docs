@@ -1,0 +1,324 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Merging Argo Data &mdash; argovis  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Pull Requests, Git &amp; GitHub" href="../dev_tools/pull_requests_and_github.html" />
+    <link rel="prev" title="Grid Schema" href="grid_schema.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> argovis
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../api_docs/point.html">Profiles API Beta Product</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_docs/grid.html">Grids API Beta Product</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Management</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="point_schema.html">Point Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="grid_schema.html">Grid Schema</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Merging Argo Data</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#upstream-file-selection">Upstream File Selection</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-extraction">Data Extraction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#metadata-extraction">Metadata Extraction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#level-data-extraction">Level Data Extraction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#data-merging">Data Merging</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#metadata-merge">Metadata Merge</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#level-data-merge">Level Data Merge</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#database-considerations">Database Considerations</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix: Using Git &amp; Github</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/merge_conflicts.html">Dealing With Merge Conflicts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/using_branches.html">Using Branches</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">argovis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Merging Argo Data</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/data_management/argo_merge.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="merging-argo-data">
+<span id="argo-merge"></span><h1>Merging Argo Data<a class="headerlink" href="#merging-argo-data" title="Permalink to this headline">¶</a></h1>
+<p>A given Argo profile may contain two separate data objects: a core profile measuring pressure, temperature, and salinity; and a BGC profile measuring one or several of many biogeochemical properties. Furthermore, this data may be presented in one of several different modes reflecting the level of cleanup the data has undergone. Argovis seeks to create a single unified JSON document for each profile that merges the core and BGC information and makes good and consistent choices on what mode of data to present, simplifying the consumption of Argo data for users while still accommodating the majority of use cases. This document describes how we take upstream data, and compose it into a JSON document; it effectively describes the algorithm implemented in <a class="reference external" href="https://github.com/argovis/ifremer-sync">https://github.com/argovis/ifremer-sync</a>.</p>
+<div class="section" id="upstream-file-selection">
+<h2>Upstream File Selection<a class="headerlink" href="#upstream-file-selection" title="Permalink to this headline">¶</a></h2>
+<p>For a given profile, first we choose which upstream netcdf files to consider. There are six possibilities: core, BGC, and synthetic files, each reflecting either realtime or delayed data. We choose at most two of these:</p>
+<blockquote>
+<div><ul class="simple">
+<li><p>We prefer the synthetic delayed file to capture BGC information, but accept the synthetic realtime in lieu;</p></li>
+<li><p>We prefer the delayed core file to capture core information, but accept the realtime core file in lieu.</p></li>
+</ul>
+</div></blockquote>
+<p>Under no circumstances are standalone BGC files considered at this time.</p>
+</div>
+<div class="section" id="data-extraction">
+<h2>Data Extraction<a class="headerlink" href="#data-extraction" title="Permalink to this headline">¶</a></h2>
+<p>Once at most one core and at most one synthetic file are identified for a profile, we extract data from each separately as follows.</p>
+<div class="section" id="metadata-extraction">
+<h3>Metadata Extraction<a class="headerlink" href="#metadata-extraction" title="Permalink to this headline">¶</a></h3>
+<p>Some metadata variables undergo cleaning decisions at this step, as enumerated here:</p>
+<ul class="simple">
+<li><p><strong>Latitude and longitude</strong> are read from the Argo file’s LATITUDE and LONGITUDE variables. If either value is NaN or a fill value, they are set to longitude = 0, latitude = -90 and a <code class="docutils literal notranslate"><span class="pre">missing_location</span></code> warning is logged in the <code class="docutils literal notranslate"><span class="pre">data_warnings</span></code> record. If longitude is reported on [0,360], it is normalized to [-180,180].</p></li>
+<li><p><strong>_id</strong> is constructed as <code class="docutils literal notranslate"><span class="pre">&lt;platform_id&gt;_&lt;cycle_number&gt;</span></code>, with <code class="docutils literal notranslate"><span class="pre">D</span></code> appended for decending profiles.</p></li>
+<li><p><strong>Basin</strong> is read from a lookup table as a function of extracted latitude and longitude, if a valid pair was found. If the nearest basin gridpoint is NaN, the nearest non-NaN grid point is taken. If all four surrounding grid points are NaN, a <code class="docutils literal notranslate"><span class="pre">missing_basin</span></code> warning is logged and the basin index is set to -1.</p></li>
+<li><p><strong>source_info.source</strong> is populated as <code class="docutils literal notranslate"><span class="pre">argo_core</span></code> for core files and <code class="docutils literal notranslate"><span class="pre">argo_bgc</span></code> for synthetic files. If the deepest pressure in the file is greater than 2500 dbar, an <code class="docutils literal notranslate"><span class="pre">argo_deep</span></code> flag is also added.</p></li>
+</ul>
+<p>All other metadata variables are read directly from the corresponding netcdf variables, with minimal typecasting and cleanup.</p>
+</div>
+<div class="section" id="level-data-extraction">
+<h3>Level Data Extraction<a class="headerlink" href="#level-data-extraction" title="Permalink to this headline">¶</a></h3>
+<p>Per-level data is extracted slightly differently for core versus BGC variables.</p>
+<ul class="simple">
+<li><p><strong>Core variables</strong> are read with the following considerations:</p>
+<ul>
+<li><p>Only pressure, temperature, and salinity and their QC are considered in core files. If any other per-level variables are present, they are discarded.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">DATA_MODE</span></code> for the file is delayed or adjusted, only variables marked <code class="docutils literal notranslate"><span class="pre">_ADJUSTED</span></code> are considered.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">DATA_MODE</span></code> for the file is realtime, then non-adjusted variables are accepted.</p></li>
+<li><p>All variables are assigned a per-variable data mode that matches the file-level data mode</p></li>
+<li><p>If two levels report the same pressure, a <code class="docutils literal notranslate"><span class="pre">degenerate_level</span></code> warning is logged</p></li>
+<li><p>Levels are thrown out if they report NaN for pressure.</p></li>
+</ul>
+</li>
+<li><p><strong>BGC variables</strong> are read with the following considerations:</p>
+<ul>
+<li><p>Data mode is determined per variable; if delayed or adjusted mode data is available for a given variable, its <code class="docutils literal notranslate"><span class="pre">_ADJUSTED</span></code> entry is taken; if only realtime is available for that variable, then the unadjusted value is accepted.</p></li>
+<li><p>Degenerate level warnings and NaN-pressure level ommissions are per the core data case.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">temp</span></code> or <code class="docutils literal notranslate"><span class="pre">psal</span></code> are reported in a synthetic file, they are relabeled as <code class="docutils literal notranslate"><span class="pre">temp_sfile</span></code> and <code class="docutils literal notranslate"><span class="pre">psal_sfile</span></code> respectively, along with their QC.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="data-merging">
+<h2>Data Merging<a class="headerlink" href="#data-merging" title="Permalink to this headline">¶</a></h2>
+<p>At this stage, there may be as many as two metadata objects, and the same number of data objects for the profile in question. These are merged to a single record per the following.</p>
+<div class="section" id="metadata-merge">
+<h3>Metadata Merge<a class="headerlink" href="#metadata-merge" title="Permalink to this headline">¶</a></h3>
+<ul class="simple">
+<li><p>For mandatory keys that should be the same in both metadata objects (like <code class="docutils literal notranslate"><span class="pre">_id</span></code> and <code class="docutils literal notranslate"><span class="pre">geolocation</span></code>), the value from the first metadata record is accepted.</p></li>
+<li><p>For optional keys that should be the same in both metadata objects, the value from the first metadata object that reports that key is accepted.</p></li>
+<li><p>For keys that preserve a record from each file (like <code class="docutils literal notranslate"><span class="pre">source_info</span></code> and <code class="docutils literal notranslate"><span class="pre">data_warnings</span></code>), the value from each metadata record, if present, is appended to a list.</p></li>
+</ul>
+</div>
+<div class="section" id="level-data-merge">
+<h3>Level Data Merge<a class="headerlink" href="#level-data-merge" title="Permalink to this headline">¶</a></h3>
+<p>Per-level data is merged along a one-dimensional pressure axis with the following considerations:</p>
+<ul class="simple">
+<li><p>If an individual file’s data object carries a <code class="docutils literal notranslate"><span class="pre">degenerate_levels</span></code> warning, the per level data from that file is discarded.</p></li>
+<li><p>For each observed pressure level, the value of each observed variable and their corresponding QC is recorded, with <code class="docutils literal notranslate"><span class="pre">None</span></code> used as a fill for absent information.</p></li>
+<li><p>Per-variable data mode is preserved for each variable. If pressure reports a different data mode in core versus synthetic files, the lowest confidence mode is reported: realtime supersedes adjusted supersedes delayed.</p></li>
+<li><p>For each individual value, the following normalization is performed:</p>
+<ul>
+<li><p>bytes are converted to ints (Argo reports QC as byte characters)</p></li>
+<li><p>NaNs are converted to pythonic <code class="docutils literal notranslate"><span class="pre">None</span></code></p></li>
+<li><p>Floats are rounded to at most six decimal places</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="database-considerations">
+<h2>Database Considerations<a class="headerlink" href="#database-considerations" title="Permalink to this headline">¶</a></h2>
+<p>At the end of the process described above, we have a single JSON document describing the profile of interest, to be written to MongoDB. Write considerations are as follows:</p>
+<ul class="simple">
+<li><p>MongoDB’s internal time bson type does not capture sub-millisecond precision; therefore, all times will be rounded off to the ms on write.</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../dev_tools/pull_requests_and_github.html" class="btn btn-neutral float-right" title="Pull Requests, Git &amp; GitHub" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="grid_schema.html" class="btn btn-neutral float-left" title="Grid Schema" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Argovis Collaboration.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
