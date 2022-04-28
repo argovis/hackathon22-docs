@@ -1,0 +1,7 @@
+rm -rf _build
+rm -rf docs
+mkdir _build
+docker container run -it -v $(pwd):/src argovis/docbuilder:dev make html
+mkdir docs
+cp -R _build/html/* docs/.
+touch docs/.nojekyll

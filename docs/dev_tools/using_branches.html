@@ -181,22 +181,22 @@
 <p>Suppose you’re working on some API improvements, but it’s a big project and you expect you’ll have to work on something else before you’re completely done. You’re going to want to be able to switch between these trains of thought, so each will need its own branch; start by setting one up for your API work:</p>
 <ol class="arabic">
 <li><p>From your project directory on your machine, go back to the main branch of the project, called <code class="docutils literal notranslate"><span class="pre">main</span></code> in most Argovis projects, and make sure you’re up to date with the upstream repos:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ git checkout main
-argovisNg $ git pull upstream main
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hackathon22-argo-goship $ git checkout main
+hackathon22-argo-goship $ git pull upstream main
 </pre></div>
 </div>
 </li>
 <li><p>Make a branch named <code class="docutils literal notranslate"><span class="pre">api</span></code> for your API feature work:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ git checkout -b api
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hackathon22-argo-goship $ git checkout -b api
 </pre></div>
 </div>
 <p>From this point, you are on the <code class="docutils literal notranslate"><span class="pre">api</span></code> branch. Doing <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">commit</span></code> will add commits to this branch instead of <code class="docutils literal notranslate"><span class="pre">main</span></code>. To set up pull requests, do exactly what you did in <a class="reference internal" href="pull_requests_and_github.html#prs"><span class="std std-ref">Pull Requests, Git &amp; GitHub</span></a>, but using <code class="docutils literal notranslate"><span class="pre">api</span></code> (or whatever you named your branch) instead of <code class="docutils literal notranslate"><span class="pre">main</span></code>. So for example, <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">push</span> <span class="pre">origin</span> <span class="pre">api</span></code> will send your <code class="docutils literal notranslate"><span class="pre">api</span></code> branch up to GitHub, and when clicking through setting up your pull request, you’ll want to select <code class="docutils literal notranslate"><span class="pre">api</span></code> as the originating branch from your repo, and <code class="docutils literal notranslate"><span class="pre">main</span></code> as the target branch in the upstream repo.</p>
 </li>
 <li><p>Now suppose you’re half way through your API work, when someone reports a critical bug somewhere else in the same repo! You need to drop what you’re doing and fix the bug, but you don’t want your API work and the bugfix to get tied up together; remember from <a class="reference internal" href="pull_requests_and_github.html#prs"><span class="std std-ref">Pull Requests, Git &amp; GitHub</span></a>, you want each of your PRs to focus on only one thing, so you’ll have to make a new branch for your bugfix.</p>
 <p>ALWAYS start by going back to the main branch first! It is almost never a good idea to make a feature branch off of another feature branch; this leads to confusion and misery.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ git checkout main
-argovisNg $ git pull upstream main
-argovisNg $ git checkout -b bugfix
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hackathon22-argo-goship $ git checkout main
+hackathon22-argo-goship $ git pull upstream main
+hackathon22-argo-goship $ git checkout -b bugfix
 </pre></div>
 </div>
 <p>We now have (at least) three branches: the <code class="docutils literal notranslate"><span class="pre">main</span></code> version of the code, our API work on the <code class="docutils literal notranslate"><span class="pre">api</span></code> branch, and an new branch <code class="docutils literal notranslate"><span class="pre">bugfix</span></code> where we’ll add commits fixing the bug. If you’re ever confused, do <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">branch</span></code> with no arguments, and git will list branches and indicate which one you’re currently on. You can switch between existing branches with <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">checkout</span> <span class="pre">&lt;branchname&gt;</span></code>.</p>

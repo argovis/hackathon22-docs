@@ -18,16 +18,16 @@ To follow this tutorial, you'll need:
  - a free GitHub account
  - git installed in your bash environment 
 
-Our examples will show the workflow with the repository `argovisNg <https://github.com/argovis/argovisNg>`_, but the same applies to all argovis repositories (and most any other repository you find on GitHub).
+Our examples will show the workflow with `https://github.com/argovis/hackathon22-argo-goship <https://github.com/argovis/hackathon22-argo-goship>`_, but the same applies to all argovis repositories (and most any other repository you find on GitHub).
 
 Setting Up For The First Time
 -----------------------------
 
 When you first want to start collaborating on a code repository, there are some one-time setup steps you must perform:
 
-1. *Fork* the repository in question; this is GitHub's jargon for making a copy of the official repository you want to contribute to in your own GitHub account. Visit `https://github.com/argovis/argovisNg <https://github.com/argovis/argovisNg>`_, and click the **Fork** button near the top right corner of the screen. If it asks "Where should we fork?", choose your own GitHub username from the list.
+1. *Fork* the repository in question; this is GitHub's jargon for making a copy of the official repository you want to contribute to in your own GitHub account. Visit `https://github.com/argovis/hackathon22-argo-goship <https://github.com/argovis/hackathon22-argo-goship>`_, and click the **Fork** button near the top right corner of the screen. If it asks "Where should we fork?", choose your own GitHub username from the list.
 
-   Once successfully completed, you should have a copy of the repository under your own account on GitHub. Notice near the top left of the resulting page, the repo title is ``<username>/argovisNg``, whereas the original was ``argovis/argovisNg``.
+   Once successfully completed, you should have a copy of the repository under your own account on GitHub. Notice near the top left of the resulting page, the repo title is ``<username>/hackathon22-argo-goship``, whereas the original was ``argovis/hackathon22-argo-goship``.
 
 2. *Clone* your fork of the repository to your development machine. To do so, open a bash shell on your machine and do:
 
@@ -41,19 +41,19 @@ When you first want to start collaborating on a code repository, there are some 
 
    .. code:: bash
 
-      ~ $ cd argovisNg
-      argovisNg $ git remote -v
+      ~ $ cd hackathon22-argo-goship
+      hackathon22-argo-goship$ git remote -v
 
-      origin  https://github.com/BillMills/argovisNg (fetch)
-      origin  https://github.com/BillMills/argovisNg (push)
+      origin  https://github.com/BillMills/hackathon22-argo-goship (fetch)
+      origin  https://github.com/BillMills/hackathon22-argo-goship (push)
 
    By default, you get one remote named ``origin``. Remotes are shorthand names for remote repositories; you'll see later in this lesson how you can use this shorthand when communicating with GitHub.
 
-3. Set up a second remote that's a shorthand for the main repository we're working with, ``https://github.com/argovis/argovisNg`` in this example:
+3. Set up a second remote that's a shorthand for the main repository we're working with, ``https://github.com/argovis/hackathon22-argo-goship`` in this example:
 
    .. code:: bash
 
-      argovisNg $ git remote add upstream https://github.com/argovis/argovisNg
+      hackathon22-argo-goship $ git remote add upstream https://github.com/argovis/hackathon22-argo-goship
 
    The name ``upstream`` is arbitrary, but it is a common convention since it points at the version of the code that is 'upstream' from our own.
 
@@ -80,7 +80,7 @@ Now that we're all set up, we're ready to begin the daily activity of writing co
 
    .. code:: bash
 
-      argovisNg $ git pull upstream main
+      hackathon22-argo-goship $ git pull upstream main
 
    The anatomy of this command is:
 
@@ -98,9 +98,9 @@ Now that we're all set up, we're ready to begin the daily activity of writing co
 
    .. code:: bash
 
-      argovisNg $ git add <names of any new files you created for this commit>
-      argovisNg $ git commit -a -m 'a short description of my awesome code'
-      argovisNg $ git push origin main
+      hackathon22-argo-goship $ git add <names of any new files you created for this commit>
+      hackathon22-argo-goship $ git commit -a -m 'a short description of my awesome code'
+      hackathon22-argo-goship $ git push origin main
 
    The anatomy of these commands are:
 
@@ -114,7 +114,7 @@ Now that we're all set up, we're ready to begin the daily activity of writing co
       - ``origin``: ...to the remote named ``origin`` (remember, that's your copy of the repo on GitHub)
       - ``main``: ...from the ``main`` branch locally to the ``main`` branch on the remote.
 
-4. Once you think you're ready for the maintainers to review your code and consider it for inclusion in the main repo, it's time to set up a *pull request*. In your browser, go back to GitHub and find your copy of the repo you're working on - the URL should be ``https://github.com/<username>/argovisNg``. Once there:
+4. Once you think you're ready for the maintainers to review your code and consider it for inclusion in the main repo, it's time to set up a *pull request*. In your browser, go back to GitHub and find your copy of the repo you're working on - the URL should be ``https://github.com/<username>/hackathon22-argo-goship``. Once there:
 
    - Click on **Pull requests**
    - Click the big green button that says **New pull request**.

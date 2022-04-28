@@ -192,13 +192,13 @@
 <li><p>git installed in your bash environment</p></li>
 </ul>
 </div></blockquote>
-<p>Our examples will show the workflow with the repository <a class="reference external" href="https://github.com/argovis/argovisNg">argovisNg</a>, but the same applies to all argovis repositories (and most any other repository you find on GitHub).</p>
+<p>Our examples will show the workflow with <a class="reference external" href="https://github.com/argovis/hackathon22-argo-goship">https://github.com/argovis/hackathon22-argo-goship</a>, but the same applies to all argovis repositories (and most any other repository you find on GitHub).</p>
 <div class="section" id="setting-up-for-the-first-time">
 <h2>Setting Up For The First Time<a class="headerlink" href="#setting-up-for-the-first-time" title="Permalink to this headline">¶</a></h2>
 <p>When you first want to start collaborating on a code repository, there are some one-time setup steps you must perform:</p>
 <ol class="arabic">
-<li><p><em>Fork</em> the repository in question; this is GitHub’s jargon for making a copy of the official repository you want to contribute to in your own GitHub account. Visit <a class="reference external" href="https://github.com/argovis/argovisNg">https://github.com/argovis/argovisNg</a>, and click the <strong>Fork</strong> button near the top right corner of the screen. If it asks “Where should we fork?”, choose your own GitHub username from the list.</p>
-<p>Once successfully completed, you should have a copy of the repository under your own account on GitHub. Notice near the top left of the resulting page, the repo title is <code class="docutils literal notranslate"><span class="pre">&lt;username&gt;/argovisNg</span></code>, whereas the original was <code class="docutils literal notranslate"><span class="pre">argovis/argovisNg</span></code>.</p>
+<li><p><em>Fork</em> the repository in question; this is GitHub’s jargon for making a copy of the official repository you want to contribute to in your own GitHub account. Visit <a class="reference external" href="https://github.com/argovis/hackathon22-argo-goship">https://github.com/argovis/hackathon22-argo-goship</a>, and click the <strong>Fork</strong> button near the top right corner of the screen. If it asks “Where should we fork?”, choose your own GitHub username from the list.</p>
+<p>Once successfully completed, you should have a copy of the repository under your own account on GitHub. Notice near the top left of the resulting page, the repo title is <code class="docutils literal notranslate"><span class="pre">&lt;username&gt;/hackathon22-argo-goship</span></code>, whereas the original was <code class="docutils literal notranslate"><span class="pre">argovis/hackathon22-argo-goship</span></code>.</p>
 </li>
 <li><p><em>Clone</em> your fork of the repository to your development machine. To do so, open a bash shell on your machine and do:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ git clone &lt;URL of YOUR fork of the repo&gt;
@@ -206,17 +206,17 @@
 </div>
 <p>Notice the URL to substitute is that of your fork of the repo - this is the copy you’ll be able to edit directly.</p>
 <p>If successful, a directory named the same as the repo should appear on your machine. Enter it, and check your first <em>remote</em>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ <span class="nb">cd</span> argovisNg
-argovisNg $ git remote -v
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ <span class="nb">cd</span> hackathon22-argo-goship
+hackathon22-argo-goship$ git remote -v
 
-origin  https://github.com/BillMills/argovisNg <span class="o">(</span>fetch<span class="o">)</span>
-origin  https://github.com/BillMills/argovisNg <span class="o">(</span>push<span class="o">)</span>
+origin  https://github.com/BillMills/hackathon22-argo-goship <span class="o">(</span>fetch<span class="o">)</span>
+origin  https://github.com/BillMills/hackathon22-argo-goship <span class="o">(</span>push<span class="o">)</span>
 </pre></div>
 </div>
 <p>By default, you get one remote named <code class="docutils literal notranslate"><span class="pre">origin</span></code>. Remotes are shorthand names for remote repositories; you’ll see later in this lesson how you can use this shorthand when communicating with GitHub.</p>
 </li>
-<li><p>Set up a second remote that’s a shorthand for the main repository we’re working with, <code class="docutils literal notranslate"><span class="pre">https://github.com/argovis/argovisNg</span></code> in this example:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ git remote add upstream https://github.com/argovis/argovisNg
+<li><p>Set up a second remote that’s a shorthand for the main repository we’re working with, <code class="docutils literal notranslate"><span class="pre">https://github.com/argovis/hackathon22-argo-goship</span></code> in this example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hackathon22-argo-goship $ git remote add upstream https://github.com/argovis/hackathon22-argo-goship
 </pre></div>
 </div>
 <p>The name <code class="docutils literal notranslate"><span class="pre">upstream</span></code> is arbitrary, but it is a common convention since it points at the version of the code that is ‘upstream’ from our own.</p>
@@ -243,7 +243,7 @@ origin  https://github.com/BillMills/argovisNg <span class="o">(</span>push<span
 </div></blockquote>
 <ol class="arabic">
 <li><p>First, we want to keep our local copy of the code up to date with what everyone else has been working on since last we checked; this is where the remotes we set up are going to come in handy. Download any new changes from the main repo to our local machine:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ git pull upstream main
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hackathon22-argo-goship $ git pull upstream main
 </pre></div>
 </div>
 <p>The anatomy of this command is:</p>
@@ -261,9 +261,9 @@ origin  https://github.com/BillMills/argovisNg <span class="o">(</span>push<span
 <ol class="arabic" start="2">
 <li><p>Now you’re all set up to get down to the business of writing code. Go for it!</p></li>
 <li><p>Once you’re happy with the code you’ve written (and I recommend at least once per day), <em>commit</em> and <em>push</em> your code.:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>argovisNg $ git add &lt;names of any new files you created <span class="k">for</span> this commit&gt;
-argovisNg $ git commit -a -m <span class="s1">&#39;a short description of my awesome code&#39;</span>
-argovisNg $ git push origin main
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>hackathon22-argo-goship $ git add &lt;names of any new files you created <span class="k">for</span> this commit&gt;
+hackathon22-argo-goship $ git commit -a -m <span class="s1">&#39;a short description of my awesome code&#39;</span>
+hackathon22-argo-goship $ git push origin main
 </pre></div>
 </div>
 <p>The anatomy of these commands are:</p>
@@ -287,7 +287,7 @@ argovisNg $ git push origin main
 </li>
 </ul>
 </li>
-<li><p>Once you think you’re ready for the maintainers to review your code and consider it for inclusion in the main repo, it’s time to set up a <em>pull request</em>. In your browser, go back to GitHub and find your copy of the repo you’re working on - the URL should be <code class="docutils literal notranslate"><span class="pre">https://github.com/&lt;username&gt;/argovisNg</span></code>. Once there:</p>
+<li><p>Once you think you’re ready for the maintainers to review your code and consider it for inclusion in the main repo, it’s time to set up a <em>pull request</em>. In your browser, go back to GitHub and find your copy of the repo you’re working on - the URL should be <code class="docutils literal notranslate"><span class="pre">https://github.com/&lt;username&gt;/hackathon22-argo-goship</span></code>. Once there:</p>
 <ul>
 <li><p>Click on <strong>Pull requests</strong></p></li>
 <li><p>Click the big green button that says <strong>New pull request</strong>.</p></li>

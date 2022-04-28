@@ -16,14 +16,14 @@ Suppose you're working on some API improvements, but it's a big project and you 
 
    .. code:: bash
 
-      argovisNg $ git checkout main
-      argovisNg $ git pull upstream main
+      hackathon22-argo-goship $ git checkout main
+      hackathon22-argo-goship $ git pull upstream main
 
 2. Make a branch named ``api`` for your API feature work:
 
    .. code:: bash
 
-      argovisNg $ git checkout -b api
+      hackathon22-argo-goship $ git checkout -b api
 
    From this point, you are on the ``api`` branch. Doing ``git commit`` will add commits to this branch instead of ``main``. To set up pull requests, do exactly what you did in :ref:`prs`, but using ``api`` (or whatever you named your branch) instead of ``main``. So for example, ``git push origin api`` will send your ``api`` branch up to GitHub, and when clicking through setting up your pull request, you'll want to select ``api`` as the originating branch from your repo, and ``main`` as the target branch in the upstream repo.
 
@@ -33,9 +33,9 @@ Suppose you're working on some API improvements, but it's a big project and you 
 
    .. code:: bash
 
-      argovisNg $ git checkout main
-      argovisNg $ git pull upstream main
-      argovisNg $ git checkout -b bugfix
+      hackathon22-argo-goship $ git checkout main
+      hackathon22-argo-goship $ git pull upstream main
+      hackathon22-argo-goship $ git checkout -b bugfix
 
    We now have (at least) three branches: the ``main`` version of the code, our API work on the ``api`` branch, and an new branch ``bugfix`` where we'll add commits fixing the bug. If you're ever confused, do ``git branch`` with no arguments, and git will list branches and indicate which one you're currently on. You can switch between existing branches with ``git checkout <branchname>``.
 
