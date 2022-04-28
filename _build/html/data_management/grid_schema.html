@@ -87,20 +87,13 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+              <p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../getting_started/set_up_dev_environment.html">Setting Up Argovis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../getting_started/api_development.html">API Development</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../getting_started/custom_angular_components.html">Creating Custom Angular Components</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Operations Playbooks</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../ops/deployment.html">Argovis Kubernetes Deployment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../ops/performance_testing.html">Performance Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_docs/point.html">Profiles API Beta Product</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../api_docs/grid.html">Grids API Beta Product</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Management</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="data_sources.html">Data Sources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="point_schema.html">Point Schema</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Grid Schema</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#how-to-read-this-schema">How to read this schema</a></li>
@@ -117,22 +110,11 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="argo_merge.html">Merging Argo Data</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
+<p class="caption" role="heading"><span class="caption-text">Appendix: Using Git &amp; Github</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../dev_tools/fast_development_builds.html">Fast Angular Builds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev_tools/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev_tools/merge_conflicts.html">Dealing With Merge Conflicts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../dev_tools/using_branches.html">Using Branches</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Disaster Recovery</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../disaster_recovery/restore_a_mongo_collection.html">Restore Mongo from Backup</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Special Topics</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../special_topics/connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../special_topics/goship-demo.html">Goship Demo Rebuild</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../special_topics/profiles-alpha.html">Profiles API Alpha Product</a></li>
 </ul>
 
             
@@ -234,7 +216,8 @@
 <li><p><code class="docutils literal notranslate"><span class="pre">_id</span></code></p>
 <ul>
 <li><p><strong>type:</strong> string</p></li>
-<li><p><strong>description:</strong> a string that matches the collection name that contains the data that should be associated with this metadata record, ie <code class="docutils literal notranslate"><span class="pre">rgTempAnom</span></code>.</p></li>
+<li><p><strong>description:</strong> a string that matches the collection name that contains the data that should be associated with this metadata record</p></li>
+<li><p><strong>current vocabulary</strong>: <code class="docutils literal notranslate"><span class="pre">rgTempTotal</span></code>, <code class="docutils literal notranslate"><span class="pre">rgPsalTotal</span></code>, <code class="docutils literal notranslate"><span class="pre">ohc</span></code></p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">units</span></code></p>
@@ -253,6 +236,36 @@
 <ul>
 <li><p><strong>type:</strong> ISO 8601 UTC datestring,  example <code class="docutils literal notranslate"><span class="pre">1999-12-31T23:59:59Z</span></code></p></li>
 <li><p><strong>description:</strong> time the record was added to Argovis</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lonrange</span></code></p>
+<ul>
+<li><p><strong>type:</strong> array of floats</p></li>
+<li><p><strong>description</strong>: minimum and maximum longitudes, in degrees, found in this grid</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">latrange</span></code></p>
+<ul>
+<li><p><strong>type:</strong> array of floats</p></li>
+<li><p><strong>description:</strong> minimum and maximum latitudes, in degrees, found in this grid</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">timerange</span></code></p>
+<ul>
+<li><p><strong>type:</strong> array of ISO 8601 UTC datestring</p></li>
+<li><p><strong>descriptionL</strong> minimum and maximum dates found in this grid</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">loncell</span></code></p>
+<ul>
+<li><p><strong>type:</strong> float</p></li>
+<li><p><strong>description:</strong> grid spacing in degrees in longitude</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">latcell</span></code></p>
+<ul>
+<li><p><strong>type:</strong> float</p></li>
+<li><p><strong>description:</strong> grid spacing in degrees in latitude</p></li>
 </ul>
 </li>
 </ul>

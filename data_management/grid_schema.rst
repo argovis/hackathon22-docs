@@ -39,7 +39,8 @@ Required keys
 - ``_id``
 
   - **type:** string
-  - **description:** a string that matches the collection name that contains the data that should be associated with this metadata record, ie ``rgTempAnom``.
+  - **description:** a string that matches the collection name that contains the data that should be associated with this metadata record
+  - **current vocabulary**: ``rgTempTotal``, ``rgPsalTotal``, ``ohc``
 
 - ``units``
 
@@ -55,6 +56,31 @@ Required keys
 
   - **type:** ISO 8601 UTC datestring,  example ``1999-12-31T23:59:59Z``
   - **description:** time the record was added to Argovis
+
+- ``lonrange``
+
+  - **type:** array of floats
+  - **description**: minimum and maximum longitudes, in degrees, found in this grid
+
+- ``latrange``
+
+  - **type:** array of floats
+  - **description:** minimum and maximum latitudes, in degrees, found in this grid
+
+- ``timerange``
+
+  - **type:** array of ISO 8601 UTC datestring
+  - **descriptionL** minimum and maximum dates found in this grid
+
+- ``loncell``
+
+  - **type:** float
+  - **description:** grid spacing in degrees in longitude
+
+- ``latcell``
+
+  - **type:** float
+  - **description:** grid spacing in degrees in latitude
 
 Grid Data Schema
 ----------------

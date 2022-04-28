@@ -7,7 +7,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
-  <title>Argovis Documentation &mdash; argovis  documentation</title>
+  <title>Argovis Hackathon Docs &mdash; argovis  documentation</title>
   
 
   
@@ -41,7 +41,7 @@
     
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Setting Up Argovis" href="getting_started/set_up_dev_environment.html" /> 
+    <link rel="next" title="Profiles API Beta Product" href="api_docs/point.html" /> 
 </head>
 
 <body class="wy-body-for-nav">
@@ -86,40 +86,22 @@
               
             
             
-              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+              <p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="getting_started/set_up_dev_environment.html">Setting Up Argovis</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started/api_development.html">API Development</a></li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started/custom_angular_components.html">Creating Custom Angular Components</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Operations Playbooks</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="ops/deployment.html">Argovis Kubernetes Deployment</a></li>
-<li class="toctree-l1"><a class="reference internal" href="ops/performance_testing.html">Performance Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_docs/point.html">Profiles API Beta Product</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_docs/grid.html">Grids API Beta Product</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Data Management</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="data_management/data_sources.html">Data Sources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_management/point_schema.html">Point Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_management/grid_schema.html">Grid Schema</a></li>
 <li class="toctree-l1"><a class="reference internal" href="data_management/argo_merge.html">Merging Argo Data</a></li>
 </ul>
-<p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
+<p class="caption" role="heading"><span class="caption-text">Appendix: Using Git &amp; Github</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dev_tools/fast_development_builds.html">Fast Angular Builds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dev_tools/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dev_tools/merge_conflicts.html">Dealing With Merge Conflicts</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dev_tools/using_branches.html">Using Branches</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Disaster Recovery</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="disaster_recovery/restore_a_mongo_collection.html">Restore Mongo from Backup</a></li>
-</ul>
-<p class="caption" role="heading"><span class="caption-text">Special Topics</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="special_topics/connecting_to_the_container_network.html">Connecting to the Container Network</a></li>
-<li class="toctree-l1"><a class="reference internal" href="special_topics/goship-demo.html">Goship Demo Rebuild</a></li>
-<li class="toctree-l1"><a class="reference internal" href="special_topics/profiles-alpha.html">Profiles API Alpha Product</a></li>
 </ul>
 
             
@@ -168,7 +150,7 @@
     
       <li><a href="#" class="icon icon-home"></a> &raquo;</li>
         
-      <li>Argovis Documentation</li>
+      <li>Argovis Hackathon Docs</li>
     
     
       <li class="wy-breadcrumbs-aside">
@@ -187,96 +169,18 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="argovis-documentation">
-<h1>Argovis Documentation<a class="headerlink" href="#argovis-documentation" title="Permalink to this headline">¶</a></h1>
-<p>Welcome to the documentation for the Argovis project!</p>
-<div class="section" id="conventions">
-<h2>Conventions<a class="headerlink" href="#conventions" title="Permalink to this headline">¶</a></h2>
-<p>We follow the following conventions in these docs:</p>
-<div class="section" id="code-prompts">
-<h3>Code prompts<a class="headerlink" href="#code-prompts" title="Permalink to this headline">¶</a></h3>
-<p>Unless otherwise noted, all terminal commands are <em>bash shell commands</em>.</p>
-<p>Prompts indicate the directory the command is expected to be run from, and are delimited with a <code class="docutils literal notranslate"><span class="pre">$</span></code> character. So:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>documentation $ <span class="nb">pwd</span>
-</pre></div>
-</div>
-<p>indicates you’re expected to run the <code class="docutils literal notranslate"><span class="pre">pwd</span></code> command in the <code class="docutils literal notranslate"><span class="pre">documentation</span></code> directory. Note that only the ‘nearest’ directory level is noted in this way, for brevity; the <code class="docutils literal notranslate"><span class="pre">documentation</span></code> directory in the above example might in fact be at <code class="docutils literal notranslate"><span class="pre">/Users/lovelace/projects/documentation</span></code> on your machine, but we hope this will be clear from context in each article.</p>
-<p>Per the typical convention, we use <code class="docutils literal notranslate"><span class="pre">~</span></code> in this context to indicate your home directory.</p>
-</div>
-<div class="section" id="variables">
-<h3>Variables<a class="headerlink" href="#variables" title="Permalink to this headline">¶</a></h3>
-<p>When a command includes a variable we expect you to substitute in, it will appear in <code class="docutils literal notranslate"><span class="pre">&lt;angle</span> <span class="pre">brackets&gt;</span></code>. Replace the token, <em>including the angle brackets</em>, with the value. So a command like:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ docker container inspect &lt;container ID&gt;
-</pre></div>
-</div>
-<p>Might actually look like:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ docker container inspect a508e35206a9
-</pre></div>
-</div>
-</div>
-</div>
-<div class="section" id="contributing">
-<h2>Contributing<a class="headerlink" href="#contributing" title="Permalink to this headline">¶</a></h2>
-<p>We enthusiastically welcome contributions via pull request to the documentation <a class="reference external" href="https://github.com/argovis/documentation">on GitHub</a>. Follow these steps to get set up contributing documentation:</p>
-<ol class="arabic simple" start="0">
-<li><p>Before investing a lot of your time writing docs, <a class="reference external" href="https://github.com/argovis/documentation/issues">open an issue in the docs repo</a> to discuss your idea or request with the team, so we can make sure it’s a good fit for the project and no one else is already working on it.</p></li>
-<li><p>Make sure you have installed on your development machine:</p></li>
-</ol>
-<blockquote>
-<div><ul class="simple">
-<li><p>git</p></li>
-<li><p>docker</p></li>
-<li><p>a bash shell</p></li>
-</ul>
-</div></blockquote>
-<p>You’ll also need a free GitHub account.</p>
-<ol class="arabic simple" start="2">
-<li><p>Fork <a class="reference external" href="https://github.com/argovis/documentation">https://github.com/argovis/documentation</a> on GitHub to your own account.</p></li>
-<li><p>Clone your fork of the documentation repo to your local machine.</p></li>
-<li><p>Try building the docs as is:</p></li>
-</ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>~ $ <span class="nb">cd</span> documentation
-documentation $ docker container run -it -v <span class="k">$(</span><span class="nb">pwd</span><span class="k">)</span>:/src argovis/docbuilder:dev make html
-</pre></div>
-</div>
-<p>If all is well, open <code class="docutils literal notranslate"><span class="pre">documentation/_build/html/index.html</span></code> in your browser to see your locally-built version of the docs.</p>
-<div class="admonition-warning admonition">
-<p class="admonition-title">Warning</p>
-<p>When you rebuild the docs in future, make sure your <code class="docutils literal notranslate"><span class="pre">_build</span></code> directory is empty! Otherwise, pre-existing pages may not get rebuilt, and their nav sidebar will be out of date.</p>
-</div>
-<ol class="arabic simple" start="5">
-<li><p>From here, you’re set up and ready to start creating your documentation. When you’re done, commit your code, push it back to your fork on GitHub, and open a pull request.</p></li>
-</ol>
+  <div class="section" id="argovis-hackathon-docs">
+<h1>Argovis Hackathon Docs<a class="headerlink" href="#argovis-hackathon-docs" title="Permalink to this headline">¶</a></h1>
+<p>Welcome to the 2022 Argovis Hackathon! In this event, you’ll be building analyses around the beta version of Argovis’ new API; your feedback and suggestions will shape where we go with this project before launch. On this website, you’ll find some documentation about using this API, and related tools.</p>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="getting_started/set_up_dev_environment.html">Setting Up Argovis</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started/set_up_dev_environment.html#quickstart-setup">Quickstart Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started/set_up_dev_environment.html#loading-data">Loading Data</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started/set_up_dev_environment.html#building-dev-versions">Building Dev Versions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_docs/point.html">Profiles API Beta Product</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_docs/point.html#usage">Usage</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started/api_development.html">API Development</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="getting_started/api_development.html#architecture">Architecture</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started/api_development.html#setting-up-a-working-dev-environment">Setting Up a Working Dev Environment</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started/api_development.html#code-repository-structure-development-workflow">Code Repository Structure &amp; Development Workflow</a></li>
-<li class="toctree-l2"><a class="reference internal" href="getting_started/api_development.html#loading-test-data">Loading Test Data</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="getting_started/custom_angular_components.html">Creating Custom Angular Components</a></li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Operations Playbooks</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="ops/deployment.html">Argovis Kubernetes Deployment</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ops/deployment.html#application-architecture">Application Architecture</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ops/deployment.html#setup">Setup</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="ops/performance_testing.html">Performance Testing</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="ops/performance_testing.html#load-testing">Load Testing</a></li>
-<li class="toctree-l2"><a class="reference internal" href="ops/performance_testing.html#database-response-testing">Database Response Testing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api_docs/grid.html">Grids API Beta Product</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="api_docs/grid.html#usage">Usage</a></li>
 </ul>
 </li>
 </ul>
@@ -284,13 +188,6 @@ documentation $ docker container run -it -v <span class="k">$(</span><span class
 <div class="toctree-wrapper compound">
 <p class="caption" role="heading"><span class="caption-text">Data Management</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="data_management/data_sources.html">Data Sources</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="data_management/data_sources.html#argo">Argo</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/data_sources.html#go-ship">GO-SHIP</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/data_sources.html#tropical-cyclones">Tropical Cyclones</a></li>
-<li class="toctree-l2"><a class="reference internal" href="data_management/data_sources.html#gridded-data">Gridded Data</a></li>
-</ul>
-</li>
 <li class="toctree-l1"><a class="reference internal" href="data_management/point_schema.html">Point Schema</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="data_management/point_schema.html#how-to-read-this-schema">How to read this schema</a></li>
 <li class="toctree-l2"><a class="reference internal" href="data_management/point_schema.html#schema-enforcement-population">Schema enforcement &amp; population</a></li>
@@ -316,9 +213,8 @@ documentation $ docker container run -it -v <span class="k">$(</span><span class
 </ul>
 </div>
 <div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Developer Tools &amp; Techniques</span></p>
+<p class="caption" role="heading"><span class="caption-text">Appendix: Using Git &amp; Github</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="dev_tools/fast_development_builds.html">Fast Angular Builds</a></li>
 <li class="toctree-l1"><a class="reference internal" href="dev_tools/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="dev_tools/pull_requests_and_github.html#setting-up-for-the-first-time">Setting Up For The First Time</a></li>
 <li class="toctree-l2"><a class="reference internal" href="dev_tools/pull_requests_and_github.html#daily-workflow">Daily Workflow</a></li>
@@ -336,41 +232,6 @@ documentation $ docker container run -it -v <span class="k">$(</span><span class
 </li>
 </ul>
 </div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Disaster Recovery</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="disaster_recovery/restore_a_mongo_collection.html">Restore Mongo from Backup</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="disaster_recovery/restore_a_mongo_collection.html#local-database-restoration">Local Database Restoration</a></li>
-<li class="toctree-l2"><a class="reference internal" href="disaster_recovery/restore_a_mongo_collection.html#production-database-backup-restore-strategy-document-based">Production Database Backup &amp; Restore Strategy - document-based</a></li>
-<li class="toctree-l2"><a class="reference internal" href="disaster_recovery/restore_a_mongo_collection.html#production-database-backup-resore-strategey-db-image">Production Database Backup &amp; Resore Strategey - DB image</a></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="toctree-wrapper compound">
-<p class="caption" role="heading"><span class="caption-text">Special Topics</span></p>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="special_topics/connecting_to_the_container_network.html">Connecting to the Container Network</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="special_topics/connecting_to_the_container_network.html#method-1-simple-container">Method 1: Simple Container</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="special_topics/goship-demo.html">Goship Demo Rebuild</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="special_topics/goship-demo.html#instance-setup">Instance Setup</a></li>
-<li class="toctree-l2"><a class="reference internal" href="special_topics/goship-demo.html#database-restore">Database Restore</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="special_topics/profiles-alpha.html">Profiles API Alpha Product</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="special_topics/profiles-alpha.html#project-goals">Project Goals</a></li>
-<li class="toctree-l2"><a class="reference internal" href="special_topics/profiles-alpha.html#usage">Usage</a></li>
-<li class="toctree-l2"><a class="reference internal" href="special_topics/profiles-alpha.html#examples">Examples</a></li>
-<li class="toctree-l2"><a class="reference internal" href="special_topics/profiles-alpha.html#mapping-to-old-endpoints">Mapping to old endpoints</a></li>
-<li class="toctree-l2"><a class="reference internal" href="special_topics/profiles-alpha.html#index-requirements">Index Requirements</a></li>
-<li class="toctree-l2"><a class="reference internal" href="special_topics/profiles-alpha.html#outstanding-issues">Outstanding Issues</a></li>
-</ul>
-</li>
-</ul>
-</div>
-</div>
 </div>
 
 
@@ -379,7 +240,7 @@ documentation $ docker container run -it -v <span class="k">$(</span><span class
           </div>
           <footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-        <a href="getting_started/set_up_dev_environment.html" class="btn btn-neutral float-right" title="Setting Up Argovis" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="api_docs/point.html" class="btn btn-neutral float-right" title="Profiles API Beta Product" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

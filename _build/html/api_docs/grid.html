@@ -1,0 +1,284 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Grids API Beta Product &mdash; argovis  documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Point Schema" href="../data_management/point_schema.html" />
+    <link rel="prev" title="Profiles API Beta Product" href="point.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> argovis
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">API Docs</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="point.html">Profiles API Beta Product</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Grids API Beta Product</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#grids">/grids</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Data Management</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../data_management/point_schema.html">Point Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_management/grid_schema.html">Grid Schema</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../data_management/argo_merge.html">Merging Argo Data</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Appendix: Using Git &amp; Github</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/pull_requests_and_github.html">Pull Requests, Git &amp; GitHub</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/merge_conflicts.html">Dealing With Merge Conflicts</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../dev_tools/using_branches.html">Using Branches</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">argovis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Grids API Beta Product</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/api_docs/grid.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="grids-api-beta-product">
+<h1>Grids API Beta Product<a class="headerlink" href="#grids-api-beta-product" title="Permalink to this headline">¶</a></h1>
+<p>Argovis’ <code class="docutils literal notranslate"><span class="pre">/grids</span></code> API endpoint is designed to support expressive searches of grid data that allow users to download only and exactly the data they need. This doc describes the <code class="docutils literal notranslate"><span class="pre">/grids</span></code> endpoint and its options.</p>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>Unless otherwise noted, all routes support only <code class="docutils literal notranslate"><span class="pre">GET</span></code> requests at this time.</p>
+<div class="admonition-longitudes-and-latitudes admonition">
+<p class="admonition-title">Longitudes and Latitudes</p>
+<p>For all queries on all endpoints, where longitudes and latitudes are supported, they must fall on [-180,180] and [-90,90], respectively.</p>
+</div>
+<div class="section" id="grids">
+<h3>/grids<a class="headerlink" href="#grids" title="Permalink to this headline">¶</a></h3>
+<p>The base <code class="docutils literal notranslate"><span class="pre">/grids</span></code> endpoint is the place to go for all gridded data; at this time Argovis supports the Roemmich-Gilson Argo climatology grids, and an ocena heat content grid. Reducing the amount of data returned can be achieved with the following query string parameters; using multiple query string parameters <code class="docutils literal notranslate"><span class="pre">AND</span></code> s the corresponding requirements. All parameters are optional unless otherwise noted. See <a class="reference internal" href="../data_management/grid_schema.html#grid-schema"><span class="std std-ref">Grid Schema</span></a> for the possible vocabularies of the parameters filtered on, and more details on the objects returned.</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">gridName</span></code> (mandatory)</p></li>
+</ul>
+<blockquote>
+<div><ul class="simple">
+<li><p>formatted as a single string</p></li>
+<li><p>description: specifies the grid to query, currently one of <code class="docutils literal notranslate"><span class="pre">rgTempTotal</span></code>, <code class="docutils literal notranslate"><span class="pre">rgPsalTotal</span></code>, or <code class="docutils literal notranslate"><span class="pre">ohc</span></code>.</p></li>
+</ul>
+</div></blockquote>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">startDate</span></code> (mandatory)</p>
+<ul>
+<li><p>formatted as ISO 8601 UTC: <code class="docutils literal notranslate"><span class="pre">1999-12-31T23:59:59Z</span></code>.</p></li>
+<li><p>Filters against grid schema property: <code class="docutils literal notranslate"><span class="pre">t</span></code></p></li>
+<li><p>description: Columns of grid points will be returned if their <code class="docutils literal notranslate"><span class="pre">t</span></code> is at or after this time.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">endDate</span></code> (mandatory)</p>
+<ul>
+<li><p>formatted as ISO 8601 UTC: <code class="docutils literal notranslate"><span class="pre">1999-12-31T23:59:59Z</span></code>.</p></li>
+<li><p>Filters against grid schema property: <code class="docutils literal notranslate"><span class="pre">t</span></code></p></li>
+<li><p>description: Columns of grid points will be returned if their <code class="docutils literal notranslate"><span class="pre">t</span></code> is before this time.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">polygon</span></code> (mandatory)</p>
+<ul>
+<li><p>formatted as <code class="docutils literal notranslate"><span class="pre">[[lon,lat],[lon,lat],[lon,lat]...]</span></code>; note the first and last <code class="docutils literal notranslate"><span class="pre">[lon,lat]</span></code> pairs must be identical.</p></li>
+<li><p>Filters against grid schema property: <code class="docutils literal notranslate"><span class="pre">g</span></code></p></li>
+<li><p>description: Columns of grid points will be returned if their <code class="docutils literal notranslate"><span class="pre">g</span></code> property falls within the closed polygon created by connecting the coordinate pairs in the order they are serialized.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">presRange</span></code></p>
+<ul>
+<li><p>formatted as <code class="docutils literal notranslate"><span class="pre">min</span> <span class="pre">pres,max</span> <span class="pre">pres</span></code></p></li>
+<li><p>description: filters out grid levels that fall outside the specified range.</p></li>
+</ul>
+</li>
+</ul>
+</div></blockquote>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="../data_management/point_schema.html" class="btn btn-neutral float-right" title="Point Schema" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="point.html" class="btn btn-neutral float-left" title="Profiles API Beta Product" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Argovis Collaboration.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
