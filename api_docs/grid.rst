@@ -3,6 +3,11 @@ Grids API Beta Product
 
 Argovis' ``/grids`` API endpoint is designed to support expressive searches of grid data that allow users to download only and exactly the data they need. This doc describes the ``/grids`` endpoint and its options.
 
+Demo Notebook
+-------------
+
+You can see the ``/grids`` endpoint in action in our demo notebook, available on `Binder <https://github.com/argovis/demo_notebooks>`_.
+
 Usage
 -----
 

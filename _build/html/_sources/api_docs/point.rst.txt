@@ -3,6 +3,11 @@ Profiles API Beta Product
 
 Argovis' ``/profiles`` API endpoint is designed to support expressive searches of profile data that allow users to download only and exactly the data they need. This doc describes the ``/profiles`` endpoint and its options, along with some other related endpoints for exploring oceanic profiles.
 
+Demo Notebook
+-------------
+
+You can see the ``/profiles`` endpoint in action in our EarthCube 2022 notebook, available on `Binder <https://github.com/argovis/ec2022>`_.
+
 Usage
 -----
 
