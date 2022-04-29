@@ -78,6 +78,11 @@ Per-level data is merged along a one-dimensional pressure axis with the followin
   - NaNs are converted to pythonic ``None``
   - Floats are rounded to at most six decimal places
 
+Nightly Updates
+---------------
+
+Argovis mirrors ifremer nightly, and updates its constructed profiles with any new upstream .nc files it finds. In the event that any upstream file merged into an Argovis profile is updated, the entire profile in Argovis is rebuilt from scratch per the above merge process, using the latest synthetic and latest core file for that profile.
+
 Database Considerations
 -----------------------
 
