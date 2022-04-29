@@ -80,7 +80,7 @@ The base ``/profiles`` endpoint is the place to go for all profile data. Reducin
 
  - ``source``
 
-   - formatted as a comma delimited strings
+   - formatted as comma delimited strings
    - Filters against point schema property: ``source_info.source``
    - description: return profiles that satisfy all listed source strings. Also accepts negation like ``~argo_bgc``, meaning 'not matching ``argo_bgc``'.
 
@@ -88,7 +88,7 @@ The base ``/profiles`` endpoint is the place to go for all profile data. Reducin
 
    - formatted as string. 
    - Filters against point schema property: ``woce_lines``
-   - description: Profiles from the indicated GO-SHIP woce line will be returned.
+   - description: Profiles from the indicated GO-SHIP WOCE line will be returned.
 
  - ``data``
 

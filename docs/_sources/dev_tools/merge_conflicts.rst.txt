@@ -3,7 +3,7 @@
 Dealing With Merge Conflicts
 ============================
 
-When working with Git and GitHub, sooner or later you're going to get a *merge conflict* - this arises when you and a collaborator want to make different, contradictory changes to the same piece of code, and git's algorithm can't figure out how to sort things out. In this case, a human - you  - need to solve the problem.
+When working with Git and GitHub, sooner or later you're going to get a *merge conflict* - this arises when you and a collaborator want to make different, contradictory changes to the same piece of code, and git's algorithm can't figure out how to sort things out. In this case, a human - you - needs to solve the problem.
 
 To follow this tutorial, it's best to actually have a merge conflict in progress you need to debug. The most common time this happens is after doing a ``git pull`` to fetch new code from an upstream repository.
 

@@ -22,7 +22,7 @@ All endpoints follow the current root of our API, which is https://argovis-api.c
 /grids
 ++++++
 
-The base ``/grids`` endpoint is the place to go for all gridded data; at this time Argovis supports the Roemmich-Gilson Argo climatology grids, and an ocena heat content grid. Reducing the amount of data returned can be achieved with the following query string parameters; using multiple query string parameters ``AND`` s the corresponding requirements. All parameters are optional unless otherwise noted. See :ref:`grid_schema` for the possible vocabularies of the parameters filtered on, and more details on the objects returned.
+The base ``/grids`` endpoint is the place to go for all gridded data; at this time Argovis supports the Roemmich-Gilson Argo climatology grids, and an ocean heat content grid. Reducing the amount of data returned can be achieved with the following query string parameters; using multiple query string parameters ``AND`` s the corresponding requirements. All parameters are optional unless otherwise noted. See :ref:`grid_schema` for the possible vocabularies of the parameters filtered on, and more details on the objects returned.
 
  - ``gridName`` (mandatory)
 
