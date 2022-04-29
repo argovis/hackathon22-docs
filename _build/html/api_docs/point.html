@@ -295,7 +295,7 @@
 </div>
 <div class="admonition-data-or-metadata admonition">
 <p class="admonition-title">Data or Metadata?</p>
-<p>If your query string does not include <code class="docutils literal notranslate"><span class="pre">data</span></code>, the request will return profile metadata only. If your query string includes either of those and a matching profile has no levels with the appropriate measurements after filtering, it will be dropped from the returned results.</p>
+<p>If your query string does not include <code class="docutils literal notranslate"><span class="pre">data</span></code>, or has <code class="docutils literal notranslate"><span class="pre">metadata-only</span></code> in the list of tokens assigned to <code class="docutils literal notranslate"><span class="pre">data</span></code>, the request will return profile metadata only.</p>
 </div>
 <p>There are also two subroutes under <code class="docutils literal notranslate"><span class="pre">/profiles</span></code>:</p>
 <blockquote>

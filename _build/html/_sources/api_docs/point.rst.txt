@@ -102,7 +102,7 @@ The base ``/profiles`` endpoint is the place to go for all profile data. Reducin
 
 .. admonition:: Data or Metadata?
 
-   If your query string does not include ``data``, the request will return profile metadata only. If your query string includes either of those and a matching profile has no levels with the appropriate measurements after filtering, it will be dropped from the returned results.
+   If your query string does not include ``data``, or has ``metadata-only`` in the list of tokens assigned to ``data``, the request will return profile metadata only.
 
 There are also two subroutes under ``/profiles``:
 
