@@ -6,12 +6,14 @@ Argovis' ``/grids`` API endpoint is designed to support expressive searches of g
 Demo Notebook
 -------------
 
-You can see the ``/grids`` endpoint in action in our demo notebook, available on `Binder <https://github.com/argovis/demo_notebooks>`_.
+You can see the ``/grids`` endpoint in action in our demo notebook, available on `Binder <https://mybinder.org/v2/gh/argovis/demo_notebooks/HEAD>`_.
 
 Usage
 -----
 
 Unless otherwise noted, all routes support only ``GET`` requests at this time.
+
+All endpoints follow the current root of our API, which is https://argovis-api.colorado.edu - so for example, ``https://argovis-api.colorado.edu/grids/gridName=rgTempTotal``. See below for routes and search filters.
 
 .. admonition:: Longitudes and Latitudes
 

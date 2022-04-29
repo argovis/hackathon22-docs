@@ -183,11 +183,12 @@
 <p>Argovis’ <code class="docutils literal notranslate"><span class="pre">/profiles</span></code> API endpoint is designed to support expressive searches of profile data that allow users to download only and exactly the data they need. This doc describes the <code class="docutils literal notranslate"><span class="pre">/profiles</span></code> endpoint and its options, along with some other related endpoints for exploring oceanic profiles.</p>
 <div class="section" id="demo-notebook">
 <h2>Demo Notebook<a class="headerlink" href="#demo-notebook" title="Permalink to this headline">¶</a></h2>
-<p>You can see the <code class="docutils literal notranslate"><span class="pre">/profiles</span></code> endpoint in action in our EarthCube 2022 notebook, available on <a class="reference external" href="https://github.com/argovis/ec2022">Binder</a>.</p>
+<p>You can see the <code class="docutils literal notranslate"><span class="pre">/profiles</span></code> endpoint in action in our EarthCube 2022 notebook, available on <a class="reference external" href="https://mybinder.org/v2/gh/argovis/ec2022/rc?labpath=WM_01_intro_to_argovis_api.ipynb">Binder</a>.</p>
 </div>
 <div class="section" id="usage">
 <h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <p>Unless otherwise noted, all routes support only <code class="docutils literal notranslate"><span class="pre">GET</span></code> requests at this time.</p>
+<p>All endpoints follow the current root of our API, which is <a class="reference external" href="https://argovis-api.colorado.edu">https://argovis-api.colorado.edu</a> - so for example, <code class="docutils literal notranslate"><span class="pre">https://argovis-api.colorado.edu/profiles/overview</span></code>. See below for routes and search filters.</p>
 <div class="admonition-longitudes-and-latitudes admonition">
 <p class="admonition-title">Longitudes and Latitudes</p>
 <p>For all queries on all endpoints, where longitudes and latitudes are supported, they must fall on [-180,180] and [-90,90], respectively.</p>

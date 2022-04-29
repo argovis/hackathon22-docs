@@ -6,12 +6,14 @@ Argovis' ``/profiles`` API endpoint is designed to support expressive searches o
 Demo Notebook
 -------------
 
-You can see the ``/profiles`` endpoint in action in our EarthCube 2022 notebook, available on `Binder <https://github.com/argovis/ec2022>`_.
+You can see the ``/profiles`` endpoint in action in our EarthCube 2022 notebook, available on `Binder <https://mybinder.org/v2/gh/argovis/ec2022/rc?labpath=WM_01_intro_to_argovis_api.ipynb>`_.
 
 Usage
 -----
 
 Unless otherwise noted, all routes support only ``GET`` requests at this time.
+
+All endpoints follow the current root of our API, which is https://argovis-api.colorado.edu - so for example, ``https://argovis-api.colorado.edu/profiles/overview``. See below for routes and search filters.
 
 .. admonition:: Longitudes and Latitudes
 
